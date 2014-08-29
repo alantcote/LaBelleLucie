@@ -15,7 +15,7 @@
 	<parent>
 		<groupId>net.sf.cotelab</groupId>
 		<artifactId>CoteLabBase</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.1-SNAPSHOT</version>
 	</parent>
 	<scm>
 		<url>https://svn.code.sf.net/p/cotelab/svn/trunk/Euler</url>
