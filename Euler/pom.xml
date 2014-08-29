@@ -18,7 +18,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<scm>
-		<url>svn+ssh://rfc11fan@svn.code.sf.net/p/cotelab/svn</url>
+		<url>https://svn.code.sf.net/p/cotelab/svn/trunk/Euler</url>
 	</scm>
 	<issueManagement>
 		<system>SourceForge Tickets</system>
