@@ -102,7 +102,7 @@
 	</build>
 	<url>http://cotelab.sourceforge.net/</url>
 	<scm>
-		<url>svn+ssh://rfc11fan@svn.code.sf.net/p/cotelab/svn</url>
+		<url>svnhttps://svn.code.sf.net/p/cotelab/svn/trunk/CoteLabBase</url>
 	</scm>
 	<issueManagement>
 		<url>https://sourceforge.net/p/cotelab/tickets/</url>
