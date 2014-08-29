@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.sf.cotelab</groupId>
 	<artifactId>CoteLabBase</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>CoteLabBase</name>
 	<description>This POM is the root of the POM inheritance hierarchy for CoteLab projects.</description>
