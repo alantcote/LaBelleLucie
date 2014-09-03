@@ -101,9 +101,6 @@
 		</plugins>
 	</build>
 	<url>http://cotelab.sourceforge.net/</url>
-	<scm>
-		<url>svnhttps://svn.code.sf.net/p/cotelab/svn/trunk/CoteLabBase</url>
-	</scm>
 	<issueManagement>
 		<url>https://sourceforge.net/p/cotelab/tickets/</url>
 		<system>SourceForge Tickets</system>
