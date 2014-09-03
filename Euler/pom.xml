@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>Euler</artifactId>
+  <packaging>jar</packaging>
+
+  <name>Euler</name>
+  <url>http://cotelab.sourceforge.net/</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <parent>
+  	<groupId>net.sf.cotelab</groupId>
+  	<artifactId>CoteLabBase</artifactId>
+  	<version>0.1-SNAPSHOT</version>
+  </parent>
+  <inceptionYear>2014</inceptionYear>
+  <organization>
+  	<name>Cote Lab</name>
+  	<url>http://cotelab.sourceforge.net/</url>
+  </organization>
+  <scm>
+  	<url>http://svn.code.sf.net/p/cotelab/trunk/Euler</url>
+  </scm>
+  <issueManagement>
+  	<system>SourceForge Tickets</system>
+  	<url>http://sourceforge.net/p/cotelab/tickets/</url>
+  </issueManagement>
+  <dependencies>
+  	<dependency>
+  		<groupId>net.sf.cotelab</groupId>
+  		<artifactId>CLTestUtilities</artifactId>
+  		<version>0.1-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>net.sf.cotelab</groupId>
+  		<artifactId>CLUtilities</artifactId>
+  		<version>0.1-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
+  <description>Solutions for some of the problems posed by Project Euler (http://projecteuler.net/).</description>
+</project>
