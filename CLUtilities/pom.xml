@@ -24,4 +24,18 @@
   		<scope>test</scope>
   	</dependency>
   </dependencies>
+  <url>http://cotelab.sourceforge.net/</url>
+  <organization>
+  	<url>http://cotelab.sourceforge.net/</url>
+  	<name>Cote Lab</name>
+  </organization>
+  <description>Utility classes.</description>
+  <inceptionYear>2014</inceptionYear>
+  <scm>
+  	<url>http://svn.code.sf.net/p/cotelab/trunk/CLUtilities</url>
+  </scm>
+  <issueManagement>
+  	<system>SourceForge Tickets</system>
+  	<url>https://codex.xerox.com/tracker/index.php?group_id=962</url>
+  </issueManagement>
 </project>
