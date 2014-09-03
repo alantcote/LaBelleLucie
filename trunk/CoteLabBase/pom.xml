@@ -102,7 +102,7 @@
 	</build>
 	<url>http://cotelab.sourceforge.net/</url>
 	<issueManagement>
-		<url>https://sourceforge.net/p/cotelab/tickets/</url>
+		<url>http://sourceforge.net/p/cotelab/tickets/</url>
 		<system>SourceForge Tickets</system>
 	</issueManagement>
 	<inceptionYear>2014</inceptionYear>
