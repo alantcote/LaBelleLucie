@@ -105,4 +105,8 @@
 		<url>https://sourceforge.net/p/cotelab/tickets/</url>
 		<system>SourceForge Tickets</system>
 	</issueManagement>
+	<inceptionYear>2014</inceptionYear>
+	<scm>
+		<url>http://svn.code.sf.net/p/cotelab/trunk/</url>
+	</scm>
 </project>

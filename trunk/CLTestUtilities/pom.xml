@@ -6,7 +6,7 @@
   <packaging>jar</packaging>
 
   <name>CLTestUtilities</name>
-  <url>http://maven.apache.org</url>
+  <url>http://cotelab.sourceforge.net/</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -55,4 +55,17 @@
   		<version>2.0b4</version>
   	</dependency>
   </dependencies>
+  <description>Utilities used in automated testing.</description>
+  <organization>
+  	<name>Cote Lab</name>
+  	<url>http://cotelab.sourceforge.net/</url>
+  </organization>
+  <inceptionYear>2014</inceptionYear>
+  <scm>
+  	<url>http://svn.code.sf.net/p/cotelab/trunk/CLTestUtilities</url>
+  </scm>
+  <issueManagement>
+  	<system>SourceForge Tickets</system>
+  	<url>https://sourceforge.net/p/cotelab/tickets/</url>
+  </issueManagement>
 </project>
