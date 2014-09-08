@@ -1,16 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <artifactId>FindDuplicates</artifactId>
-  <packaging>jar</packaging>
+	<artifactId>FindDuplicates</artifactId>
+	<packaging>jar</packaging>
 
-  <name>${project.groupId}:${project.artifactId}</name>
-  <url>http://cotelab.sourceforge.net/</url>
+	<name>${project.groupId}:${project.artifactId}</name>
+	<url>http://cotelab.sourceforge.net/</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
 	<licenses>
 		<license>
@@ -37,6 +37,29 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>attached</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+							<archive>
+								<manifest>
+									<mainClass>net.sf.cotelab.app.dupfilefinder.DupFileFinder</mainClass>
+								</manifest>
+							</archive>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -117,34 +140,34 @@
 		</plugins>
 	</build>
 
-  <organization>
-  	<url>http://cotelab.sourceforge.net/</url>
-  	<name>Cote Lab</name>
-  </organization>
-  <description>A program to identify duplicate files.</description>
-  <dependencies>
-  	<dependency>
-  		<groupId>net.sf.cotelab</groupId>
-  		<artifactId>CLTestUtilities</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  		<scope>test</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>net.sf.cotelab</groupId>
-  		<artifactId>CLUtilities</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
-  </dependencies>
-  <groupId>net.sf.cotelab</groupId>
-  <version>0.0.1-SNAPSHOT</version>
-  <inceptionYear>2014</inceptionYear>
-  <scm>
-  	<url>http://sourceforge.net/p/cotelab/svn/HEAD/tree/trunk/FindDuplicates/</url>
-  	<connection>scm:svn:http://svn.code.sf.net/p/cotelab/svn/trunk/FindDuplicates/</connection>
-  	<developerConnection>scm:svn:https://svn.code.sf.net/p/cotelab/svn/trunk/FindDuplicates/</developerConnection>
-  </scm>
-  <issueManagement>
-  	<system>SourceForge Tickets</system>
-  	<url>http://sourceforge.net/p/cotelab/tickets/</url>
-  </issueManagement>
+	<organization>
+		<url>http://cotelab.sourceforge.net/</url>
+		<name>Cote Lab</name>
+	</organization>
+	<description>A program to identify duplicate files.</description>
+	<dependencies>
+		<dependency>
+			<groupId>net.sf.cotelab</groupId>
+			<artifactId>CLTestUtilities</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.cotelab</groupId>
+			<artifactId>CLUtilities</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+	<groupId>net.sf.cotelab</groupId>
+	<version>0.0.1-SNAPSHOT</version>
+	<inceptionYear>2014</inceptionYear>
+	<scm>
+		<url>http://sourceforge.net/p/cotelab/svn/HEAD/tree/trunk/FindDuplicates/</url>
+		<connection>scm:svn:http://svn.code.sf.net/p/cotelab/svn/trunk/FindDuplicates/</connection>
+		<developerConnection>scm:svn:https://svn.code.sf.net/p/cotelab/svn/trunk/FindDuplicates/</developerConnection>
+	</scm>
+	<issueManagement>
+		<system>SourceForge Tickets</system>
+		<url>http://sourceforge.net/p/cotelab/tickets/</url>
+	</issueManagement>
 </project>
