@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>CLTestUtilities</artifactId>
@@ -167,14 +166,14 @@
 	</organization>
 	<inceptionYear>2014</inceptionYear>
 	<scm>
-		<url>http://sourceforge.net/p/cotelab/svn/HEAD/tree/trunk/CLTestUtilities/</url>
-		<connection>scm:svn:http://svn.code.sf.net/p/cotelab/svn/trunk/CLTestUtilities/</connection>
-		<developerConnection>scm:svn:https://svn.code.sf.net/p/cotelab/svn/trunk/CLTestUtilities/</developerConnection>
+		<url>http://sourceforge.net/p/cotelab/svn/HEAD/tree/tags/CLTestUtilities-0.0.1</url>
+		<connection>scm:svn:http://svn.code.sf.net/p/cotelab/svn/tags/CLTestUtilities-0.0.1</connection>
+		<developerConnection>scm:svn:https://svn.code.sf.net/p/cotelab/svn/tags/CLTestUtilities-0.0.1</developerConnection>
 	</scm>
 	<issueManagement>
 		<system>SourceForge Tickets</system>
 		<url>http://sourceforge.net/p/cotelab/tickets/</url>
 	</issueManagement>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<groupId>net.sf.cotelab</groupId>
 </project>
