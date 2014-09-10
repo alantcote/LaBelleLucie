@@ -151,5 +151,5 @@
   	<url>http://sourceforge.net/p/cotelab/tickets/</url>
   </issueManagement>
   <groupId>net.sf.cotelab</groupId>
-  <version>0.0.1</version>
+  <version>0.0.2-SNAPSHOT</version>
 </project>
