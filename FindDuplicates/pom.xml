@@ -159,7 +159,7 @@
 		</dependency>
 	</dependencies>
 	<groupId>net.sf.cotelab</groupId>
-	<version>0.0.1</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<inceptionYear>2014</inceptionYear>
 	<scm>
 		<url>http://sourceforge.net/p/cotelab/svn/HEAD/tree/trunk/FindDuplicates/</url>
