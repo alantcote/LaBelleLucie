@@ -149,17 +149,17 @@
 		<dependency>
 			<groupId>net.sf.cotelab</groupId>
 			<artifactId>CLTestUtilities</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.cotelab</groupId>
 			<artifactId>CLUtilities</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.1</version>
 		</dependency>
 	</dependencies>
 	<groupId>net.sf.cotelab</groupId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<inceptionYear>2014</inceptionYear>
 	<scm>
 		<url>http://sourceforge.net/p/cotelab/svn/HEAD/tree/trunk/FindDuplicates/</url>
