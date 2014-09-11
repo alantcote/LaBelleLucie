@@ -138,8 +138,8 @@ public class ForestSearchPhaseUsingPath extends Phase {
     	}
     }
     
-    public static final double PROGRESS_WEIGHT = 650556;
-    public static final double PROGRESS_WEIGHT_USING_CKSUM = 726832;
+    public static final double PROGRESS_WEIGHT = 156350;
+    public static final double PROGRESS_WEIGHT_USING_CKSUM = 7096;
 
     /**
      * The readable regular files enumerated by the search.
