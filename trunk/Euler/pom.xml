@@ -122,15 +122,15 @@
   	<dependency>
   		<groupId>net.sf.cotelab</groupId>
   		<artifactId>CLTestUtilities</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
+  		<version>0.0.1</version>
   	</dependency>
   	<dependency>
   		<groupId>net.sf.cotelab</groupId>
   		<artifactId>CLUtilities</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
+  		<version>0.0.1</version>
   	</dependency>
   </dependencies>
   <description>Solutions for some of the problems posed by Project Euler (http://projecteuler.net/).</description>
   <groupId>net.sf.cotelab</groupId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
 </project>
