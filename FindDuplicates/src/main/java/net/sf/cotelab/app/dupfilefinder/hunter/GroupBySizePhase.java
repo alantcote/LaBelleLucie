@@ -38,8 +38,8 @@ import net.sf.cotelab.util.collections.HashMultiMap;
  * @author cote
  */
 public class GroupBySizePhase extends Phase {
-    public static final double PROGRESS_WEIGHT = 136434;
-    public static final double PROGRESS_WEIGHT_USING_CKSUM = 148354;
+    public static final double PROGRESS_WEIGHT = 3469;
+    public static final double PROGRESS_WEIGHT_USING_CKSUM = 3208;
 
     public GroupBySizePhase(PhaseStats input, PhaseStats output,
     		Future<Void> worker) {

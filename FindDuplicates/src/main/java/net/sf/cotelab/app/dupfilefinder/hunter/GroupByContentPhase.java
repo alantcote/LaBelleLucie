@@ -64,8 +64,8 @@ public class GroupByContentPhase extends Phase {
 
     public static final int BIS_BUFFER_SIZE = 256 * 1024;
     public static final int NWCES_BUFFER_SIZE = 1024;
-    public static final double PROGRESS_WEIGHT = 25817832;
-    public static final double PROGRESS_WEIGHT_USING_CKSUM = 8818275;
+    public static final double PROGRESS_WEIGHT = 623905;
+    public static final double PROGRESS_WEIGHT_USING_CKSUM = 119320;
 
     public GroupByContentPhase(PhaseStats input, PhaseStats output,
     		Future<Void> worker) {
