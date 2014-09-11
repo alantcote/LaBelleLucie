@@ -132,5 +132,5 @@
   </dependencies>
   <description>Solutions for some of the problems posed by Project Euler (http://projecteuler.net/).</description>
   <groupId>net.sf.cotelab</groupId>
-  <version>0.0.1</version>
+  <version>0.0.2-SNAPSHOT</version>
 </project>
