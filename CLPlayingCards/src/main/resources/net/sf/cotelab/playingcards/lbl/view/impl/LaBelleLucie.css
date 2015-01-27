@@ -1,0 +1,21 @@
+@CHARSET "ISO-8859-1";
+
+.root {
+	-fx-background-color: "darkgreen";
+}
+
+#fan-view {
+	-fx-background-image: url("cardSilhouette.gif");
+	-fx-background-position: 6 6; 
+	-fx-background-repeat: no-repeat;
+}
+
+#message-bar {
+	-fx-background-color: "white";
+}
+
+#stock-view {
+	-fx-background-image: url("stockSilhouette.gif");
+	-fx-background-position: 5 5; 
+	-fx-background-repeat: no-repeat;
+}
