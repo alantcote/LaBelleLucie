@@ -114,25 +114,24 @@ public class GameStateImpl implements GameState {
 	}
 	
 	protected void inizMembers() {
-		drawsRemaining = new SimpleIntegerProperty();
-		gameSummary = new SimpleObjectProperty<GameSummary>(
-				GameSummary.IN_PROGRESS);
+		drawsRemaining = newIntegerProperty();
+		gameSummary = newObjectProperty_GameSummary(GameSummary.IN_PROGRESS);
 		
-		foundation = new Fan[FOUNDATION_FAN_COUNT];
+		foundation = newFanArray(FOUNDATION_FAN_COUNT);
 		for (int i = 0; i < FOUNDATION_FAN_COUNT; ++i) {
 			foundation[i] = newFan();
 		}
 
-		redealsRemaining = new SimpleIntegerProperty();
+		redealsRemaining = newIntegerProperty();
 		pack = newPack();
-		stock = new SimpleObjectProperty<Deck>();
+		stock = newObjectProperty_Deck();
 
-		tableau = new Fan[TABLEAU_FAN_COUNT];
+		tableau = newFanArray(TABLEAU_FAN_COUNT);
 		for (int i = 0; i < TABLEAU_FAN_COUNT; ++i) {
 			tableau[i] = newFan();
 		}
 		
-		undoManager = new UndoManager();
+		undoManager = newUndoManager();
 		
 		reset();
 	}
@@ -141,7 +140,28 @@ public class GameStateImpl implements GameState {
 		return new FanImpl();
 	}
 
+	protected Fan[] newFanArray(int dim) {
+		return new Fan[dim];
+	}
+
+	protected IntegerProperty newIntegerProperty() {
+		return new SimpleIntegerProperty();
+	}
+
+	protected ObjectProperty<Deck> newObjectProperty_Deck() {
+		return new SimpleObjectProperty<Deck>();
+	}
+
+	protected ObjectProperty<GameSummary> newObjectProperty_GameSummary(
+			GameSummary gs) {
+		return new SimpleObjectProperty<GameSummary>(gs);
+	}
+
 	protected Pack newPack() {
 		return new Pack();
+	}
+
+	protected UndoManager newUndoManager() {
+		return new UndoManager();
 	}
 }
