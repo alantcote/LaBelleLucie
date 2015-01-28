@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.model.facade.GameState;
+import net.sf.cotelab.lbl.view.facade.View;
 import net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport;
 import net.sf.cotelab.playingcards.Card;
 import net.sf.cotelab.playingcards.Deck;
@@ -20,7 +21,7 @@ import net.sf.cotelab.playingcards.Suit;
 import net.sf.cotelab.playingcards.javafx.CardView;
 import net.sf.cotelab.playingcards.javafx.CardViewFactory;
 
-public class StockView extends AnchorPane {
+public class StockView extends AnchorPane implements View {
 	public static final double MARGIN = 5;
 
 	protected CardViewFactory cardViewFactory;

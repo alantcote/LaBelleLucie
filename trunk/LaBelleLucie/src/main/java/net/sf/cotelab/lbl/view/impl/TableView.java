@@ -12,12 +12,13 @@ import javafx.scene.layout.GridPane;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.model.facade.Fan;
 import net.sf.cotelab.lbl.model.facade.GameState;
+import net.sf.cotelab.lbl.view.facade.View;
 import net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport;
 import net.sf.cotelab.playingcards.Card;
 import net.sf.cotelab.playingcards.javafx.CardView;
 import net.sf.cotelab.playingcards.javafx.CardViewFactory;
 
-public class TableView extends GridPane {
+public class TableView extends GridPane implements View {
 	public static final int FOUNDATION_COLUMN = 5;
 	public static final int TABLEAU_COLUMN_COUNT = FOUNDATION_COLUMN;
 	

@@ -12,11 +12,12 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.model.facade.GameState;
+import net.sf.cotelab.lbl.view.facade.View;
 import net.sf.cotelab.lbl.view.impl.menu.EditMenu;
 import net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport;
 import net.sf.cotelab.playingcards.javafx.CardViewFactory;
 
-public class RootView extends BorderPane {
+public class RootView extends BorderPane implements View {
 	public static final double CARD_ZOOM = 1.2;
 	public static final double FAN_OFFSET_FACTOR = 5;
 	
