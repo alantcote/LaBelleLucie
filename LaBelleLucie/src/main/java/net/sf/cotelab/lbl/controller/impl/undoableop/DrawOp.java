@@ -1,5 +1,6 @@
-package net.sf.cotelab.lbl.controller.impl;
+package net.sf.cotelab.lbl.controller.impl.undoableop;
 
+import net.sf.cotelab.lbl.controller.impl.ControllerImpl;
 import net.sf.cotelab.lbl.util.UndoableOp;
 
 public class DrawOp implements UndoableOp {

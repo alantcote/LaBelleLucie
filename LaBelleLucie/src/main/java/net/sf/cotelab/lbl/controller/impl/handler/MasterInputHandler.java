@@ -1,6 +1,7 @@
-package net.sf.cotelab.lbl.controller.impl;
+package net.sf.cotelab.lbl.controller.impl.handler;
 
 import net.sf.cotelab.lbl.controller.facade.DefaultInputHandler;
+import net.sf.cotelab.lbl.controller.impl.ControllerImpl;
 import net.sf.cotelab.playingcards.Card;
 
 public class MasterInputHandler extends DefaultInputHandler {
