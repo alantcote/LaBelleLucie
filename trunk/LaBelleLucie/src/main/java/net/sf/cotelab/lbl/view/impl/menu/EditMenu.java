@@ -1,4 +1,4 @@
-package net.sf.cotelab.lbl.view.impl;
+package net.sf.cotelab.lbl.view.impl.menu;
 
 import javafx.event.ActionEvent;
 import javafx.event.Event;
