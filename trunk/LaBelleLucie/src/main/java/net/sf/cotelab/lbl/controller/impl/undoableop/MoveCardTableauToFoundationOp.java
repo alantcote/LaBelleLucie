@@ -1,14 +1,15 @@
-package net.sf.cotelab.lbl.controller.impl;
+package net.sf.cotelab.lbl.controller.impl.undoableop;
 
+import net.sf.cotelab.lbl.controller.impl.ControllerImpl;
 import net.sf.cotelab.lbl.model.facade.GameSummary;
 import net.sf.cotelab.lbl.util.UndoableOp;
 
-public class MoveCardTableauToTableauOp implements UndoableOp {
+public class MoveCardTableauToFoundationOp implements UndoableOp {
 	protected ControllerImpl controller;
 	protected int destFanIndex;
 	protected int srcFanIndex;
 
-	public MoveCardTableauToTableauOp(
+	public MoveCardTableauToFoundationOp(
 			ControllerImpl controller, int srcFanIndex, int destFanIndex) {
 		super();
 		
@@ -19,14 +20,14 @@ public class MoveCardTableauToTableauOp implements UndoableOp {
 
 	@Override
 	public void doOp() {
-		controller.moveTopCardTableauToTableau(srcFanIndex, destFanIndex);
+		controller.moveTopCardTableauToFoundation(srcFanIndex, destFanIndex);
 		
 		controller.updateGameSummary();
 	}
 
 	@Override
 	public void undoOp() {
-		controller.moveTopCardTableauToTableau(destFanIndex, srcFanIndex);
+		controller.moveTopCardFoundationToTableau(destFanIndex, srcFanIndex);
 
 		controller.getModel().getGameSummary().set(GameSummary.IN_PROGRESS);
 	}
