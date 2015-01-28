@@ -11,6 +11,7 @@ import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.model.facade.GameState;
 import net.sf.cotelab.lbl.model.facade.GameSummary;
 import net.sf.cotelab.lbl.view.facade.View;
+import net.sf.cotelab.lbl.view.impl.dialog.MessageDialog;
 
 public class ViewImpl implements View {
 	protected InputHandler inputHandler;
