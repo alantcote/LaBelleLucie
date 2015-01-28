@@ -41,13 +41,25 @@ public class LaBelleLucie extends Application {
 	
 	@Override
 	public void start(final Stage primaryStage) {
-		GameState model = new GameStateImpl();
-		Controller controller = new ControllerImpl(model);
-		View view = new ViewImpl(primaryStage, model);
+		GameState model = newGameState();
+		Controller controller = newController(model);
+		View view = newView(primaryStage, model);
 		
 		view.setInputHandler(controller.getInputHandler());
 		
 		// show the stage
 		primaryStage.show();
+	}
+
+	protected View newView(final Stage primaryStage, GameState model) {
+		return new ViewImpl(primaryStage, model);
+	}
+
+	protected Controller newController(GameState model) {
+		return new ControllerImpl(model);
+	}
+
+	protected GameState newGameState() {
+		return new GameStateImpl();
 	}
 }

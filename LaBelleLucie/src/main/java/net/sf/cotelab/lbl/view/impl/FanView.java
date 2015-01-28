@@ -8,6 +8,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.model.facade.Fan;
+import net.sf.cotelab.lbl.view.impl.support.FanBinding;
+import net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport;
 import net.sf.cotelab.playingcards.Card;
 import net.sf.cotelab.playingcards.javafx.CardView;
 import net.sf.cotelab.playingcards.javafx.CardViewFactory;
@@ -63,7 +65,7 @@ public class FanView extends AnchorPane {
 
 	/**
 	 * @return
-	 * @see net.sf.cotelab.lbl.view.impl.InputHandlerSupport#getInputHandler()
+	 * @see net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport#getInputHandler()
 	 */
 	public InputHandler getInputHandler() {
 		return inputHandlerSupport.getInputHandler();
@@ -107,7 +109,7 @@ public class FanView extends AnchorPane {
 	
 	/**
 	 * @param inputHandler
-	 * @see net.sf.cotelab.lbl.view.impl.InputHandlerSupport#setInputHandler(net.sf.cotelab.lbl.controller.facade.InputHandler)
+	 * @see net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport#setInputHandler(net.sf.cotelab.lbl.controller.facade.InputHandler)
 	 */
 	public void setInputHandler(InputHandler inputHandler) {
 		inputHandlerSupport.setInputHandler(inputHandler);

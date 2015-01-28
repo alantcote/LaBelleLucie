@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.model.facade.GameState;
+import net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport;
 import net.sf.cotelab.playingcards.Card;
 import net.sf.cotelab.playingcards.Deck;
 import net.sf.cotelab.playingcards.Rank;
@@ -80,7 +81,7 @@ public class StockView extends AnchorPane {
 	
 	/**
 	 * @return
-	 * @see net.sf.cotelab.lbl.view.impl.InputHandlerSupport#getInputHandler()
+	 * @see net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport#getInputHandler()
 	 */
 	public InputHandler getInputHandler() {
 		return inputHandlerSupport.getInputHandler();
@@ -88,7 +89,7 @@ public class StockView extends AnchorPane {
 
 	/**
 	 * @param inputHandler
-	 * @see net.sf.cotelab.lbl.view.impl.InputHandlerSupport#setInputHandler(net.sf.cotelab.lbl.controller.facade.InputHandler)
+	 * @see net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport#setInputHandler(net.sf.cotelab.lbl.controller.facade.InputHandler)
 	 */
 	public void setInputHandler(InputHandler inputHandler) {
 		inputHandlerSupport.setInputHandler(inputHandler);
