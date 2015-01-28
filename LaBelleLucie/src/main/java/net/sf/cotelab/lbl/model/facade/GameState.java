@@ -2,7 +2,7 @@ package net.sf.cotelab.lbl.model.facade;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
-import net.sf.cotelab.lbl.util.UndoManager;
+import net.sf.cotelab.lbl.undo.UndoManager;
 import net.sf.cotelab.playingcards.Deck;
 
 public interface GameState {

@@ -1,4 +1,4 @@
-package net.sf.cotelab.lbl.util;
+package net.sf.cotelab.lbl.undo;
 
 import java.util.LinkedList;
 import java.util.List;
