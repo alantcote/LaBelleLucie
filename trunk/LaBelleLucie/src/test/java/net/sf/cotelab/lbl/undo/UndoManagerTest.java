@@ -1,11 +1,11 @@
-package net.sf.cotelab.lbl.util;
+package net.sf.cotelab.lbl.undo;
 
 import static org.junit.Assert.*;
 
 import java.util.List;
 
-import net.sf.cotelab.lbl.util.UndoManager;
-import net.sf.cotelab.lbl.util.UndoableOp;
+import net.sf.cotelab.lbl.undo.UndoManager;
+import net.sf.cotelab.lbl.undo.UndoableOp;
 import net.sf.cotelab.testutils.jMockTestHelper;
 
 import org.jmock.Expectations;

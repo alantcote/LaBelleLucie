@@ -1,7 +1,7 @@
 package net.sf.cotelab.lbl.controller.impl.undoableop;
 
 import net.sf.cotelab.lbl.controller.impl.ControllerImpl;
-import net.sf.cotelab.lbl.util.UndoableOp;
+import net.sf.cotelab.lbl.undo.UndoableOp;
 
 public class DrawOp implements UndoableOp {
 	protected int cardIndex;

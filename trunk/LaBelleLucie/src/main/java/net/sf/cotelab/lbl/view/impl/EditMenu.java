@@ -7,7 +7,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.model.facade.GameState;
-import net.sf.cotelab.lbl.util.UndoManager;
+import net.sf.cotelab.lbl.undo.UndoManager;
 
 public class EditMenu extends Menu {
 	protected InputHandler inputHandler;

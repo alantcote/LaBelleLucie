@@ -2,7 +2,7 @@ package net.sf.cotelab.lbl.controller.impl.undoableop;
 
 import net.sf.cotelab.lbl.controller.impl.ControllerImpl;
 import net.sf.cotelab.lbl.model.facade.GameSummary;
-import net.sf.cotelab.lbl.util.UndoableOp;
+import net.sf.cotelab.lbl.undo.UndoableOp;
 
 public class MoveCardTableauToTableauOp implements UndoableOp {
 	protected ControllerImpl controller;

@@ -6,7 +6,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import net.sf.cotelab.lbl.model.facade.Fan;
 import net.sf.cotelab.lbl.model.facade.GameSummary;
-import net.sf.cotelab.lbl.util.UndoManager;
+import net.sf.cotelab.lbl.undo.UndoManager;
 import net.sf.cotelab.playingcards.Card;
 import net.sf.cotelab.playingcards.Deck;
 import net.sf.cotelab.testutils.jMockTestHelper;
