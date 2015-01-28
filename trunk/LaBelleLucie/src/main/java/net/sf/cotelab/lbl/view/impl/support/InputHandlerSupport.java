@@ -1,4 +1,4 @@
-package net.sf.cotelab.lbl.view.impl;
+package net.sf.cotelab.lbl.view.impl.support;
 
 import javafx.event.EventHandler;
 import javafx.scene.Node;

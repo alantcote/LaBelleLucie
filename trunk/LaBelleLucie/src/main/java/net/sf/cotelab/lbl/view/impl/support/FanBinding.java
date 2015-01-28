@@ -1,6 +1,7 @@
-package net.sf.cotelab.lbl.view.impl;
+package net.sf.cotelab.lbl.view.impl.support;
 
 import javafx.collections.ListChangeListener;
+import net.sf.cotelab.lbl.view.impl.FanView;
 import net.sf.cotelab.playingcards.Card;
 
 public class FanBinding implements ListChangeListener<Card> {

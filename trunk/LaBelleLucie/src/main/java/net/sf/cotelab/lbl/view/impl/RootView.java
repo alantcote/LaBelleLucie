@@ -12,6 +12,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.model.facade.GameState;
+import net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport;
 import net.sf.cotelab.playingcards.javafx.CardViewFactory;
 
 public class RootView extends BorderPane {
@@ -51,7 +52,7 @@ public class RootView extends BorderPane {
 	
 	/**
 	 * @return
-	 * @see net.sf.cotelab.lbl.view.impl.InputHandlerSupport#getInputHandler()
+	 * @see net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport#getInputHandler()
 	 */
 	public InputHandler getInputHandler() {
 		return inputHandlerSupport.getInputHandler();
@@ -59,7 +60,7 @@ public class RootView extends BorderPane {
 	
 	/**
 	 * @param inputHandler
-	 * @see net.sf.cotelab.lbl.view.impl.InputHandlerSupport#setInputHandler(net.sf.cotelab.lbl.controller.facade.InputHandler)
+	 * @see net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport#setInputHandler(net.sf.cotelab.lbl.controller.facade.InputHandler)
 	 */
 	public void setInputHandler(InputHandler inputHandler) {
 		inputHandlerSupport.setInputHandler(inputHandler);
