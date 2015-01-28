@@ -51,15 +51,15 @@ public class LaBelleLucie extends Application {
 		primaryStage.show();
 	}
 
-	protected View newView(final Stage primaryStage, GameState model) {
-		return new ViewImpl(primaryStage, model);
-	}
-
 	protected Controller newController(GameState model) {
 		return new ControllerImpl(model);
 	}
 
 	protected GameState newGameState() {
 		return new GameStateImpl();
+	}
+
+	protected View newView(final Stage primaryStage, GameState model) {
+		return new ViewImpl(primaryStage, model);
 	}
 }

@@ -93,6 +93,12 @@ public class RootView extends BorderPane {
 		messageBar.setLeft(drawsLabel);
 	}
 	
+	protected void establishEditMenu() {
+		editMenu = new EditMenu(model, getInputHandler());
+		
+		menuBar.getMenus().add(editMenu);
+	}
+
 	protected void establishFileExitItem() {
 		fileExitItem = new MenuItem("Exit");
 		
@@ -104,12 +110,6 @@ public class RootView extends BorderPane {
 		});
 		
 		fileMenu.getItems().add(fileExitItem);
-	}
-
-	protected void establishEditMenu() {
-		editMenu = new EditMenu(model, getInputHandler());
-		
-		menuBar.getMenus().add(editMenu);
 	}
 
 	protected void establishFileMenu() {

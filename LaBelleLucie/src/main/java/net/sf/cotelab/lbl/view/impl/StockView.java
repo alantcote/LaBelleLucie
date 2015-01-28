@@ -23,19 +23,11 @@ import net.sf.cotelab.playingcards.javafx.CardViewFactory;
 public class StockView extends AnchorPane {
 	public static final double MARGIN = 5;
 
-	protected CardView stockView = null;
 	protected CardViewFactory cardViewFactory;
 	protected InputHandlerSupport inputHandlerSupport;
 	protected GameState model;
+	protected CardView stockView = null;
 
-	protected void anchorLeft(ImageView view, double indent) {
-		setLeftAnchor(view, indent);
-	}
-
-	protected void anchorTop(ImageView view, double indent) {
-		setTopAnchor(view, indent);
-	}
-	
 	public StockView(CardViewFactory cardViewFactory, GameState model) {
 		super();
 
@@ -78,7 +70,7 @@ public class StockView extends AnchorPane {
 			}
 		});
 	}
-	
+
 	/**
 	 * @return
 	 * @see net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport#getInputHandler()
@@ -86,13 +78,21 @@ public class StockView extends AnchorPane {
 	public InputHandler getInputHandler() {
 		return inputHandlerSupport.getInputHandler();
 	}
-
+	
 	/**
 	 * @param inputHandler
 	 * @see net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport#setInputHandler(net.sf.cotelab.lbl.controller.facade.InputHandler)
 	 */
 	public void setInputHandler(InputHandler inputHandler) {
 		inputHandlerSupport.setInputHandler(inputHandler);
+	}
+	
+	protected void anchorLeft(ImageView view, double indent) {
+		setLeftAnchor(view, indent);
+	}
+
+	protected void anchorTop(ImageView view, double indent) {
+		setTopAnchor(view, indent);
 	}
 
 	protected void updateChildren() {
