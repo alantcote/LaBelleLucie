@@ -1,19 +1,15 @@
 package net.sf.cotelab.lbl.view.impl;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import javafx.stage.WindowEvent;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.model.facade.GameState;
-import net.sf.cotelab.lbl.model.facade.GameSummary;
 import net.sf.cotelab.lbl.view.facade.View;
-import net.sf.cotelab.lbl.view.impl.dialog.MessageDialog;
+import net.sf.cotelab.lbl.view.impl.handler.CloseRequestHandler;
+import net.sf.cotelab.lbl.view.impl.listeners.GameResultListener;
 
 public class ViewImpl implements View {
+	protected CloseRequestHandler closeRequestHandler;
 	protected InputHandler inputHandler;
 	protected SceneView sceneView;
 	protected Window window;
@@ -26,33 +22,11 @@ public class ViewImpl implements View {
 		
 		window = stage;
 		
-		model.getGameSummary().addListener(new ChangeListener<GameSummary>() {
-			@Override
-			public void changed(ObservableValue<? extends GameSummary> src,
-					GameSummary oldValue, GameSummary newValue) {
-				switch (newValue) {
-				case LOST:
-					new MessageDialog().show(window, "Game lost",
-							"There are no legal plays remaining.", Color.RED);
-					break;
-				case WON:
-					new MessageDialog().show(window, "Game won",
-							"All cards have been moved to foundations.",
-							Color.LIMEGREEN);
-					break;
-				default:
-					break;
-				}
-			}
-		});
+		model.getGameSummary().addListener(new GameResultListener(window));
 		
-		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-
-			@Override
-			public void handle(WindowEvent arg0) {
-				inputHandler.onExitRequest();
-			}
-		});
+		closeRequestHandler = new CloseRequestHandler(inputHandler);
+		
+		stage.setOnCloseRequest(closeRequestHandler);
 	}
 
 	@Override
@@ -60,5 +34,6 @@ public class ViewImpl implements View {
 		this.inputHandler = inputHandler;
 		
 		sceneView.setInputHandler(inputHandler);
+		closeRequestHandler.setInputHandler(inputHandler);
 	}
 }
