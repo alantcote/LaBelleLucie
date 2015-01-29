@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Dimension2D;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
@@ -88,6 +89,11 @@ public class FanView extends AnchorPane implements View {
 		for (Card card : model) {
 			CardView cardView = cardViewFactory.getFrontView(card);
 			InputHandlerSupport ihs = new InputHandlerSupport(cardView);
+			Tooltip tooltip = new Tooltip();
+			ImageView ttView = new ImageView(cardView.getImage());
+			
+			tooltip.setGraphic(ttView);
+			Tooltip.install(cardView, tooltip);
 			
 			kids.add(cardView);
 			ihs.setInputHandler(ih);

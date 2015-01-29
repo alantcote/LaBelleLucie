@@ -33,6 +33,7 @@ public class MessageDialog {
 		stage.showAndWait();
 	}
 	
+	// TODO see com.sun.java.swing.plaf.windows.icons in JRE System Library/resources.jar
 	protected Parent createDialogPane(Stage stage, String message) {
 		BorderPane dialog = new BorderPane();
 		Node buttonNode = createOKButtonNode(stage);
