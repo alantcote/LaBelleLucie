@@ -99,6 +99,7 @@ public class ImageFactory {
 			String url, double requestedWidth, double requestedHeight,
 			boolean preserveRatio, boolean smooth) {
 		return new Image(
-				url, requestedWidth, requestedHeight, preserveRatio, smooth);
+				url, requestedWidth, requestedHeight,
+				preserveRatio, smooth, false);
 	}
 }
