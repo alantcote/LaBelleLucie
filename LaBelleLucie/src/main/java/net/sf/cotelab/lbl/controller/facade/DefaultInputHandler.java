@@ -7,7 +7,6 @@ import net.sf.cotelab.playingcards.Card;
 
 /**
  * This default <tt>InputHandler</tt> quietly does nothing.
- * @author US80653H
  */
 public class DefaultInputHandler implements InputHandler {
 	@Override

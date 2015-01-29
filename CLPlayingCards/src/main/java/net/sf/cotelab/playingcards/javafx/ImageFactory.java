@@ -5,6 +5,11 @@ import java.util.Map;
 
 import javafx.scene.image.Image;
 
+/**
+ * A provider of <tt>Image</tt> objects.
+ * This object maintains a cache of <tt>Image</tt> objects, for performance
+ * reasons.
+ */
 public class ImageFactory {
 	public static final double DEFAULT_MAX_DIM = 100;
 	
@@ -29,7 +34,14 @@ public class ImageFactory {
 		
 		this.maxDim = maxDim;
 		
-		cache = newCache();
+		cache = newMap_String_Image();
+	}
+	
+	/**
+	 * Flush the cache.
+	 */
+	public void flush() {
+		cache.clear();
 	}
 	
 	/**
@@ -50,21 +62,43 @@ public class ImageFactory {
 		
 		return image;
 	}
-	
-	/**
-	 * Flush the cache.
-	 */
-	public void flush() {
-		cache.clear();
-	}
 
+	/**
+	 * Load an image from a given URL.
+	 * @param url the URL.
+	 * @return the new object.
+	 */
 	protected Image loadImage(String url) {
-		Image image = new Image(url, maxDim, maxDim, true, true);
+		Image image = newImage(url, maxDim, maxDim, true, true);
 		
 		return image;
 	}
 	
-	protected Map<String, Image> newCache() {
+	/**
+	 * Construct a new <tt>Map&lt;String, Image&gt;</tt>.
+	 * @return the new object.
+	 */
+	protected Map<String, Image> newMap_String_Image() {
 		return new HashMap<>();
+	}
+	
+	/**
+	 * Create a new <tt>Image</tt>.
+	 * @param url the string representing the URL to use in fetching the pixel data.
+	 * @param requestedWidth the image's bounding box width.
+	 * @param requestedHeight the image's bounding box height.
+	 * @param preserveRatio indicates whether to preserve the aspect ratio of
+	 * 		the original image when scaling to fit the image within the
+	 * 		specified bounding box.
+	 * @param smooth indicates whether to use a better quality filtering
+	 * 		algorithm or a faster one when scaling this image to fit within the
+	 * 		specified bounding box.
+	 * @return the new object.
+	 */
+	protected Image newImage(
+			String url, double requestedWidth, double requestedHeight,
+			boolean preserveRatio, boolean smooth) {
+		return new Image(
+				url, requestedWidth, requestedHeight, preserveRatio, smooth);
 	}
 }
