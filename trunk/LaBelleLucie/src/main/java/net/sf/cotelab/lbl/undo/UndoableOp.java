@@ -2,7 +2,6 @@ package net.sf.cotelab.lbl.undo;
 
 /**
  * An undoable operation.
- * @author US80653H
  */
 public interface UndoableOp {
 	/**

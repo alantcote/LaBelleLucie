@@ -19,8 +19,6 @@ import org.hamcrest.TypeSafeMatcher;
  * The actual call to getConnection will pass in a {@link Properties} object 
  * containing a "user" property and a "password" property that are matched
  * against the user and password values specified.
- * 
- * @author USX13992
  *
  */
 public class DatabaseCredentialsMatcher extends TypeSafeMatcher<Properties> {

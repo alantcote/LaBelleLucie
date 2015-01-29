@@ -16,7 +16,6 @@ import net.sf.cotelab.lbl.model.facade.Fan;
 import net.sf.cotelab.playingcards.Card;
 
 /**
- * @author US80653H
  */
 public class FanImpl implements Fan {
 	protected ObservableList<Card> cards = newObservableList_Card();

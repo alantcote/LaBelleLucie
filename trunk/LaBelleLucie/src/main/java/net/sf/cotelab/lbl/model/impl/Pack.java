@@ -7,7 +7,6 @@ import net.sf.cotelab.playingcards.Suit;
 
 /**
  * A pack of cards suitable for playing La Belle Lucie.
- * @author US80653H
  */
 public class Pack extends Deck {
 	public static final Rank[] RANKS = {

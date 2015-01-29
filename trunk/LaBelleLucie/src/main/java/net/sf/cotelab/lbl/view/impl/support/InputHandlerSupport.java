@@ -12,8 +12,6 @@ import net.sf.cotelab.playingcards.javafx.CardView;
 /**
  * An adapter for converting input events into calls on <tt>InputHandler</tt>
  * methods.
- * @author US80653H
- *
  */
 public class InputHandlerSupport {
 	protected InputHandler inputHandler = new DefaultInputHandler();

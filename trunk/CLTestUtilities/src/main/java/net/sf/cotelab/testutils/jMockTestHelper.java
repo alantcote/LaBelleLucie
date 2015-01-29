@@ -17,7 +17,6 @@ import org.junit.Before;
 /**
  * A class that can be sub-classed to create a jMock enabled jUnit test.  Provides many convenience methods for 
  * creating a {@link Mockery}, checking assertions, a custom matchers for handling common cases.
- * @author usx13992
  *
  */
 public class jMockTestHelper {

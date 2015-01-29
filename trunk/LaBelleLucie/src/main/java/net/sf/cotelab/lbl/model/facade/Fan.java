@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import net.sf.cotelab.playingcards.Card;
 
 /**
- * @author US80653H
  */
 public interface Fan extends ObservableList<Card> {
 	/**
