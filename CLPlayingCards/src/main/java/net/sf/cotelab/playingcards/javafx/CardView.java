@@ -4,6 +4,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import net.sf.cotelab.playingcards.Card;
 
+/**
+ * An <tt>ImageView</tt> used for painting playing card images.
+ */
 public class CardView extends ImageView {
 	protected Card card;
 	
@@ -18,6 +21,10 @@ public class CardView extends ImageView {
 		this.card = card;
 	}
 
+	/**
+	 * Get the card.
+	 * @return the card.
+	 */
 	public Card getCard() {
 		return card;
 	}
