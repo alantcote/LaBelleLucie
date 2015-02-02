@@ -11,7 +11,7 @@ package net.sf.cotelab.lbl;
  *   . (refactor) extract phrases of the form "new Mumble()" into methods of the
  *     form "Mumble newMumble() { return new Mumble(); }
  * . (refactor) organize classes into packages by category
- * . undo/redo command hot-keys
+ * . [done] undo/redo command hot-keys
  * . restart game command
  * . animation of card moves
  * . save/resume games
