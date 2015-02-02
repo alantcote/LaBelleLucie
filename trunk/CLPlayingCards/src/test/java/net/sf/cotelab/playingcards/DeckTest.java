@@ -76,14 +76,6 @@ public class DeckTest {
 		assertTrue(fixture.isEmpty());
 	}
 	
-	protected void populate() {
-		for (Suit suit : suits) {
-			for (Rank rank : ranks) {
-				fixture.add(new Card(rank, suit));
-			}
-		}
-	}
-
 	@Test
 	public void testDeck() {
 		assertNotNull(fixture);
@@ -125,5 +117,13 @@ public class DeckTest {
 		
 		assertTrue(remainingCards.isEmpty());
 		assertEquals(fixture.master.size(), dealtCards.size());
+	}
+
+	protected void populate() {
+		for (Suit suit : suits) {
+			for (Rank rank : ranks) {
+				fixture.add(new Card(rank, suit));
+			}
+		}
 	}
 }
