@@ -5,6 +5,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.KeyCharacterCombination;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.model.facade.GameState;
 import net.sf.cotelab.lbl.undo.UndoManager;
@@ -43,6 +44,9 @@ public class EditMenu extends Menu {
 	protected void establishRedoItem() {
 		redoItem = new MenuItem("Redo");
 		
+		redoItem.setAccelerator(new KeyCharacterCombination(
+				"y", KeyCharacterCombination.CONTROL_DOWN));
+		
 		redoItem.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -55,6 +59,9 @@ public class EditMenu extends Menu {
 	
 	protected void establishUndoItem() {
 		undoItem = new MenuItem("Undo");
+		
+		undoItem.setAccelerator(new KeyCharacterCombination(
+				"z", KeyCharacterCombination.CONTROL_DOWN));
 		
 		undoItem.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
