@@ -4,10 +4,12 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.paint.Color;
 import javafx.stage.Window;
+import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.model.facade.GameSummary;
 import net.sf.cotelab.lbl.view.impl.dialog.MessageDialog;
 
 public class GameResultListener implements ChangeListener<GameSummary> {
+	protected InputHandler inputHandler = null;
 	protected Window window;
 
 	public GameResultListener(Window window) {
@@ -32,6 +34,13 @@ public class GameResultListener implements ChangeListener<GameSummary> {
 		default:
 			break;
 		}
+	}
+
+	/**
+	 * @param inputHandler the inputHandler to set
+	 */
+	public void setInputHandler(InputHandler inputHandler) {
+		this.inputHandler = inputHandler;
 	}
 
 	protected MessageDialog newMessageDialog() {

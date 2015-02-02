@@ -10,6 +10,7 @@ import net.sf.cotelab.lbl.view.impl.listeners.GameResultListener;
 
 public class ViewImpl implements View {
 	protected CloseRequestHandler closeRequestHandler;
+	protected GameResultListener gameResultListener;
 	protected InputHandler inputHandler;
 	protected SceneView sceneView;
 	protected Window window;
@@ -22,7 +23,8 @@ public class ViewImpl implements View {
 		
 		window = stage;
 		
-		model.getGameSummary().addListener(new GameResultListener(window));
+		gameResultListener = new GameResultListener(window);
+		model.getGameSummary().addListener(gameResultListener);
 		
 		closeRequestHandler = new CloseRequestHandler(inputHandler);
 		
@@ -35,5 +37,6 @@ public class ViewImpl implements View {
 		
 		sceneView.setInputHandler(inputHandler);
 		closeRequestHandler.setInputHandler(inputHandler);
+		gameResultListener.setInputHandler(inputHandler);
 	}
 }
