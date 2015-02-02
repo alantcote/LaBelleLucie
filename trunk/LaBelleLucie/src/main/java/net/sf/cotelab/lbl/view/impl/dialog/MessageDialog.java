@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -44,7 +45,7 @@ public class MessageDialog {
 		BorderPane dialog = new BorderPane();
 		Node buttonNode = createOKButtonNode(stage);
 		Node iconNode = createInfoIconNode();
-		Node messageNode = createMessageNode(message, iconNode);
+		Node messageNode = createMessageNode(message);
 		double hInset = WIDTH / 10;
 		double vInset = HEIGHT / 8;
 		
@@ -53,6 +54,7 @@ public class MessageDialog {
 
 		dialog.setBottom(buttonNode);
 		dialog.setCenter(messageNode);
+		dialog.setLeft(iconNode);
 		
 		return dialog;
 	}
@@ -61,8 +63,23 @@ public class MessageDialog {
 		URL rsrc = getClass().getResource(INFO_ICON_RESOURCE);
 		Image image = new Image(rsrc.toExternalForm());
 		ImageView imageView = new ImageView(image);
+		FlowPane node = new FlowPane();
+		double fitWidth = image.getWidth() * 2;
+		double fitHeight = image.getHeight() * 2;
 		
-		return imageView;
+		imageView.setFitHeight(fitHeight);
+		imageView.setFitWidth(fitWidth);
+		imageView.setPreserveRatio(true);
+		
+		node.getChildren().add(imageView);
+		node.setAlignment(Pos.CENTER);
+		node.setPrefSize(fitWidth * 2, fitHeight * 2);
+		
+		return node;
+	}
+
+	protected Node createMessageNode(String message) {
+		return new Label(message);
 	}
 
 	protected Node createMessageNode(String message, Node graphic) {
