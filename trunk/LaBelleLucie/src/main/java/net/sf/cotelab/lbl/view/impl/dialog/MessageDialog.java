@@ -1,5 +1,7 @@
 package net.sf.cotelab.lbl.view.impl.dialog;
 
+import java.net.URL;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -9,8 +11,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -20,6 +25,8 @@ import javafx.stage.WindowEvent;
 
 public class MessageDialog {
 	public static final double HEIGHT = 128;
+	public static final String INFO_ICON_RESOURCE =
+			"/com/sun/java/swing/plaf/windows/icons/Inform.gif";
 	public static final double WIDTH = 600;
 	
 	public MessageDialog() {
@@ -33,11 +40,11 @@ public class MessageDialog {
 		stage.showAndWait();
 	}
 	
-	// TODO see com.sun.java.swing.plaf.windows.icons in JRE System Library/resources.jar
 	protected Parent createDialogPane(Stage stage, String message) {
 		BorderPane dialog = new BorderPane();
 		Node buttonNode = createOKButtonNode(stage);
-		Node messageNode = createMessageNode(message);
+		Node iconNode = createInfoIconNode();
+		Node messageNode = createMessageNode(message, iconNode);
 		double hInset = WIDTH / 10;
 		double vInset = HEIGHT / 8;
 		
@@ -49,9 +56,17 @@ public class MessageDialog {
 		
 		return dialog;
 	}
+	
+	protected Node createInfoIconNode() {
+		URL rsrc = getClass().getResource(INFO_ICON_RESOURCE);
+		Image image = new Image(rsrc.toExternalForm());
+		ImageView imageView = new ImageView(image);
+		
+		return imageView;
+	}
 
-	protected Node createMessageNode(String message) {
-		return new Label(message);
+	protected Node createMessageNode(String message, Node graphic) {
+		return new Label(message, graphic);
 	}
 
 	protected Node createOKButtonNode(final Stage stage) {
