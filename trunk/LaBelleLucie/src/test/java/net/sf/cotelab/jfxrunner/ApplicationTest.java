@@ -1,7 +1,6 @@
 package net.sf.cotelab.jfxrunner;
 
 import static org.junit.Assert.*;
-
 import javafx.scene.Group;
 import javafx.scene.Scene;
 
@@ -26,6 +25,7 @@ public class ApplicationTest {
 	 */
 	@Test
 	public void testNeedsJavaFX() {
+		@SuppressWarnings("unused")
 		Scene scene = new Scene(new Group());
 		assertTrue(true);
 	}
