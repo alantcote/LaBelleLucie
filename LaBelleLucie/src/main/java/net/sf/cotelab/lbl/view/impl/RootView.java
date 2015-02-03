@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.layout.BorderPane;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.model.facade.GameState;
@@ -136,6 +138,7 @@ public class RootView extends BorderPane implements View {
 
 		menuBar.getMenus().add(helpMenu);
 	}
+	
 	protected void establishMenuBar() {
 		menuBar = new MenuBar();
 		
@@ -160,6 +163,8 @@ public class RootView extends BorderPane implements View {
 	
 	protected void establishNewGameItem() {
 		newGameItem = new MenuItem("New Game");
+		
+		newGameItem.setAccelerator(new KeyCodeCombination(KeyCode.F2));
 		
 		newGameItem.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
