@@ -50,7 +50,7 @@ public class LaBelleLucie extends Application {
 		view.setInputHandler(controller.getInputHandler());
 		
 		// show the stage
-		primaryStage.show();
+		show(primaryStage);
 	}
 
 	protected Controller newController(GameState model) {
@@ -63,5 +63,9 @@ public class LaBelleLucie extends Application {
 
 	protected View newView(final Stage primaryStage, GameState model) {
 		return new ViewImpl(primaryStage, model);
+	}
+	
+	protected void show(Stage stage) {
+		stage.show();
 	}
 }

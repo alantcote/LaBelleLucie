@@ -11,7 +11,7 @@ import net.sf.cotelab.testutils.jMockTestHelper;
 import org.jmock.Expectations;
 import org.junit.Test;
 
-public class UndoManagerTest extends jMockTestHelper{
+public class UndoManagerTest extends jMockTestHelper {
 
 	@Test
 	public void testUndoManager() {
