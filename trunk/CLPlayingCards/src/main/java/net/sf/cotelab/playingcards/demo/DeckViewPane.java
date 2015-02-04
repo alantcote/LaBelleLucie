@@ -17,6 +17,11 @@ import net.sf.cotelab.playingcards.javafx.CardViewFactory;
  * @author cote
  */
 public class DeckViewPane extends TilePane {
+	public static final int DEFAULT_COLUMNS = 13;
+	public static final double DEFAULT_HGAP = 5;
+	public static final double DEFAULT_INSET = 5;
+	public static final double DEFAULT_VGAP = 5;
+	
 	protected CardViewFactory cardViewFactory = newCardViewFactory();
 
 	/**
@@ -25,12 +30,13 @@ public class DeckViewPane extends TilePane {
 	public DeckViewPane() {
 		super();
 		
-		setHgap(5);
-		setPadding(newInsets(5));
-		setPrefColumns(13);
-		setVgap(5);
+		inizLayoutParams();
 
-		Deck deck = createDeck();
+		addKids();
+	}
+
+	protected void addKids() {
+		Deck deck = newDeck();
 		ObservableList<Node> kids = getChildren();
 		CardView backView = cardViewFactory.getBackView(
 				newCard(Rank.JOKER_HIGH, Suit.JOKER));
@@ -47,14 +53,11 @@ public class DeckViewPane extends TilePane {
 		kids.add(backView);
 	}
 
-	/**
-	 * Create a deck, populated with an exhaustive set of cards.
-	 * @return the new deck.
-	 */
-	protected Deck createDeck() {
-		Deck deck = newDeck();
-		
-		return deck;
+	protected void inizLayoutParams() {
+		setHgap(DEFAULT_HGAP);
+		setPadding(newInsets(DEFAULT_INSET));
+		setPrefColumns(DEFAULT_COLUMNS);
+		setVgap(DEFAULT_VGAP);
 	}
 
 	/**
