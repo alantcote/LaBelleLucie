@@ -32,10 +32,10 @@ public class DeckViewer extends Application {
 		scene = newScene();
 		
 		// inform the stage what scene is to play
-		primaryStage.setScene(scene);
+		setScene(primaryStage, scene);
 		
 		// show the stage
-		primaryStage.show();
+		show(primaryStage);
 	}
 
 	/**
@@ -44,5 +44,26 @@ public class DeckViewer extends Application {
 	 */
 	protected Scene newScene() {
 		return new DeckViewerScene(BACKGROUND_COLOR);
+	}
+	
+	/**
+	 * Set a scene on a stage.
+	 * This method exists to wrap a call to a final (and thus, unmockable)
+	 * method, in support of unit testing.
+	 * @param stage the stage.
+	 * @param scene the scene.
+	 */
+	protected void setScene(Stage stage, Scene scene) {
+		stage.setScene(scene);
+	}
+	
+	/**
+	 * Show a stage.
+	 * This method exists to wrap a call to a final (and thus, unmockable)
+	 * method, in support of unit testing.
+	 * @param stage the stage.
+	 */
+	protected void show(Stage stage) {
+		stage.show();
 	}
 }
