@@ -33,7 +33,7 @@ public class ControllerImpl implements Controller {
 		
 		this.model = model;
 		
-		inputHandler = newInputHandler(this);
+		inputHandler = newInputHandler();
 	}
 	
 	/**
@@ -184,7 +184,7 @@ public class ControllerImpl implements Controller {
 				int index = fan.indexOf(card);
 				
 				if (index >= 0) {
-					DrawOp op = new DrawOp(this, fanIndex, index);
+					DrawOp op = newDrawOp(fanIndex, index);
 					
 					op.doOp();
 					
@@ -202,7 +202,7 @@ public class ControllerImpl implements Controller {
 	public void onExitRequest() {
 		Platform.exit();
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onNewGameRequested()
 	 */
@@ -211,7 +211,7 @@ public class ControllerImpl implements Controller {
 		
 		updateGameSummary();
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onReshuffleRequest()
 	 */
@@ -242,7 +242,7 @@ public class ControllerImpl implements Controller {
 		
 		model.getGameSummary().set(GameSummary.IN_PROGRESS);
 	}
-	
+
 	/**
 	 * Update the game summary to indicate the overall state of the game.
 	 */
@@ -285,7 +285,7 @@ public class ControllerImpl implements Controller {
 		
 		model.getGameSummary().set(result);
 	}
-
+	
 	/**
 	 * Determine whether there is a legal place to play a given card.
 	 * @param srcCard the card that might be played.
@@ -319,7 +319,7 @@ public class ControllerImpl implements Controller {
 		
 		return result;
 	}
-	
+
 	/**
 	 * Determine whether the rules permit a prospective new top card to be
 	 * played atop an existing top card, in a foundation fan.
@@ -370,7 +370,7 @@ public class ControllerImpl implements Controller {
 		
 		return result;
 	}
-
+	
 	/**
 	 * Determine whether the rules permit a prospective new top card to be
 	 * played atop an existing top card, in a tableau fan.
@@ -395,7 +395,7 @@ public class ControllerImpl implements Controller {
 		
 		return result;
 	}
-	
+
 	/**
 	 * Move the top card from a given tableau fan to atop a given foundation
 	 * fan.
@@ -403,8 +403,8 @@ public class ControllerImpl implements Controller {
 	 * @param destFanIndex the destination foundation fan index.
 	 */
 	protected void moveCardToFoundation(int srcFanIndex, int destFanIndex) {
-		MoveCardTableauToFoundationOp op = new MoveCardTableauToFoundationOp(
-				this, srcFanIndex, destFanIndex);
+		MoveCardTableauToFoundationOp op =
+				newMoveCardTableauToFoundationOp(srcFanIndex, destFanIndex);
 		
 		op.doOp();
 		model.getUndoManager().add(op);
@@ -418,10 +418,28 @@ public class ControllerImpl implements Controller {
 	 */
 	protected void moveCardToTableau(int srcFanIndex, int destFanIndex) {
 		MoveCardTableauToTableauOp op =
-				new MoveCardTableauToTableauOp(this, srcFanIndex, destFanIndex);
+				newMoveCardTableauToTableauOp(srcFanIndex, destFanIndex);
 		
 		op.doOp();
 		model.getUndoManager().add(op);
+	}
+
+	/**
+	 * Create a new (empty) deck.
+	 * @return the new deck.
+	 */
+	protected Deck newDeck() {
+		return new Deck();
+	}
+	
+	/**
+	 * Create a new draw operation.
+	 * @param fanIndex the index of the tableau fan from which to draw.
+	 * @param cardIndex the index in the fan of the card to be drawn.
+	 * @return the new draw operation.
+	 */
+	protected DrawOp newDrawOp(int fanIndex, int cardIndex) {
+		return new DrawOp(this, fanIndex, cardIndex);
 	}
 
 	/**
@@ -429,15 +447,40 @@ public class ControllerImpl implements Controller {
 	 * @param controller the controller to which the new object will delegate.
 	 * @return the new input handler.
 	 */
-	protected InputHandler newInputHandler(ControllerImpl controller) {
-		return new MasterInputHandler(controller);
+	protected InputHandler newInputHandler() {
+		return new MasterInputHandler(this);
+	}
+
+	/**
+	 * Create a new operation to move a card from the top of a tableau fan to
+	 * the top of a foundation fan.
+	 * @param srcFanIndex the index of the tableau fan.
+	 * @param destFanIndex the index of the foundation fan.
+	 * @return the new operation.
+	 */
+	protected MoveCardTableauToFoundationOp newMoveCardTableauToFoundationOp(
+			int srcFanIndex, int destFanIndex) {
+		return new MoveCardTableauToFoundationOp(
+				this, srcFanIndex, destFanIndex);
 	}
 	
+	/**
+	 * Create a new operation to move a card from the top of one tableau fan to
+	 * the top of another foundation fan.
+	 * @param srcFanIndex the index of the source tableau fan.
+	 * @param destFanIndex the index of the destination tableau fan.
+	 * @return the new operation.
+	 */
+	protected MoveCardTableauToTableauOp newMoveCardTableauToTableauOp(
+			int srcFanIndex, int destFanIndex) {
+		return new MoveCardTableauToTableauOp(this, srcFanIndex, destFanIndex);
+	}
+
 	/**
 	 * Perform the reshuffle (or "redeal") operation.
 	 */
 	protected void reshuffle() {
-		Deck deck = new Deck();
+		Deck deck = newDeck();
 		Fan[] tableau = model.getTableau();
 		
 		for (Fan fan : tableau) {
