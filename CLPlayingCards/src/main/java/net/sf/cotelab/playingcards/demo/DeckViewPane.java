@@ -37,7 +37,7 @@ public class DeckViewPane extends TilePane {
 
 	protected void addKids() {
 		Deck deck = newDeck();
-		ObservableList<Node> kids = getChildren();
+		ObservableList<Node> kids = getKids();
 		CardView backView = cardViewFactory.getBackView(
 				newCard(Rank.JOKER_HIGH, Suit.JOKER));
 		
@@ -53,11 +53,62 @@ public class DeckViewPane extends TilePane {
 		kids.add(backView);
 	}
 
+	/**
+	 * Set the Hgap value.
+	 * This method exists to wrap a call to a final (and thus, unmockable)
+	 * method, in support of unit testing.
+	 * @param value the value.
+	 */
+	protected void applyHgap(double value) {
+		setHgap(value);
+	}
+
+	/**
+	 * Set the Padding value.
+	 * This method exists to wrap a call to a final (and thus, unmockable)
+	 * method, in support of unit testing.
+	 * @param value the value.
+	 */
+	protected void applyPadding(Insets value) {
+		setPadding(value);
+	}
+	
+	/**
+	 * Set the PrefColumns value.
+	 * This method exists to wrap a call to a final (and thus, unmockable)
+	 * method, in support of unit testing.
+	 * @param value the value.
+	 */
+	protected void applyPrefColumns(int value) {
+		setPrefColumns(value);
+	}
+	
+	/**
+	 * Set the Vgap value.
+	 * This method exists to wrap a call to a final (and thus, unmockable)
+	 * method, in support of unit testing.
+	 * @param value the value.
+	 */
+	protected void applyVgap(double value) {
+		setVgap(value);
+	}
+	
+	/*
+	 * This method provides a way to mock our class' access to the list, without
+	 * changing behavior for our superclass.
+	 */
+	protected ObservableList<Node> getKids() {
+		return getChildren();
+	}
+	
+	/**
+	 * Initialize the parameters that influence layout.
+	 */
 	protected void inizLayoutParams() {
-		setHgap(DEFAULT_HGAP);
-		setPadding(newInsets(DEFAULT_INSET));
-		setPrefColumns(DEFAULT_COLUMNS);
-		setVgap(DEFAULT_VGAP);
+		applyHgap(DEFAULT_HGAP);
+		applyPadding(newInsets(DEFAULT_INSET));
+		applyPrefColumns(DEFAULT_COLUMNS);
+		applyVgap(DEFAULT_VGAP);
 	}
 
 	/**
