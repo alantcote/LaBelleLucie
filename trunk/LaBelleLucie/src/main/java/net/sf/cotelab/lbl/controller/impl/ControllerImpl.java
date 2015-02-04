@@ -16,18 +16,32 @@ import net.sf.cotelab.playingcards.Deck;
 import net.sf.cotelab.playingcards.Rank;
 import net.sf.cotelab.playingcards.Suit;
 
+/**
+ * An implementation of a <tt>Controller</tt>.
+ * @author cote
+ */
 public class ControllerImpl implements Controller {
 	protected InputHandler inputHandler;
 	protected GameState model;
 
+	/**
+	 * Construct a new object, using a given model.
+	 * @param model the model.
+	 */
 	public ControllerImpl(GameState model) {
 		super();
 		
 		this.model = model;
 		
-		inputHandler = new MasterInputHandler(this);
+		inputHandler = newInputHandler(this);
 	}
-
+	
+	/**
+	 * Move a card from a given index in a given fan to the top (end) of the
+	 * fan.
+	 * @param fanIndex the index of the fan in the tableau.
+	 * @param cardIndex the index of the card in the fan.
+	 */
 	public void draw(int fanIndex, int cardIndex) {
 		Fan fan = model.getTableau()[fanIndex];
 		Card card = fan.remove(cardIndex);
@@ -55,7 +69,14 @@ public class ControllerImpl implements Controller {
 	public GameState getModel() {
 		return model;
 	}
-	
+
+	/**
+	 * Move the top card from a given foundation fan to the top of a given
+	 * tableau fan.
+	 * This method's primary use is in support of undo.
+	 * @param srcFanIndex the foundation fan index.
+	 * @param destFanIndex the tableau fan index.
+	 */
 	public void moveTopCardFoundationToTableau(
 			int srcFanIndex, int destFanIndex) {
 		Fan[] tableauFan = model.getTableau();
@@ -65,7 +86,13 @@ public class ControllerImpl implements Controller {
 		
 		tableauFan[destFanIndex].add(card);
 	}
-
+	
+	/**
+	 * Move the top card from a given tableau fan to the top of a given
+	 * foundation fan.
+	 * @param srcFanIndex the tableau fan index.
+	 * @param destFanIndex the foundation fan index.
+	 */
 	public void moveTopCardTableauToFoundation(
 			int srcFanIndex, int destFanIndex) {
 		Fan[] tableauFan = model.getTableau();
@@ -76,6 +103,12 @@ public class ControllerImpl implements Controller {
 		foundationFan[destFanIndex].add(card);
 	}
 
+	/**
+	 * Move a card from the top of one tableau fan to the top of another tableau
+	 * fan.
+	 * @param srcFanIndex the source tableau fan index.
+	 * @param destFanIndex the destination tableau fan index.
+	 */
 	public void moveTopCardTableauToTableau(int srcFanIndex, int destFanIndex) {
 		Fan[] tableauFan = model.getTableau();
 		Card card = tableauFan[srcFanIndex].remove(
@@ -83,7 +116,7 @@ public class ControllerImpl implements Controller {
 		
 		tableauFan[destFanIndex].add(card);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onMouseClicked(net.sf.cotelab.playingcards.Card)
 	 */
@@ -135,7 +168,7 @@ public class ControllerImpl implements Controller {
 			}
 		}
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onDrawRequested(net.sf.cotelab.playingcards.Card)
 	 */
@@ -162,14 +195,14 @@ public class ControllerImpl implements Controller {
 			}
 		}
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onExitRequest()
 	 */
 	public void onExitRequest() {
 		Platform.exit();
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onNewGameRequested()
 	 */
@@ -191,7 +224,13 @@ public class ControllerImpl implements Controller {
 			redealsRemaining.set(redealsRemaining.get() - 1);
 		}
 	}
-	
+
+	/**
+	 * Reverse the effect of an invocation of <tt>draw()</tt> with corresponding
+	 * parameters.
+	 * @param fanIndex the index of the tableau fan to be affected.
+	 * @param cardIndex the index in the fan from which the card was drawn.
+	 */
 	public void unDraw(int fanIndex, int cardIndex) {
 		Fan fan = model.getTableau()[fanIndex];
 		Card card = fan.remove(fan.size() - 1);
@@ -203,7 +242,10 @@ public class ControllerImpl implements Controller {
 		
 		model.getGameSummary().set(GameSummary.IN_PROGRESS);
 	}
-
+	
+	/**
+	 * Update the game summary to indicate the overall state of the game.
+	 */
 	public void updateGameSummary() {
 		GameSummary result = model.getGameSummary().get();
 		
@@ -244,10 +286,23 @@ public class ControllerImpl implements Controller {
 		model.getGameSummary().set(result);
 	}
 
+	/**
+	 * Determine whether there is a legal place to play a given card.
+	 * @param srcCard the card that might be played.
+	 * @return the truth-value of the assertion, "<tt>srcCard</tt> may be moved
+	 * 		legally".
+	 */
 	protected boolean canPlay(Card srcCard) {
 		return canPlayOnFoundation(srcCard) || canPlayOnTableau(srcCard);
 	}
-	
+
+	/**
+	 * Determine whether there is a legal place on the foundation to play a
+	 * given card.
+	 * @param srcCard the card that might be played.
+	 * @return the truth-value of the assertion, "<tt>srcCard</tt> may be moved
+	 * 		legally to the foundation".
+	 */
 	protected boolean canPlayOnFoundation(Card srcCard) {
 		boolean result = false;
 		
@@ -265,6 +320,14 @@ public class ControllerImpl implements Controller {
 		return result;
 	}
 	
+	/**
+	 * Determine whether the rules permit a prospective new top card to be
+	 * played atop an existing top card, in a foundation fan.
+	 * @param newTopCard the prospective new top card.
+	 * @param oldTopCard the existing top card.
+	 * @return the truth-value of the assertion, "<tt>newTopCard</tt> may be
+	 * 		played atop <tt>oldTopCard</tt> in a foundation fan".
+	 */
 	protected boolean canPlayOnFoundation(Card newTopCard, Card oldTopCard) {
 		boolean result = false;
 		Rank newRank = newTopCard.getRank();
@@ -283,7 +346,14 @@ public class ControllerImpl implements Controller {
 		
 		return result;
 	}
-
+	
+	/**
+	 * Determine whether there is a legal place on the tableau to play a given
+	 * card.
+	 * @param srcCard the card that might be played.
+	 * @return the truth-value of the assertion, "<tt>srcCard</tt> may be moved
+	 * 		legally to the tableau".
+	 */
 	protected boolean canPlayOnTableau(Card srcCard) {
 		boolean result = false;
 		
@@ -300,7 +370,15 @@ public class ControllerImpl implements Controller {
 		
 		return result;
 	}
-	
+
+	/**
+	 * Determine whether the rules permit a prospective new top card to be
+	 * played atop an existing top card, in a tableau fan.
+	 * @param newTopCard the prospective new top card.
+	 * @param oldTopCard the existing top card.
+	 * @return the truth-value of the assertion, "<tt>newTopCard</tt> may be
+	 * 		played atop <tt>oldTopCard</tt> in a tableau fan".
+	 */
 	protected boolean canPlayOnTableau(Card newTopCard, Card oldTopCard) {
 		boolean result = false;
 		Rank newRank = newTopCard.getRank();
@@ -318,6 +396,12 @@ public class ControllerImpl implements Controller {
 		return result;
 	}
 	
+	/**
+	 * Move the top card from a given tableau fan to atop a given foundation
+	 * fan.
+	 * @param srcFanIndex the source tableau fan index.
+	 * @param destFanIndex the destination foundation fan index.
+	 */
 	protected void moveCardToFoundation(int srcFanIndex, int destFanIndex) {
 		MoveCardTableauToFoundationOp op = new MoveCardTableauToFoundationOp(
 				this, srcFanIndex, destFanIndex);
@@ -325,7 +409,13 @@ public class ControllerImpl implements Controller {
 		op.doOp();
 		model.getUndoManager().add(op);
 	}
-
+	
+	/**
+	 * Move the top card from a given tableau fan to atop another given tableau
+	 * fan.
+	 * @param srcFanIndex the source tableau fan index.
+	 * @param destFanIndex the destination tableau fan index.
+	 */
 	protected void moveCardToTableau(int srcFanIndex, int destFanIndex) {
 		MoveCardTableauToTableauOp op =
 				new MoveCardTableauToTableauOp(this, srcFanIndex, destFanIndex);
@@ -333,7 +423,19 @@ public class ControllerImpl implements Controller {
 		op.doOp();
 		model.getUndoManager().add(op);
 	}
+
+	/**
+	 * Create a new input handler.
+	 * @param controller the controller to which the new object will delegate.
+	 * @return the new input handler.
+	 */
+	protected InputHandler newInputHandler(ControllerImpl controller) {
+		return new MasterInputHandler(controller);
+	}
 	
+	/**
+	 * Perform the reshuffle (or "redeal") operation.
+	 */
 	protected void reshuffle() {
 		Deck deck = new Deck();
 		Fan[] tableau = model.getTableau();
