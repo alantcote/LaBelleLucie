@@ -9,6 +9,7 @@ import javafx.beans.property.ObjectProperty;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.model.facade.Fan;
 import net.sf.cotelab.lbl.model.facade.GameState;
+import net.sf.cotelab.lbl.model.facade.GameSummary;
 import net.sf.cotelab.playingcards.Card;
 import net.sf.cotelab.playingcards.Deck;
 import net.sf.cotelab.testutils.jMockTestHelper;
@@ -36,7 +37,7 @@ public class ControllerImplTest extends jMockTestHelper {
 	}
 	
 	@Test
-	public void testCanPlay() {
+	public void testCanPlay_Card() {
 		final Card mockCard = context.mock(Card.class, "mockCard");
 		
 		context.checking(new Expectations() {{
@@ -113,22 +114,27 @@ public class ControllerImplTest extends jMockTestHelper {
 	}
 
 	@Test
+	public void testCountFoundationCards() {
+		fail("Not yet implemented");
+	}
+
+	@Test
 	public void testDraw() {
 		ControllerImpl fixture = new ControllerImpl(mockGameState) {
-			/* (non-Javadoc)
-			 * @see net.sf.cotelab.lbl.controller.impl.ControllerImpl#newInputHandler()
-			 */
-			@Override
-			protected InputHandler newInputHandler() {
-				return mockControllerImpl.newInputHandler();
-			}
-
 			/* (non-Javadoc)
 			 * @see net.sf.cotelab.lbl.controller.impl.ControllerImpl#updateGameSummary()
 			 */
 			@Override
 			public void updateGameSummary() {
 				mockControllerImpl.updateGameSummary();
+			}
+
+			/* (non-Javadoc)
+			 * @see net.sf.cotelab.lbl.controller.impl.ControllerImpl#newInputHandler()
+			 */
+			@Override
+			protected InputHandler newInputHandler() {
+				return mockControllerImpl.newInputHandler();
 			}
 		};
 		final IntegerProperty drawsRemaining =
@@ -193,6 +199,11 @@ public class ControllerImplTest extends jMockTestHelper {
 		};
 		
 		assertEquals(mockGameState, fixture.getModel());
+	}
+
+	@Test
+	public void testIsGameWon() {
+		fail("Not yet implemented");
 	}
 
 	@Test
@@ -263,7 +274,7 @@ public class ControllerImplTest extends jMockTestHelper {
 		};
 		
 		// This trivial constructor wrapper needs no testing.
-		assertTrue(true);
+		assertNotNull(fixture);
 	}
 
 	@Test
@@ -279,7 +290,7 @@ public class ControllerImplTest extends jMockTestHelper {
 		};
 		
 		// This trivial constructor wrapper needs no testing.
-		assertTrue(true);
+		assertNotNull(fixture);
 	}
 
 	@Test
@@ -295,7 +306,7 @@ public class ControllerImplTest extends jMockTestHelper {
 		};
 		
 		// This trivial constructor wrapper needs no testing.
-		assertTrue(true);
+		assertNotNull(fixture);
 	}
 
 	@Test
@@ -311,7 +322,7 @@ public class ControllerImplTest extends jMockTestHelper {
 		};
 		
 		// This trivial constructor wrapper needs no testing.
-		assertTrue(true);
+		assertNotNull(fixture);
 	}
 
 	@Test
@@ -327,7 +338,7 @@ public class ControllerImplTest extends jMockTestHelper {
 		};
 		
 		// This trivial constructor wrapper needs no testing.
-		assertTrue(true);
+		assertNotNull(fixture);
 	}
 
 	@Test
@@ -359,6 +370,14 @@ public class ControllerImplTest extends jMockTestHelper {
 	public void testReshuffle() {
 		ControllerImpl fixture = new ControllerImpl(mockGameState) {
 			/* (non-Javadoc)
+			 * @see net.sf.cotelab.lbl.controller.impl.ControllerImpl#updateGameSummary()
+			 */
+			@Override
+			public void updateGameSummary() {
+				mockControllerImpl.updateGameSummary();
+			}
+
+			/* (non-Javadoc)
 			 * @see net.sf.cotelab.lbl.controller.impl.ControllerImpl#newDeck()
 			 */
 			@Override
@@ -372,14 +391,6 @@ public class ControllerImplTest extends jMockTestHelper {
 			@Override
 			protected InputHandler newInputHandler() {
 				return mockControllerImpl.newInputHandler();
-			}
-
-			/* (non-Javadoc)
-			 * @see net.sf.cotelab.lbl.controller.impl.ControllerImpl#updateGameSummary()
-			 */
-			@Override
-			public void updateGameSummary() {
-				mockControllerImpl.updateGameSummary();
 			}
 		};
 		final Deck mockDeck = context.mock(Deck.class, "mockDeck");
@@ -442,6 +453,166 @@ public class ControllerImplTest extends jMockTestHelper {
 
 	@Test
 	public void testUpdateGameSummary() {
-		fail("Not yet implemented");
+		ControllerImpl fixture = new ControllerImpl(mockGameState) {
+			/* (non-Javadoc)
+			 * @see net.sf.cotelab.lbl.controller.impl.ControllerImpl#canPlay()
+			 */
+			@Override
+			protected boolean canPlay() {
+				return mockControllerImpl.canPlay();
+			}
+
+			/* (non-Javadoc)
+			 * @see net.sf.cotelab.lbl.controller.impl.ControllerImpl#isGameWon()
+			 */
+			@Override
+			protected boolean isGameWon() {
+				return mockControllerImpl.isGameWon();
+			}
+
+			/* (non-Javadoc)
+			 * @see net.sf.cotelab.lbl.controller.impl.ControllerImpl#newInputHandler()
+			 */
+			@Override
+			protected InputHandler newInputHandler() {
+				return mockControllerImpl.newInputHandler();
+			}
+		};
+
+		/*
+		 * This will test a number of cases:
+		 * 1) Game has been won ==> WON.
+		 * 2) Game has not been won, but there are redeals remaining ==>
+		 *    IN_PROGRESS.
+		 * 3) Game has not been won and there are no redeals remaining, but
+		 *    there are draws remaining ==> IN_PROGRESS.
+		 * 4) Game has not been won and there are no redeals or draws remaining,
+		 *    but there is a legal play ==> IN_PROGRESS.
+		 * 5) Game has not been won, there are no redeals or draws remaining,
+		 *    and there is no legal play ==> LOST.
+		 */
+		
+		@SuppressWarnings("unchecked")
+		final ObjectProperty<GameSummary> mockGameSummary =
+				(ObjectProperty<GameSummary>)
+					context.mock(ObjectProperty.class, "mockGameSummary");
+		final IntegerProperty mockIntegerProperty =
+				context.mock(IntegerProperty.class, "mockIntegerProperty");
+		
+		context.checking(new Expectations() {{
+			/*
+			 * case 1
+			 */
+			
+			oneOf(mockControllerImpl).isGameWon();
+			will(returnValue(true));
+			
+			oneOf(mockGameState).getGameSummary();
+			will(returnValue(mockGameSummary));
+			
+			oneOf(mockGameSummary).set(GameSummary.WON);
+
+			/*
+			 * case 2
+			 */
+			
+			oneOf(mockControllerImpl).isGameWon();
+			will(returnValue(false));
+			
+			oneOf(mockGameState).getRedealsRemaining();
+			will(returnValue(mockIntegerProperty));
+			
+			oneOf(mockIntegerProperty).get();
+			will(returnValue(1));
+			
+			oneOf(mockGameState).getGameSummary();
+			will(returnValue(mockGameSummary));
+			
+			oneOf(mockGameSummary).set(GameSummary.IN_PROGRESS);
+
+			/*
+			 * case 3
+			 */
+			
+			oneOf(mockControllerImpl).isGameWon();
+			will(returnValue(false));
+			
+			oneOf(mockGameState).getRedealsRemaining();
+			will(returnValue(mockIntegerProperty));
+			
+			oneOf(mockIntegerProperty).get();
+			will(returnValue(0));
+			
+			oneOf(mockGameState).getDrawsRemaining();
+			will(returnValue(mockIntegerProperty));
+			
+			oneOf(mockIntegerProperty).get();
+			will(returnValue(1));
+			
+			oneOf(mockGameState).getGameSummary();
+			will(returnValue(mockGameSummary));
+			
+			oneOf(mockGameSummary).set(GameSummary.IN_PROGRESS);
+
+			/*
+			 * case 4
+			 */
+			
+			oneOf(mockControllerImpl).isGameWon();
+			will(returnValue(false));
+			
+			oneOf(mockGameState).getRedealsRemaining();
+			will(returnValue(mockIntegerProperty));
+			
+			oneOf(mockIntegerProperty).get();
+			will(returnValue(0));
+			
+			oneOf(mockGameState).getDrawsRemaining();
+			will(returnValue(mockIntegerProperty));
+			
+			oneOf(mockIntegerProperty).get();
+			will(returnValue(0));
+			
+			oneOf(mockControllerImpl).canPlay();
+			will(returnValue(true));
+			
+			oneOf(mockGameState).getGameSummary();
+			will(returnValue(mockGameSummary));
+			
+			oneOf(mockGameSummary).set(GameSummary.IN_PROGRESS);
+
+			/*
+			 * case 5
+			 */
+			
+			oneOf(mockControllerImpl).isGameWon();
+			will(returnValue(false));
+			
+			oneOf(mockGameState).getRedealsRemaining();
+			will(returnValue(mockIntegerProperty));
+			
+			oneOf(mockIntegerProperty).get();
+			will(returnValue(0));
+			
+			oneOf(mockGameState).getDrawsRemaining();
+			will(returnValue(mockIntegerProperty));
+			
+			oneOf(mockIntegerProperty).get();
+			will(returnValue(0));
+			
+			oneOf(mockControllerImpl).canPlay();
+			will(returnValue(false));
+			
+			oneOf(mockGameState).getGameSummary();
+			will(returnValue(mockGameSummary));
+			
+			oneOf(mockGameSummary).set(GameSummary.LOST);
+		}});
+		
+		fixture.updateGameSummary();	// case 1
+		fixture.updateGameSummary();	// case 2
+		fixture.updateGameSummary();	// case 3
+		fixture.updateGameSummary();	// case 4
+		fixture.updateGameSummary();	// case 5
 	}
 }
