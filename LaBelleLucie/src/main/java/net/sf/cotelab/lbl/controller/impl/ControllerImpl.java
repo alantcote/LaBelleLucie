@@ -251,43 +251,38 @@ public class ControllerImpl implements Controller {
 	 * Update the game summary to indicate the overall state of the game.
 	 */
 	public void updateGameSummary() {
-		GameSummary result = model.getGameSummary().get();
-		
-		if (result == GameSummary.IN_PROGRESS) {
-			Fan[] foundationFan = model.getFoundation();
-			int count = 0;
-			
-			for (Fan fan : foundationFan) {
-				count += fan.size();
-			}
-			
-			if (count == 52) {
-				result = GameSummary.WON;
-			} else {
-				if (model.getRedealsRemaining().get() < 1) {
-					if (model.getDrawsRemaining().get() < 1) {
-						boolean canPlay = false;
-						Fan[] tableauFan = model.getTableau();
-						
-						for (Fan fan : tableauFan) {
-							Card srcCard = fan.getTopCard();
-							
-							if (srcCard != null) {
-								if (canPlay(srcCard)) {
-									canPlay = true;
-								}
-							}
-						}
-						
-						if (!canPlay) {
-							result = GameSummary.LOST;
-						}
+		GameSummary result = GameSummary.IN_PROGRESS;
+
+		if (isGameWon()) {
+			result = GameSummary.WON;
+		} else {
+			if (model.getRedealsRemaining().get() < 1) {
+				if (model.getDrawsRemaining().get() < 1) {
+					if (!canPlay()) {
+						result = GameSummary.LOST;
 					}
 				}
 			}
 		}
 		
 		model.getGameSummary().set(result);
+	}
+	
+	protected boolean canPlay() {
+		boolean canPlay = false;
+		Fan[] tableauFan = model.getTableau();
+		
+		for (Fan fan : tableauFan) {
+			Card srcCard = fan.getTopCard();
+			
+			if (srcCard != null) {
+				if (canPlay(srcCard)) {
+					canPlay = true;
+				}
+			}
+		}
+		
+		return canPlay;
 	}
 	
 	/**
@@ -299,7 +294,7 @@ public class ControllerImpl implements Controller {
 	protected boolean canPlay(Card srcCard) {
 		return canPlayOnFoundation(srcCard) || canPlayOnTableau(srcCard);
 	}
-
+	
 	/**
 	 * Determine whether there is a legal place on the foundation to play a
 	 * given card.
@@ -350,7 +345,7 @@ public class ControllerImpl implements Controller {
 		
 		return result;
 	}
-	
+
 	/**
 	 * Determine whether there is a legal place on the tableau to play a given
 	 * card.
@@ -374,7 +369,7 @@ public class ControllerImpl implements Controller {
 		
 		return result;
 	}
-	
+
 	/**
 	 * Determine whether the rules permit a prospective new top card to be
 	 * played atop an existing top card, in a tableau fan.
@@ -398,6 +393,21 @@ public class ControllerImpl implements Controller {
 		}
 		
 		return result;
+	}
+	
+	protected int countFoundationCards() {
+		Fan[] foundationFan = model.getFoundation();
+		int count = 0;
+		
+		for (Fan fan : foundationFan) {
+			count += fan.size();
+		}
+		
+		return count;
+	}
+	
+	protected boolean isGameWon() {
+		return (52 == countFoundationCards());
 	}
 
 	/**
