@@ -2,6 +2,7 @@ package net.sf.cotelab.lbl.controller.impl;
 
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
 import net.sf.cotelab.lbl.controller.facade.Controller;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.controller.impl.handler.MasterInputHandler;
@@ -43,15 +44,18 @@ public class ControllerImpl implements Controller {
 	 * @param cardIndex the index of the card in the fan.
 	 */
 	public void draw(int fanIndex, int cardIndex) {
-		Fan fan = model.getTableau()[fanIndex];
-		Card card = fan.remove(cardIndex);
 		IntegerProperty drawsRemaining = model.getDrawsRemaining();
 		
-		fan.add(card);
-		
-		drawsRemaining.set(drawsRemaining.get() - 1);
-		
-		updateGameSummary();
+		if (drawsRemaining.get() > 0) {
+			Fan fan = model.getTableau()[fanIndex];
+			Card card = fan.remove(cardIndex);
+			
+			fan.add(card);
+			
+			drawsRemaining.set(drawsRemaining.get() - 1);
+			
+			updateGameSummary();
+		}
 	}
 
 	/* (non-Javadoc)
@@ -482,6 +486,7 @@ public class ControllerImpl implements Controller {
 	protected void reshuffle() {
 		Deck deck = newDeck();
 		Fan[] tableau = model.getTableau();
+		ObjectProperty<Deck> stock;
 		
 		for (Fan fan : tableau) {
 			for (Card card : fan) {
@@ -491,12 +496,15 @@ public class ControllerImpl implements Controller {
 			fan.clear();
 		}
 		
-		model.getStock().set(deck);
+		stock = model.getStock();
+
+		stock.set(null);
+		stock.set(deck);
 		
 		model.dealTableau(deck);
 		
-		model.getStock().set(null);
-		model.getStock().set(deck);
+		stock.set(null);
+		stock.set(deck);
 		
 		updateGameSummary();
 	}
