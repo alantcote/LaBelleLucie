@@ -7,9 +7,11 @@ import java.util.Iterator;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
+import net.sf.cotelab.lbl.controller.impl.undoableop.MoveCardTableauToFoundationOp;
 import net.sf.cotelab.lbl.model.facade.Fan;
 import net.sf.cotelab.lbl.model.facade.GameState;
 import net.sf.cotelab.lbl.model.facade.GameSummary;
+import net.sf.cotelab.lbl.undo.UndoManager;
 import net.sf.cotelab.playingcards.Card;
 import net.sf.cotelab.playingcards.Deck;
 import net.sf.cotelab.testutils.jMockTestHelper;
@@ -208,7 +210,48 @@ public class ControllerImplTest extends jMockTestHelper {
 
 	@Test
 	public void testMoveCardToFoundation() {
-		fail("Not yet implemented");
+		ControllerImpl fixture = new ControllerImpl(mockGameState) {
+			/* (non-Javadoc)
+			 * @see net.sf.cotelab.lbl.controller.impl.ControllerImpl#newInputHandler()
+			 */
+			@Override
+			protected InputHandler newInputHandler() {
+				return mockControllerImpl.newInputHandler();
+			}
+
+			/* (non-Javadoc)
+			 * @see net.sf.cotelab.lbl.controller.impl.ControllerImpl#newMoveCardTableauToFoundationOp(int, int)
+			 */
+			@Override
+			protected MoveCardTableauToFoundationOp
+					newMoveCardTableauToFoundationOp(
+							int srcFanIndex, int destFanIndex) {
+				return mockControllerImpl.newMoveCardTableauToFoundationOp(
+						srcFanIndex, destFanIndex);
+			}
+		};
+		final int srcFanIndex = 0;
+		final int destFanIndex = 1;
+		final MoveCardTableauToFoundationOp mockMoveCardTableauToFoundationOp =
+				context.mock(MoveCardTableauToFoundationOp.class,
+						"mockMoveCardTableauToFoundationOp");
+		final UndoManager mockUndoManager =
+				context.mock(UndoManager.class, "mockUndoManager");
+		
+		context.checking(new Expectations() {{
+			oneOf(mockControllerImpl).newMoveCardTableauToFoundationOp(
+					srcFanIndex, destFanIndex);
+			will(returnValue(mockMoveCardTableauToFoundationOp));
+			
+			oneOf(mockMoveCardTableauToFoundationOp).doOp();
+			
+			oneOf(mockGameState).getUndoManager();
+			will(returnValue(mockUndoManager));
+			
+			oneOf(mockUndoManager).add(mockMoveCardTableauToFoundationOp);
+		}});
+		
+		fixture.moveCardToFoundation(srcFanIndex, destFanIndex);
 	}
 
 	@Test
