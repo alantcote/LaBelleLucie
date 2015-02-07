@@ -27,6 +27,58 @@ public class MoveFinder {
 	}
 	
 	/**
+	 * Determine whether the rules permit a prospective new top card to be
+	 * played atop an existing top card, in a foundation fan.
+	 * @param newTopCard the prospective new top card.
+	 * @param oldTopCard the existing top card.
+	 * @return the truth-value of the assertion, "<tt>newTopCard</tt> may be
+	 * 		played atop <tt>oldTopCard</tt> in a foundation fan".
+	 */
+	public boolean canPlayOnFoundation(Card newTopCard, Card oldTopCard) {
+		boolean result = false;
+		Rank newRank = newTopCard.getRank();
+		Suit newSuit = newTopCard.getSuit();
+		
+		if (oldTopCard == null) {
+			result = (newRank == Rank.ACE);
+		} else {
+			Rank oldRank = oldTopCard.getRank();
+			Suit oldSuit = oldTopCard.getSuit();
+
+			if (newSuit == oldSuit) {
+				result = (oldRank.ordinal() + 1 == newRank.ordinal());
+			}
+		}
+		
+		return result;
+	}
+
+	/**
+	 * Determine whether the rules permit a prospective new top card to be
+	 * played atop an existing top card, in a tableau fan.
+	 * @param newTopCard the prospective new top card.
+	 * @param oldTopCard the existing top card.
+	 * @return the truth-value of the assertion, "<tt>newTopCard</tt> may be
+	 * 		played atop <tt>oldTopCard</tt> in a tableau fan".
+	 */
+	public boolean canPlayOnTableau(Card newTopCard, Card oldTopCard) {
+		boolean result = false;
+		Rank newRank = newTopCard.getRank();
+		Suit newSuit = newTopCard.getSuit();
+		
+		if (oldTopCard != null) {
+			Rank oldRank = oldTopCard.getRank();
+			Suit oldSuit = oldTopCard.getSuit();
+
+			if (newSuit == oldSuit) {
+				result = (oldRank.ordinal() == newRank.ordinal() + 1);
+			}
+		}
+		
+		return result;
+	}
+	
+	/**
 	 * Get a list of moves that are legal, in the circumstances that exist.
 	 * The moves are listed in preference order:
 	 * <ol>
@@ -59,62 +111,10 @@ public class MoveFinder {
 	}
 
 	/**
-	 * Determine whether the rules permit a prospective new top card to be
-	 * played atop an existing top card, in a foundation fan.
-	 * @param newTopCard the prospective new top card.
-	 * @param oldTopCard the existing top card.
-	 * @return the truth-value of the assertion, "<tt>newTopCard</tt> may be
-	 * 		played atop <tt>oldTopCard</tt> in a foundation fan".
-	 */
-	protected boolean canPlayOnFoundation(Card newTopCard, Card oldTopCard) {
-		boolean result = false;
-		Rank newRank = newTopCard.getRank();
-		Suit newSuit = newTopCard.getSuit();
-		
-		if (oldTopCard == null) {
-			result = (newRank == Rank.ACE);
-		} else {
-			Rank oldRank = oldTopCard.getRank();
-			Suit oldSuit = oldTopCard.getSuit();
-
-			if (newSuit == oldSuit) {
-				result = (oldRank.ordinal() + 1 == newRank.ordinal());
-			}
-		}
-		
-		return result;
-	}
-	
-	/**
-	 * Determine whether the rules permit a prospective new top card to be
-	 * played atop an existing top card, in a tableau fan.
-	 * @param newTopCard the prospective new top card.
-	 * @param oldTopCard the existing top card.
-	 * @return the truth-value of the assertion, "<tt>newTopCard</tt> may be
-	 * 		played atop <tt>oldTopCard</tt> in a tableau fan".
-	 */
-	protected boolean canPlayOnTableau(Card newTopCard, Card oldTopCard) {
-		boolean result = false;
-		Rank newRank = newTopCard.getRank();
-		Suit newSuit = newTopCard.getSuit();
-		
-		if (oldTopCard != null) {
-			Rank oldRank = oldTopCard.getRank();
-			Suit oldSuit = oldTopCard.getSuit();
-
-			if (newSuit == oldSuit) {
-				result = (oldRank.ordinal() == newRank.ordinal() + 1);
-			}
-		}
-		
-		return result;
-	}
-
-	/**
 	 * Get a list of legal moves from tableau to foundation.
 	 * @return a list of moves (empty, if there are no legal ones).
 	 */
-	protected List<Move> findMovesToFoundation() {
+	public List<Move> findMovesToFoundation() {
 		List<Move> moves = newListOfMove();
 		Fan[] foundation = model.getFoundation();
 
@@ -133,7 +133,7 @@ public class MoveFinder {
 	 * Get a list of legal moves from tableau to tableau.
 	 * @return a list of moves (empty, if there are no legal ones).
 	 */
-	protected List<Move> findMovesToTableau() {
+	public List<Move> findMovesToTableau() {
 		List<Move> moves = newListOfMove();
 		Fan[] tableau = model.getTableau();
 
@@ -153,7 +153,7 @@ public class MoveFinder {
 	 * @param destIndex the index of the foundation fan.
 	 * @return a move (<tt>null</tt> if no such exists).
 	 */
-	protected Move findMoveToFoundation(int destIndex) {
+	public Move findMoveToFoundation(int destIndex) {
 		Move move = null;
 		Card destCard = model.getFoundation()[destIndex].getTopCard();
 		Fan[] tableau = model.getTableau();
@@ -179,7 +179,7 @@ public class MoveFinder {
 	 * @param destIndex the index of the destination tableau fan.
 	 * @return a move (<tt>null</tt> if no such exists).
 	 */
-	protected Move findMoveToTableau(int destIndex) {
+	public Move findMoveToTableau(int destIndex) {
 		Move move = null;
 		Fan[] tableau = model.getTableau();
 		Card destCard = tableau[destIndex].getTopCard();

@@ -203,7 +203,7 @@ public class MoveFinderTest extends jMockTestHelper {
 			 * @see net.sf.cotelab.lbl.controller.impl.MoveFinder#findMovesToFoundation()
 			 */
 			@Override
-			protected List<Move> findMovesToFoundation() {
+			public List<Move> findMovesToFoundation() {
 				return mockMoveFinder.findMovesToFoundation();
 			}
 
@@ -211,7 +211,7 @@ public class MoveFinderTest extends jMockTestHelper {
 			 * @see net.sf.cotelab.lbl.controller.impl.MoveFinder#findMovesToTableau()
 			 */
 			@Override
-			protected List<Move> findMovesToTableau() {
+			public List<Move> findMovesToTableau() {
 				return mockMoveFinder.findMovesToTableau();
 			}
 
@@ -406,7 +406,7 @@ public class MoveFinderTest extends jMockTestHelper {
 			 * @see net.sf.cotelab.lbl.controller.impl.MoveFinder#findMoveToFoundation(int)
 			 */
 			@Override
-			protected Move findMoveToFoundation(int destIndex) {
+			public Move findMoveToFoundation(int destIndex) {
 				return mockMoveFinder.findMoveToFoundation(destIndex);
 			}
 
@@ -453,7 +453,7 @@ public class MoveFinderTest extends jMockTestHelper {
 			 * @see net.sf.cotelab.lbl.controller.impl.MoveFinder#findMoveToFoundation(int)
 			 */
 			@Override
-			protected Move findMoveToTableau(int destIndex) {
+			public Move findMoveToTableau(int destIndex) {
 				return mockMoveFinder.findMoveToTableau(destIndex);
 			}
 
@@ -500,7 +500,7 @@ public class MoveFinderTest extends jMockTestHelper {
 			 * @see net.sf.cotelab.lbl.controller.impl.MoveFinder#canPlayOnFoundation(net.sf.cotelab.playingcards.Card, net.sf.cotelab.playingcards.Card)
 			 */
 			@Override
-			protected boolean canPlayOnFoundation(
+			public boolean canPlayOnFoundation(
 					Card newTopCard, Card oldTopCard) {
 				return mockMoveFinder.canPlayOnFoundation(
 						newTopCard, oldTopCard);
@@ -555,7 +555,7 @@ public class MoveFinderTest extends jMockTestHelper {
 			 * @see net.sf.cotelab.lbl.controller.impl.MoveFinder#canPlayOnTableau(net.sf.cotelab.playingcards.Card, net.sf.cotelab.playingcards.Card)
 			 */
 			@Override
-			protected boolean canPlayOnTableau(
+			public boolean canPlayOnTableau(
 					Card newTopCard, Card oldTopCard) {
 				return mockMoveFinder.canPlayOnTableau(newTopCard, oldTopCard);
 			}
