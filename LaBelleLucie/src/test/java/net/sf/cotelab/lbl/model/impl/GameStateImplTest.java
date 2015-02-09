@@ -152,7 +152,7 @@ public class GameStateImplTest extends jMockTestHelper {
 			oneOf(mockGameStateImpl).newUndoManager();
 			will(returnValue(undoManager));
 
-			oneOf(mockGameStateImpl).reset();
+//			oneOf(mockGameStateImpl).reset();
 
 			// during dealTableau . . .
 			oneOf(tableauFan00).clear();
@@ -453,7 +453,7 @@ public class GameStateImplTest extends jMockTestHelper {
 			oneOf(mockGameStateImpl).newUndoManager();
 			will(returnValue(undoManager));
 
-			oneOf(mockGameStateImpl).reset();
+//			oneOf(mockGameStateImpl).reset();
 		}});
 		
 		GameStateImpl fixture = new GameStateImpl() {
@@ -659,7 +659,7 @@ public class GameStateImplTest extends jMockTestHelper {
 			oneOf(mockGameStateImpl).newUndoManager();
 			will(returnValue(undoManager));
 
-			oneOf(mockGameStateImpl).reset();
+//			oneOf(mockGameStateImpl).reset();
 		}});
 		
 		GameStateImpl fixture = new GameStateImpl() {
@@ -865,7 +865,7 @@ public class GameStateImplTest extends jMockTestHelper {
 			oneOf(mockGameStateImpl).newUndoManager();
 			will(returnValue(undoManager));
 
-			oneOf(mockGameStateImpl).reset();
+//			oneOf(mockGameStateImpl).reset();
 		}});
 		
 		GameStateImpl fixture = new GameStateImpl() {
@@ -1071,7 +1071,7 @@ public class GameStateImplTest extends jMockTestHelper {
 			oneOf(mockGameStateImpl).newUndoManager();
 			will(returnValue(undoManager));
 
-			oneOf(mockGameStateImpl).reset();
+//			oneOf(mockGameStateImpl).reset();
 		}});
 		
 		GameStateImpl fixture = new GameStateImpl() {
@@ -1277,7 +1277,7 @@ public class GameStateImplTest extends jMockTestHelper {
 			oneOf(mockGameStateImpl).newUndoManager();
 			will(returnValue(undoManager));
 
-			oneOf(mockGameStateImpl).reset();
+//			oneOf(mockGameStateImpl).reset();
 		}});
 		
 		GameStateImpl fixture = new GameStateImpl() {
@@ -1483,7 +1483,7 @@ public class GameStateImplTest extends jMockTestHelper {
 			oneOf(mockGameStateImpl).newUndoManager();
 			will(returnValue(undoManager));
 
-			oneOf(mockGameStateImpl).reset();
+//			oneOf(mockGameStateImpl).reset();
 		}});
 		
 		GameStateImpl fixture = new GameStateImpl() {
@@ -1689,7 +1689,7 @@ public class GameStateImplTest extends jMockTestHelper {
 			oneOf(mockGameStateImpl).newUndoManager();
 			will(returnValue(undoManager));
 
-			oneOf(mockGameStateImpl).reset();
+//			oneOf(mockGameStateImpl).reset();
 		}});
 		
 		GameStateImpl fixture = new GameStateImpl() {
@@ -1895,7 +1895,7 @@ public class GameStateImplTest extends jMockTestHelper {
 			oneOf(mockGameStateImpl).newUndoManager();
 			will(returnValue(undoManager));
 
-			oneOf(mockGameStateImpl).reset();
+//			oneOf(mockGameStateImpl).reset();
 
 			// during explicit call . . .
 			oneOf(mockGameStateImpl).newIntegerProperty();
@@ -1989,7 +1989,7 @@ public class GameStateImplTest extends jMockTestHelper {
 			oneOf(mockGameStateImpl).newUndoManager();
 			will(returnValue(undoManager));
 
-			oneOf(mockGameStateImpl).reset();
+//			oneOf(mockGameStateImpl).reset();
 		}});
 		
 		GameStateImpl fixture = new GameStateImpl() {

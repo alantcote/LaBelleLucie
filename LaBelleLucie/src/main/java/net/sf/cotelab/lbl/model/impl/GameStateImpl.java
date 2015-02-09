@@ -133,7 +133,7 @@ public class GameStateImpl implements GameState {
 		
 		undoManager = newUndoManager();
 		
-		reset();
+//		reset();
 	}
 
 	protected Fan newFan() {
