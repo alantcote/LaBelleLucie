@@ -16,8 +16,6 @@ import net.sf.cotelab.lbl.model.facade.GameState;
 import net.sf.cotelab.lbl.model.facade.GameSummary;
 import net.sf.cotelab.playingcards.Card;
 import net.sf.cotelab.playingcards.Deck;
-import net.sf.cotelab.playingcards.Rank;
-import net.sf.cotelab.playingcards.Suit;
 
 /**
  * An implementation of a <tt>Controller</tt>.
