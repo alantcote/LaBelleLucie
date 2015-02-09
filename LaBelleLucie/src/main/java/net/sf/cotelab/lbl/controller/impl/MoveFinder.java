@@ -92,8 +92,7 @@ public class MoveFinder {
 	public List<Move> findMoves() {
 		List<Move> moves = newListOfMove();
 		
-		moves.addAll(findMovesToFoundation());
-		moves.addAll(findMovesToTableau());
+		moves.addAll(findSimpleMoves());
 
 		if (model.getRedealsRemaining().get() > 0) {
 			Move move = newMove(0, 0, MoveType.RESHUFFLE);
@@ -109,7 +108,7 @@ public class MoveFinder {
 		
 		return moves;
 	}
-
+	
 	/**
 	 * Get a list of legal moves from tableau to foundation.
 	 * @return a list of moves (empty, if there are no legal ones).
@@ -200,6 +199,24 @@ public class MoveFinder {
 		}
 		
 		return move;
+	}
+
+	/**
+	 * Get a list of legal simple moves, in current circumstances.
+	 * Simple moves are grouped in the following order:
+	 * <ol>
+	 * <li>Moves from tableau to foundation.</li>
+	 * <li>Moves from tableau to tableau.</li>
+	 * </ol>
+	 * @return a list of moves (empty, if there are no legal ones).
+	 */
+	public List<Move> findSimpleMoves() {
+		List<Move> moves = newListOfMove();
+		
+		moves.addAll(findMovesToFoundation());
+		moves.addAll(findMovesToTableau());
+		
+		return moves;
 	}
 	
 	/**

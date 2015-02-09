@@ -200,19 +200,11 @@ public class MoveFinderTest extends jMockTestHelper {
 	public void testFindMoves() {
 		MoveFinder fixture = new MoveFinder(mockGameState) {
 			/* (non-Javadoc)
-			 * @see net.sf.cotelab.lbl.controller.impl.MoveFinder#findMovesToFoundation()
+			 * @see net.sf.cotelab.lbl.controller.impl.MoveFinder#findSimpleMoves()
 			 */
 			@Override
-			public List<Move> findMovesToFoundation() {
-				return mockMoveFinder.findMovesToFoundation();
-			}
-
-			/* (non-Javadoc)
-			 * @see net.sf.cotelab.lbl.controller.impl.MoveFinder#findMovesToTableau()
-			 */
-			@Override
-			public List<Move> findMovesToTableau() {
-				return mockMoveFinder.findMovesToTableau();
+			public List<Move> findSimpleMoves() {
+				return mockMoveFinder.findSimpleMoves();
 			}
 
 			/* (non-Javadoc)
@@ -237,11 +229,8 @@ public class MoveFinderTest extends jMockTestHelper {
 		final List<Move> mockMoves = (List<Move>)
 				context.mock(List.class, "mockListOfMove");
 		@SuppressWarnings("unchecked")
-		final List<Move> mockMovesToFoundation = (List<Move>)
-				context.mock(List.class, "mockMovesToFoundation");
-		@SuppressWarnings("unchecked")
-		final List<Move> mockMovesToTableau = (List<Move>)
-				context.mock(List.class, "mockMovesToTableau");
+		final List<Move> mockSimpleMoves = (List<Move>)
+				context.mock(List.class, "mockSimpleMoves");
 		final IntegerProperty mockRedealsRemaining =
 				context.mock(IntegerProperty.class, "mockRedealsRemaining");
 		final IntegerProperty mockDrawsRemaining =
@@ -263,15 +252,10 @@ public class MoveFinderTest extends jMockTestHelper {
 			oneOf(mockMoveFinder).newListOfMove();
 			will(returnValue(mockMoves));
 			
-			oneOf(mockMoveFinder).findMovesToFoundation();
-			will(returnValue(mockMovesToFoundation));
+			oneOf(mockMoveFinder).findSimpleMoves();
+			will(returnValue(mockSimpleMoves));
 			
-			oneOf(mockMoves).addAll(mockMovesToFoundation);
-			
-			oneOf(mockMoveFinder).findMovesToTableau();
-			will(returnValue(mockMovesToTableau));
-			
-			oneOf(mockMoves).addAll(mockMovesToTableau);
+			oneOf(mockMoves).addAll(mockSimpleMoves);
 			
 			oneOf(mockGameState).getRedealsRemaining();
 			will(returnValue(mockRedealsRemaining));
@@ -292,15 +276,10 @@ public class MoveFinderTest extends jMockTestHelper {
 			oneOf(mockMoveFinder).newListOfMove();
 			will(returnValue(mockMoves));
 			
-			oneOf(mockMoveFinder).findMovesToFoundation();
-			will(returnValue(mockMovesToFoundation));
+			oneOf(mockMoveFinder).findSimpleMoves();
+			will(returnValue(mockSimpleMoves));
 			
-			oneOf(mockMoves).addAll(mockMovesToFoundation);
-			
-			oneOf(mockMoveFinder).findMovesToTableau();
-			will(returnValue(mockMovesToTableau));
-			
-			oneOf(mockMoves).addAll(mockMovesToTableau);
+			oneOf(mockMoves).addAll(mockSimpleMoves);
 			
 			oneOf(mockGameState).getRedealsRemaining();
 			will(returnValue(mockRedealsRemaining));
@@ -326,15 +305,10 @@ public class MoveFinderTest extends jMockTestHelper {
 			oneOf(mockMoveFinder).newListOfMove();
 			will(returnValue(mockMoves));
 			
-			oneOf(mockMoveFinder).findMovesToFoundation();
-			will(returnValue(mockMovesToFoundation));
+			oneOf(mockMoveFinder).findSimpleMoves();
+			will(returnValue(mockSimpleMoves));
 			
-			oneOf(mockMoves).addAll(mockMovesToFoundation);
-			
-			oneOf(mockMoveFinder).findMovesToTableau();
-			will(returnValue(mockMovesToTableau));
-			
-			oneOf(mockMoves).addAll(mockMovesToTableau);
+			oneOf(mockMoves).addAll(mockSimpleMoves);
 			
 			oneOf(mockGameState).getRedealsRemaining();
 			will(returnValue(mockRedealsRemaining));
@@ -360,15 +334,10 @@ public class MoveFinderTest extends jMockTestHelper {
 			oneOf(mockMoveFinder).newListOfMove();
 			will(returnValue(mockMoves));
 			
-			oneOf(mockMoveFinder).findMovesToFoundation();
-			will(returnValue(mockMovesToFoundation));
+			oneOf(mockMoveFinder).findSimpleMoves();
+			will(returnValue(mockSimpleMoves));
 			
-			oneOf(mockMoves).addAll(mockMovesToFoundation);
-			
-			oneOf(mockMoveFinder).findMovesToTableau();
-			will(returnValue(mockMovesToTableau));
-			
-			oneOf(mockMoves).addAll(mockMovesToTableau);
+			oneOf(mockMoves).addAll(mockSimpleMoves);
 			
 			oneOf(mockGameState).getRedealsRemaining();
 			will(returnValue(mockRedealsRemaining));
