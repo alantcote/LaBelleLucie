@@ -1,5 +1,7 @@
 package net.sf.cotelab.lbl.controller.impl;
 
+import java.util.List;
+
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -24,6 +26,7 @@ import net.sf.cotelab.playingcards.Suit;
 public class ControllerImpl implements Controller {
 	protected InputHandler inputHandler;
 	protected GameState model;
+	protected MoveFinder moveFinder;
 
 	/**
 	 * Construct a new object, using a given model.
@@ -33,7 +36,8 @@ public class ControllerImpl implements Controller {
 		super();
 		
 		this.model = model;
-		
+
+		moveFinder = newMoveFinder();
 		inputHandler = newInputHandler();
 	}
 	
@@ -125,54 +129,34 @@ public class ControllerImpl implements Controller {
 	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onMouseClicked(net.sf.cotelab.playingcards.Card)
 	 */
 	public void onCardMoveRequested(Card card) {
-		Fan[] tableauFan = model.getTableau();
-		Fan[] foundationFan = model.getFoundation();
-		int sourceFanIndex = -1;
-		
-		for (int i = 0; i < tableauFan.length; ++i) {
-			Card sourceCard = tableauFan[i].getTopCard();
-			
-			if (card == sourceCard) {
-				sourceFanIndex = i;
-				
-				break;
-			}
-		}
+		int sourceFanIndex = indexOfTableauFanWithTopCard(card);
 		
 		if (sourceFanIndex >= 0) {
-			// sourceFanIndex is the index of a Fan in the tableau for which
-			// card is on top - now look for a destination, first in foundation
-
-			int destFanIndex = -1;
+			List<Move> moves = moveFinder.findSimpleMoves();
 			
-			for (int i = 0; i < foundationFan.length; ++i) {
-				Card destCard = foundationFan[i].getTopCard();
-
-				if (canPlayOnFoundation(card, destCard)) {
-					destFanIndex = i;
+			for (Move move : moves) {
+				if (sourceFanIndex == move.getSrcFanIndex()) {
+					MoveType type = move.getType();
 					
-					moveCardToFoundation(sourceFanIndex, destFanIndex);
-					
-					break;
-				}
-			}
-			
-			if (destFanIndex < 0) {
-				for (int i = 0; i < tableauFan.length; ++i) {
-					Card destCard = tableauFan[i].getTopCard();
-
-					if (canPlayOnTableau(card, destCard)) {
-						destFanIndex = i;
-						
-						moveCardToTableau(sourceFanIndex, destFanIndex);
-						
+					switch (type) {
+					case TABLEAU_TO_FOUNDATION:
+						moveCardToFoundation(
+								sourceFanIndex, move.getDestFanIndex());
+						break;
+					case TABLEAU_TO_TABLEAU:
+						moveCardToTableau(
+								sourceFanIndex, move.getDestFanIndex());
+						break;
+					default:
 						break;
 					}
+					
+					sourceFanIndex = -1;
 				}
 			}
 		}
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onDrawRequested(net.sf.cotelab.playingcards.Card)
 	 */
@@ -199,7 +183,7 @@ public class ControllerImpl implements Controller {
 			}
 		}
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onExitRequest()
 	 */
@@ -215,7 +199,7 @@ public class ControllerImpl implements Controller {
 		
 		updateGameSummary();
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onReshuffleRequest()
 	 */
@@ -228,7 +212,7 @@ public class ControllerImpl implements Controller {
 			redealsRemaining.set(redealsRemaining.get() - 1);
 		}
 	}
-
+	
 	/**
 	 * Reverse the effect of an invocation of <tt>draw()</tt> with corresponding
 	 * parameters.
@@ -256,145 +240,16 @@ public class ControllerImpl implements Controller {
 		if (isGameWon()) {
 			result = GameSummary.WON;
 		} else {
-			if (model.getRedealsRemaining().get() < 1) {
-				if (model.getDrawsRemaining().get() < 1) {
-					if (!canPlay()) {
-						result = GameSummary.LOST;
-					}
-				}
+			List<Move> moves = moveFinder.findMoves();
+			
+			if (moves.isEmpty()) {
+				result = GameSummary.LOST;
 			}
 		}
 		
 		model.getGameSummary().set(result);
 	}
-	
-	protected boolean canPlay() {
-		boolean canPlay = false;
-		Fan[] tableauFan = model.getTableau();
-		
-		for (Fan fan : tableauFan) {
-			Card srcCard = fan.getTopCard();
-			
-			if (srcCard != null) {
-				if (canPlay(srcCard)) {
-					canPlay = true;
-				}
-			}
-		}
-		
-		return canPlay;
-	}
-	
-	/**
-	 * Determine whether there is a legal place to play a given card.
-	 * @param srcCard the card that might be played.
-	 * @return the truth-value of the assertion, "<tt>srcCard</tt> may be moved
-	 * 		legally".
-	 */
-	protected boolean canPlay(Card srcCard) {
-		return canPlayOnFoundation(srcCard) || canPlayOnTableau(srcCard);
-	}
-	
-	/**
-	 * Determine whether there is a legal place on the foundation to play a
-	 * given card.
-	 * @param srcCard the card that might be played.
-	 * @return the truth-value of the assertion, "<tt>srcCard</tt> may be moved
-	 * 		legally to the foundation".
-	 */
-	protected boolean canPlayOnFoundation(Card srcCard) {
-		boolean result = false;
-		
-		for (Fan fan : model.getFoundation()) {
-			Card dstCard = fan.getTopCard();
-			
-			if (dstCard != null) {
-				if (canPlayOnFoundation(srcCard, dstCard)) {
-					result = true;
-					break;
-				}
-			}
-		}
-		
-		return result;
-	}
 
-	/**
-	 * Determine whether the rules permit a prospective new top card to be
-	 * played atop an existing top card, in a foundation fan.
-	 * @param newTopCard the prospective new top card.
-	 * @param oldTopCard the existing top card.
-	 * @return the truth-value of the assertion, "<tt>newTopCard</tt> may be
-	 * 		played atop <tt>oldTopCard</tt> in a foundation fan".
-	 */
-	protected boolean canPlayOnFoundation(Card newTopCard, Card oldTopCard) {
-		boolean result = false;
-		Rank newRank = newTopCard.getRank();
-		Suit newSuit = newTopCard.getSuit();
-		
-		if (oldTopCard == null) {
-			result = (newRank == Rank.ACE);
-		} else {
-			Rank oldRank = oldTopCard.getRank();
-			Suit oldSuit = oldTopCard.getSuit();
-
-			if (newSuit == oldSuit) {
-				result = (oldRank.ordinal() + 1 == newRank.ordinal());
-			}
-		}
-		
-		return result;
-	}
-
-	/**
-	 * Determine whether there is a legal place on the tableau to play a given
-	 * card.
-	 * @param srcCard the card that might be played.
-	 * @return the truth-value of the assertion, "<tt>srcCard</tt> may be moved
-	 * 		legally to the tableau".
-	 */
-	protected boolean canPlayOnTableau(Card srcCard) {
-		boolean result = false;
-		
-		for (Fan fan : model.getTableau()) {
-			Card dstCard = fan.getTopCard();
-
-			if (dstCard != null) {
-				if (canPlayOnTableau(srcCard, dstCard)) {
-					result = true;
-					break;
-				}
-			}
-		}
-		
-		return result;
-	}
-
-	/**
-	 * Determine whether the rules permit a prospective new top card to be
-	 * played atop an existing top card, in a tableau fan.
-	 * @param newTopCard the prospective new top card.
-	 * @param oldTopCard the existing top card.
-	 * @return the truth-value of the assertion, "<tt>newTopCard</tt> may be
-	 * 		played atop <tt>oldTopCard</tt> in a tableau fan".
-	 */
-	protected boolean canPlayOnTableau(Card newTopCard, Card oldTopCard) {
-		boolean result = false;
-		Rank newRank = newTopCard.getRank();
-		Suit newSuit = newTopCard.getSuit();
-		
-		if (oldTopCard != null) {
-			Rank oldRank = oldTopCard.getRank();
-			Suit oldSuit = oldTopCard.getSuit();
-
-			if (newSuit == oldSuit) {
-				result = (oldRank.ordinal() == newRank.ordinal() + 1);
-			}
-		}
-		
-		return result;
-	}
-	
 	protected int countFoundationCards() {
 		Fan[] foundationFan = model.getFoundation();
 		int count = 0;
@@ -404,6 +259,29 @@ public class ControllerImpl implements Controller {
 		}
 		
 		return count;
+	}
+	
+	/**
+	 * Find the index of a tableau fan with a given card on top.
+	 * @param card the candidate top card.
+	 * @return the index (<tt>-1</tt> if <tt>card</tt> is not a tableau top
+	 * 		card).
+	 */
+	protected int indexOfTableauFanWithTopCard(Card card) {
+		int sourceFanIndex = -1;
+		Fan[] tableauFan = model.getTableau();
+		
+		for (int i = 0; i < tableauFan.length; ++i) {
+			Card sourceCard = tableauFan[i].getTopCard();
+			
+			if (card == sourceCard) {
+				sourceFanIndex = i;
+				
+				break;
+			}
+		}
+		
+		return sourceFanIndex;
 	}
 	
 	protected boolean isGameWon() {
@@ -445,7 +323,7 @@ public class ControllerImpl implements Controller {
 	protected Deck newDeck() {
 		return new Deck();
 	}
-	
+
 	/**
 	 * Create a new draw operation.
 	 * @param fanIndex the index of the tableau fan from which to draw.
@@ -455,7 +333,7 @@ public class ControllerImpl implements Controller {
 	protected DrawOp newDrawOp(int fanIndex, int cardIndex) {
 		return new DrawOp(this, fanIndex, cardIndex);
 	}
-
+	
 	/**
 	 * Create a new input handler.
 	 * @param controller the controller to which the new object will delegate.
@@ -477,7 +355,7 @@ public class ControllerImpl implements Controller {
 		return new MoveCardTableauToFoundationOp(
 				this, srcFanIndex, destFanIndex);
 	}
-	
+
 	/**
 	 * Create a new operation to move a card from the top of one tableau fan to
 	 * the top of another foundation fan.
@@ -488,6 +366,14 @@ public class ControllerImpl implements Controller {
 	protected MoveCardTableauToTableauOp newMoveCardTableauToTableauOp(
 			int srcFanIndex, int destFanIndex) {
 		return new MoveCardTableauToTableauOp(this, srcFanIndex, destFanIndex);
+	}
+	
+	/**
+	 * Create a new <tt>MoveFinder</tt>.
+	 * @return the new <tt>MoveFinder</tt>.
+	 */
+	protected MoveFinder newMoveFinder() {
+		return new MoveFinder(model);
 	}
 
 	/**
