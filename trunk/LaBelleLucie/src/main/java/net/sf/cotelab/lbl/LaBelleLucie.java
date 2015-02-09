@@ -28,8 +28,11 @@ package net.sf.cotelab.lbl;
  */
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import net.sf.cotelab.lbl.controller.facade.Controller;
+import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.controller.impl.ControllerImpl;
 import net.sf.cotelab.lbl.model.facade.GameState;
 import net.sf.cotelab.lbl.model.impl.GameStateImpl;
@@ -46,8 +49,16 @@ public class LaBelleLucie extends Application {
 		GameState model = newGameState();
 		Controller controller = newController(model);
 		View view = newView(primaryStage, model);
+		final InputHandler inputHandler = controller.getInputHandler();
 		
-		view.setInputHandler(controller.getInputHandler());
+		view.setInputHandler(inputHandler);
+		
+		primaryStage.setOnShown(new EventHandler<WindowEvent>() {
+			@Override
+			public void handle(WindowEvent event) {
+				inputHandler.onNewGameRequested();
+			}
+		});
 		
 		// show the stage
 		show(primaryStage);
