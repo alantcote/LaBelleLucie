@@ -5,6 +5,7 @@ import javafx.geometry.Dimension2D;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
@@ -16,8 +17,23 @@ import net.sf.cotelab.playingcards.Card;
 import net.sf.cotelab.playingcards.javafx.CardView;
 import net.sf.cotelab.playingcards.javafx.CardViewFactory;
 
+/**
+ * A view of a fan.
+ * @author cote
+ */
 public class FanView extends AnchorPane implements View {
+	/**
+	 * The insets.
+	 */
 	public static final double MARGIN = 5;
+	
+	/**
+	 * The number of cards in a fan that can be displayed with minimum overlap,
+	 * this is used to calculate the size of the view. When the actual number of
+	 * cards in the fan is larger than this number, the overlap is increased, to
+	 * permit all of the cards to be displayed, though those not on top have
+	 * smaller visible portions.
+	 */
 	public static final int MAX_FAN_SIZE = 8;
 	
 	protected CardViewFactory cardViewFactory;
@@ -26,6 +42,13 @@ public class FanView extends AnchorPane implements View {
 	protected InputHandlerSupport inputHandlerSupport;
 	protected Fan model;
 	
+	/**
+	 * Construct a new object.
+	 * @param cardViewFactory the factory for card views.
+	 * @param fanOffset the maximum offset between the edge of one card's view
+	 * 		and the edge of the view of the card on top of it.
+	 * @param model the fan to be viewed.
+	 */
 	public FanView(
 			CardViewFactory cardViewFactory, double fanOffset, Fan model) {
 		super();
@@ -35,8 +58,8 @@ public class FanView extends AnchorPane implements View {
 		double minWidth = cardSize.getWidth() + (MARGIN * 2) +
 				(fanOffset * (MAX_FAN_SIZE - 1));
 		
-		setId("fan-view");
-		setPadding(new Insets(MARGIN));
+		setCSSId("fan-view");
+		setPadding(newInsets(MARGIN));
 		
 		setMinHeight(minHeight);
 		setMinWidth(minWidth);
@@ -44,35 +67,35 @@ public class FanView extends AnchorPane implements View {
 		setPrefWidth(minWidth);
 		
 		this.cardViewFactory = cardViewFactory;
-		this.fanBinding = new FanBinding(this);
+		this.fanBinding = newFanBinding(this);
 		this.fanOffset = fanOffset;
-		this.inputHandlerSupport = new InputHandlerSupport(this);
+		this.inputHandlerSupport = newInputHandlerSupport(this);
 		
 		setModel(model);
 	}
-
+	
 	/**
 	 * @return the cardViewFactory
 	 */
 	public CardViewFactory getCardViewFactory() {
 		return cardViewFactory;
 	}
-
+	
 	/**
 	 * @return the fanOffset
 	 */
 	public double getFanOffset() {
 		return fanOffset;
 	}
-
+	
 	/**
-	 * @return
+	 * @return the input handler.
 	 * @see net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport#getInputHandler()
 	 */
 	public InputHandler getInputHandler() {
 		return inputHandlerSupport.getInputHandler();
 	}
-
+	
 	/**
 	 * @return the model
 	 */
@@ -80,6 +103,10 @@ public class FanView extends AnchorPane implements View {
 		return model;
 	}
 
+	/**
+	 * Rebuild the hierarchy beneath this node, by removing the existing one and
+	 * building up a replacement.
+	 */
 	public void reloadChildren() {
 		ObservableList<Node> kids = getChildren();
 		InputHandler ih = getInputHandler();
@@ -88,12 +115,12 @@ public class FanView extends AnchorPane implements View {
 		
 		for (Card card : model) {
 			CardView cardView = cardViewFactory.getFrontView(card);
-			InputHandlerSupport ihs = new InputHandlerSupport(cardView);
-			Tooltip tooltip = new Tooltip();
-			ImageView ttView = new ImageView(cardView.getImage());
+			InputHandlerSupport ihs = newInputHandlerSupport(cardView);
+			Tooltip tooltip = newTooltip();
+			ImageView ttView = newImageView(cardView.getImage());
 			
 			tooltip.setGraphic(ttView);
-			Tooltip.install(cardView, tooltip);
+			installTooltip(cardView, tooltip);
 			
 			kids.add(cardView);
 			ihs.setInputHandler(ih);
@@ -113,9 +140,9 @@ public class FanView extends AnchorPane implements View {
 	public void setFanOffset(double fanOffset) {
 		this.fanOffset = fanOffset;
 	}
-	
+
 	/**
-	 * @param inputHandler
+	 * @param inputHandler the inputHandler to set.
 	 * @see net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport#setInputHandler(net.sf.cotelab.lbl.controller.facade.InputHandler)
 	 */
 	public void setInputHandler(InputHandler inputHandler) {
@@ -123,7 +150,7 @@ public class FanView extends AnchorPane implements View {
 		
 		reloadChildren();
 	}
-	
+
 	/**
 	 * @param model the model to set
 	 */
@@ -139,12 +166,42 @@ public class FanView extends AnchorPane implements View {
 		reloadChildren();
 	}
 
+	/**
+	 * Anchor a given view at a given distance from the left-hand edge of this
+	 * view.
+	 * The method that <tt>AnchorPane</tt> provides for this purpose is
+	 * <tt>static</tt>, and therefore unmockable. This method provides a means
+	 * of mocking out the behavior, for unit testing.
+	 * @param view the view to be anchored.
+	 * @param indent the distance at which the given view is to be placed from
+	 * 		the left-hand edge of this view.
+	 */
 	protected void anchorLeft(ImageView view, double indent) {
 		setLeftAnchor(view, indent);
 	}
 
+	/**
+	 * Anchor a given view at a given distance from the top edge of this view.
+	 * The method that <tt>AnchorPane</tt> provides for this purpose is
+	 * <tt>static</tt>, and therefore unmockable. This method provides a means
+	 * of mocking out the behavior, for unit testing.
+	 * @param view the view to be anchored.
+	 * @param indent the distance at which the given view is to be placed from
+	 * 		the top edge of this view.
+	 */
 	protected void anchorTop(ImageView view, double indent) {
 		setTopAnchor(view, indent);
+	}
+
+	/**
+	 * Install a given tooltip on a node.
+	 * This method exists to provide a means of mocking calls to
+	 * <tt>Tooltip</tt>'s <tt>install() static</tt> method.
+	 * @param node the node.
+	 * @param tooltip the tooltip.
+	 */
+	protected void installTooltip(Node node, Tooltip tooltip) {
+		Tooltip.install(node, tooltip);
 	}
 
 	/* (non-Javadoc)
@@ -177,5 +234,64 @@ public class FanView extends AnchorPane implements View {
 		}
 		
 		super.layoutChildren();
+	}
+
+	/**
+	 * Create a new <tt>FanBinding</tt> object.
+	 * This method is included here to enable mocking new object creation.
+	 * @param supported the supported object.
+	 * @return the new object.
+	 */
+	protected FanBinding newFanBinding(FanView supported) {
+		return new FanBinding(supported);
+	}
+	
+	/**
+	 * Create a new object.
+	 * This method is provided to enable mocking the behavior.
+	 * @param image the image to be wrapped.
+	 * @return the new object.
+	 */
+	protected ImageView newImageView(Image image) {
+		return new ImageView(image);
+	}
+	
+	/**
+	 * Create a new <tt>InputHandlerSupport</tt> object.
+	 * This method is included here to enable mocking new object creation.
+	 * @param supported the supported object.
+	 * @return the new object.
+	 */
+	protected InputHandlerSupport newInputHandlerSupport(Node supported) {
+		return new InputHandlerSupport(supported);
+	}
+
+	/**
+	 * Manufacture a new <tt>Insets</tt> object.
+	 * @param topRightBottomLeft the inset to apply to all 4 edges.
+	 * @return the new object.
+	 */
+	protected Insets newInsets(double topRightBottomLeft) {
+		return new Insets(topRightBottomLeft);
+	}
+
+	/**
+	 * Create a new object.
+	 * This method is provided to enable mocking the behavior.
+	 * @return the new object.
+	 */
+	protected Tooltip newTooltip() {
+		return new Tooltip();
+	}
+
+	/**
+	 * Set the id of this node, to enable CSS to support it.
+	 * The method that <tt>Node</tt> provides for this purpose is final, so it
+	 * cannot be mocked. This method is used to wrap that method, to facilitate
+	 * unit testing of this class.
+	 * @param id the id.
+	 */
+	protected void setCSSId(String id) {
+		setId(id);
 	}
 }
