@@ -22,11 +22,12 @@ import net.sf.cotelab.playingcards.javafx.CardViewFactory;
  * @author cote
  */
 public class FanView extends AnchorPane implements View {
+	public static final String CSS_ID = "fan-view";
+	
 	/**
 	 * The insets.
 	 */
 	public static final double MARGIN = 5;
-	
 	/**
 	 * The number of cards in a fan that can be displayed with minimum overlap,
 	 * this is used to calculate the size of the view. When the actual number of
@@ -54,17 +55,17 @@ public class FanView extends AnchorPane implements View {
 		super();
 
 		Dimension2D cardSize = cardViewFactory.getDimensions();
-		double minHeight = cardSize.getHeight() + (MARGIN * 2);
-		double minWidth = cardSize.getWidth() + (MARGIN * 2) +
+		double minHeight = getHeight(cardSize) + (MARGIN * 2);
+		double minWidth = getWidth(cardSize) + (MARGIN * 2) +
 				(fanOffset * (MAX_FAN_SIZE - 1));
 		
-		setCSSId("fan-view");
-		setPadding(newInsets(MARGIN));
+		setCSSId(CSS_ID);
+		applyPadding(newInsets(MARGIN));
 		
-		setMinHeight(minHeight);
-		setMinWidth(minWidth);
-		setPrefHeight(minHeight);
-		setPrefWidth(minWidth);
+		applyMinHeight(minHeight);
+		applyMinWidth(minWidth);
+		applyPrefHeight(minHeight);
+		applyPrefWidth(minWidth);
 		
 		this.cardViewFactory = cardViewFactory;
 		this.fanBinding = newFanBinding(this);
@@ -102,7 +103,7 @@ public class FanView extends AnchorPane implements View {
 	public Fan getModel() {
 		return model;
 	}
-
+	
 	/**
 	 * Rebuild the hierarchy beneath this node, by removing the existing one and
 	 * building up a replacement.
@@ -126,21 +127,21 @@ public class FanView extends AnchorPane implements View {
 			ihs.setInputHandler(ih);
 		}
 	}
-
+	
 	/**
 	 * @param cardViewFactory the cardViewFactory to set
 	 */
 	public void setCardViewFactory(CardViewFactory cardViewFactory) {
 		this.cardViewFactory = cardViewFactory;
 	}
-
+	
 	/**
 	 * @param fanOffset the fanOffset to set
 	 */
 	public void setFanOffset(double fanOffset) {
 		this.fanOffset = fanOffset;
 	}
-
+	
 	/**
 	 * @param inputHandler the inputHandler to set.
 	 * @see net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport#setInputHandler(net.sf.cotelab.lbl.controller.facade.InputHandler)
@@ -150,7 +151,7 @@ public class FanView extends AnchorPane implements View {
 		
 		reloadChildren();
 	}
-
+	
 	/**
 	 * @param model the model to set
 	 */
@@ -165,7 +166,7 @@ public class FanView extends AnchorPane implements View {
 		
 		reloadChildren();
 	}
-
+	
 	/**
 	 * Anchor a given view at a given distance from the left-hand edge of this
 	 * view.
@@ -179,7 +180,7 @@ public class FanView extends AnchorPane implements View {
 	protected void anchorLeft(ImageView view, double indent) {
 		setLeftAnchor(view, indent);
 	}
-
+	
 	/**
 	 * Anchor a given view at a given distance from the top edge of this view.
 	 * The method that <tt>AnchorPane</tt> provides for this purpose is
@@ -191,6 +192,34 @@ public class FanView extends AnchorPane implements View {
 	 */
 	protected void anchorTop(ImageView view, double indent) {
 		setTopAnchor(view, indent);
+	}
+
+	protected void applyMinHeight(double value) {
+		setMinHeight(value);
+	}
+
+	protected void applyMinWidth(double value) {
+		setMinWidth(value);
+	}
+
+	protected void applyPadding(Insets insets) {
+		setPadding(insets);
+	}
+
+	protected void applyPrefHeight(double value) {
+		setPrefHeight(value);
+	}
+
+	protected void applyPrefWidth(double value) {
+		setPrefWidth(value);
+	}
+
+	protected double getHeight(Dimension2D d2d) {
+		return d2d.getHeight();
+	}
+
+	protected double getWidth(Dimension2D d2d) {
+		return d2d.getWidth();
 	}
 
 	/**

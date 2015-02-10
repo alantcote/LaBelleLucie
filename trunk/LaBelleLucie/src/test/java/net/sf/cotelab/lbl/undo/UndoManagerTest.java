@@ -12,25 +12,6 @@ import org.jmock.Expectations;
 import org.junit.Test;
 
 public class UndoManagerTest extends jMockTestHelper {
-
-	@Test
-	public void testUndoManager() {
-		final UndoManager mockUndoManager = context.mock(UndoManager.class);
-		
-		context.checking( new Expectations() {{
-			oneOf(mockUndoManager).reset();
-		}});
-		
-		UndoManager fixture = new UndoManager() {
-			@Override
-			public void reset() {
-				mockUndoManager.reset();
-			}
-		};
-		
-		assertNotNull(fixture);
-	}
-
 	@Test
 	public void testAdd() {
 		@SuppressWarnings("unchecked")
@@ -228,6 +209,24 @@ public class UndoManagerTest extends jMockTestHelper {
 	}
 
 	@Test
+	public void testUndoManager() {
+		final UndoManager mockUndoManager = context.mock(UndoManager.class);
+		
+		context.checking( new Expectations() {{
+			oneOf(mockUndoManager).reset();
+		}});
+		
+		UndoManager fixture = new UndoManager() {
+			@Override
+			public void reset() {
+				mockUndoManager.reset();
+			}
+		};
+		
+		assertNotNull(fixture);
+	}
+
+	@Test
 	public void testUndoOp() {
 		@SuppressWarnings("unchecked")
 		final List<UndoableOp> redoList = context.mock(List.class, "redoList");
@@ -290,5 +289,4 @@ public class UndoManagerTest extends jMockTestHelper {
 		fixture.undoOp();
 		fixture.undoOp();
 	}
-
 }
