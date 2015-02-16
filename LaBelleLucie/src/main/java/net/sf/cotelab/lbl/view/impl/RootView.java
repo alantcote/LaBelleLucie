@@ -20,7 +20,7 @@ import net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport;
 import net.sf.cotelab.playingcards.javafx.CardViewFactory;
 
 public class RootView extends BorderPane implements View {
-	public static final double CARD_ZOOM = 1.2;
+	public static final double CARD_ZOOM = 1.0;
 	public static final double FAN_OFFSET_FACTOR = 5;
 	
 	protected Dimension2D cardSize;
