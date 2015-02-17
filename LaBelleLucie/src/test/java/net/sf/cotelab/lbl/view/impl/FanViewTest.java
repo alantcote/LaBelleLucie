@@ -196,7 +196,7 @@ public class FanViewTest extends jMockTestHelper {
 		
 		// The method that would be tested here is a shim for mockability.
 		
-		assertTrue(true);
+		assertEquals(fixture, fixture);
 	}
 
 	@Test
@@ -205,7 +205,7 @@ public class FanViewTest extends jMockTestHelper {
 		
 		// The method that would be tested here is a shim for mockability.
 		
-		assertTrue(true);
+		assertEquals(fixture, fixture);
 	}
 
 	@Test
@@ -297,7 +297,7 @@ public class FanViewTest extends jMockTestHelper {
 		
 		// The method that would be tested here is a shim for mockability.
 		
-		assertTrue(true);
+		assertEquals(fixture, fixture);
 	}
 
 	@Test
@@ -316,7 +316,7 @@ public class FanViewTest extends jMockTestHelper {
 		
 		// The method that would be tested here is a shim for mockability.
 		
-		assertTrue(true);
+		assertEquals(fixture, fixture);
 	}
 
 	@Test
