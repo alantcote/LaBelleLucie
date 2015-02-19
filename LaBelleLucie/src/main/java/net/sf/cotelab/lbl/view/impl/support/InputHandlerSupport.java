@@ -116,7 +116,7 @@ public class InputHandlerSupport {
 	 * @param source the node.
 	 */
 	protected void monitorEvents(Node source) {
-		monitorDragEvents(source);
+//		monitorDragEvents(source);
 		monitorMouseEvents(source);
 	}
 	
@@ -127,18 +127,18 @@ public class InputHandlerSupport {
 	 * @param source the node.
 	 */
 	protected void monitorMouseEvents(Node source) {
-		source.setOnDragDetected(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				Object src = event.getSource();
-				
-				if (src instanceof CardView) {
-					CardView cardView = (CardView) src;
-					
-					inputHandler.onDragDetected(cardView.getCard());
-				}
-			}
-		});
+//		source.setOnDragDetected(new EventHandler<MouseEvent>() {
+//			@Override
+//			public void handle(MouseEvent event) {
+//				Object src = event.getSource();
+//				
+//				if (src instanceof CardView) {
+//					CardView cardView = (CardView) src;
+//					
+//					inputHandler.onDragDetected(cardView.getCard());
+//				}
+//			}
+//		});
 
 		source.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
