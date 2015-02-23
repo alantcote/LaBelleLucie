@@ -118,23 +118,23 @@ public class FanView extends AnchorPane implements View {
 			CardView cardView = cardViewFactory.getFrontView(card);
 			InputHandlerSupport ihs = newInputHandlerSupport(cardView);
 			Tooltip tooltip = newTooltip();
-			ImageView ttView = newImageView(cardView.getImage());
+			ImageView ttView = newImageView(doGetImage(cardView));
 			
-			tooltip.setGraphic(ttView);
+			doSetGraphic(tooltip, ttView);
 			installTooltip(cardView, tooltip);
 			
 			kids.add(cardView);
 			ihs.setInputHandler(ih);
 		}
 	}
-	
+
 	/**
 	 * @param cardViewFactory the cardViewFactory to set
 	 */
 	public void setCardViewFactory(CardViewFactory cardViewFactory) {
 		this.cardViewFactory = cardViewFactory;
 	}
-	
+
 	/**
 	 * @param fanOffset the fanOffset to set
 	 */
@@ -193,11 +193,11 @@ public class FanView extends AnchorPane implements View {
 	protected void anchorTop(ImageView view, double indent) {
 		setTopAnchor(view, indent);
 	}
-
+	
 	protected void applyMinHeight(double value) {
 		setMinHeight(value);
 	}
-
+	
 	protected void applyMinWidth(double value) {
 		setMinWidth(value);
 	}
@@ -212,6 +212,14 @@ public class FanView extends AnchorPane implements View {
 
 	protected void applyPrefWidth(double value) {
 		setPrefWidth(value);
+	}
+
+	protected Image doGetImage(CardView cardView) {
+		return cardView.getImage();
+	}
+
+	protected void doSetGraphic(Tooltip tooltip, Node node) {
+		tooltip.setGraphic(node);
 	}
 
 	protected double getHeight(Dimension2D d2d) {
