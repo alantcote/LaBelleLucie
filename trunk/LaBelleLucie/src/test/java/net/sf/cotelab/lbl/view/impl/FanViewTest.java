@@ -1,14 +1,23 @@
 package net.sf.cotelab.lbl.view.impl;
 
 import static org.junit.Assert.*;
+
+import java.util.Iterator;
+
+import javafx.collections.ObservableList;
 import javafx.geometry.Dimension2D;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import net.sf.cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.model.facade.Fan;
 import net.sf.cotelab.lbl.view.impl.support.FanBinding;
 import net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport;
+import net.sf.cotelab.playingcards.Card;
+import net.sf.cotelab.playingcards.javafx.CardView;
 import net.sf.cotelab.playingcards.javafx.CardViewFactory;
 import net.sf.cotelab.testutils.jMockTestHelper;
 
@@ -320,7 +329,104 @@ public class FanViewTest extends jMockTestHelper {
 
 	@Test
 	public void testReloadChildren() {
-		fail("Not yet implemented");
+		Fixture fixture = new Fixture(mockCardViewFactory, fanOffset, mockFan) {
+			@Override
+			public InputHandler getInputHandler() {
+				return mockFanView.getInputHandler();
+			}
+
+			@Override
+			protected Image doGetImage(CardView cardView) {
+				return mockFanView.doGetImage(cardView);
+			}
+
+			@Override
+			protected void doSetGraphic(Tooltip tooltip, Node node) {
+				mockFanView.doSetGraphic(tooltip, node);
+			}
+
+			@Override
+			protected void installTooltip(Node node, Tooltip tooltip) {
+				mockFanView.installTooltip(node, tooltip);
+			}
+
+			@Override
+			protected ImageView newImageView(Image image) {
+				return mockFanView.newImageView(image);
+			}
+
+			@Override
+			protected Tooltip newTooltip() {
+				return mockFanView.newTooltip();
+			}
+
+			@Override
+			public ObservableList<Node> getChildren() {
+				return mockFanView.getChildren();
+			}
+		};
+		@SuppressWarnings("unchecked")
+		ObservableList<Node> kids = (ObservableList<Node>)
+				context.mock(ObservableList.class, "kids");
+		InputHandler mockInputHandler =
+				context.mock(InputHandler.class, "mockInputHandler");
+		@SuppressWarnings("unchecked")
+		Iterator<Card> mockIterator_Card = (Iterator<Card>)
+				context.mock(Iterator.class, "mockIterator_Card");
+		Card mockCard = context.mock(Card.class, "mockCard");
+		CardView mockCardView = context.mock(CardView.class, "mockCardView");
+		Tooltip mockTooltip = context.mock(Tooltip.class, "mockTooltip");
+		Image mockImage = context.mock(Image.class, "mockImage");
+		ImageView mockImageView =
+				context.mock(ImageView.class, "mockImageView");
+		
+		context.checking( new Expectations() {{
+			oneOf(mockFanView).getChildren();
+			will(returnValue(kids));
+
+			oneOf(mockFanView).getInputHandler();
+			will(returnValue(mockInputHandler));
+			
+			oneOf(kids).clear();
+			
+			oneOf(mockFan).iterator();
+			will(returnValue(mockIterator_Card));
+			
+			oneOf(mockIterator_Card).hasNext();
+			will(returnValue(true));
+			
+			oneOf(mockIterator_Card).next();
+			will(returnValue(mockCard));
+			
+			oneOf(mockCardViewFactory).getFrontView(mockCard);
+			will(returnValue(mockCardView));
+			
+			oneOf(mockFanView).newInputHandlerSupport(mockCardView);
+			will(returnValue(mockInputHandlerSupport));
+
+			oneOf(mockFanView).newTooltip();
+			will(returnValue(mockTooltip));
+
+			oneOf(mockFanView).doGetImage(mockCardView);
+			will(returnValue(mockImage));
+
+			oneOf(mockFanView).newImageView(mockImage);
+			will(returnValue(mockImageView));
+
+			oneOf(mockFanView).doSetGraphic(mockTooltip, mockImageView);
+
+			oneOf(mockFanView).installTooltip(mockCardView, mockTooltip);
+			
+			oneOf(kids).add(mockCardView);
+			
+			oneOf(mockInputHandlerSupport).setInputHandler(mockInputHandler);
+			
+			oneOf(mockIterator_Card).hasNext();
+			will(returnValue(false));
+		}});
+		
+		fixture.model = mockFan;
+		fixture.reloadChildren();
 	}
 
 	@Test
