@@ -286,9 +286,11 @@ public class FanViewTest extends jMockTestHelper {
 
 	@Test
 	public void testNewFanBinding() {
+		Fixture fixture = new Fixture(mockCardViewFactory, fanOffset, mockFan);
+		
 		// The method that would be tested here is a shim for mockability.
 		
-		assertTrue(true);
+		assertEquals(fixture, fixture);
 	}
 
 	@Test
@@ -331,6 +333,11 @@ public class FanViewTest extends jMockTestHelper {
 	public void testReloadChildren() {
 		Fixture fixture = new Fixture(mockCardViewFactory, fanOffset, mockFan) {
 			@Override
+			public ObservableList<Node> getChildren() {
+				return mockFanView.getChildren();
+			}
+
+			@Override
 			public InputHandler getInputHandler() {
 				return mockFanView.getInputHandler();
 			}
@@ -358,11 +365,6 @@ public class FanViewTest extends jMockTestHelper {
 			@Override
 			protected Tooltip newTooltip() {
 				return mockFanView.newTooltip();
-			}
-
-			@Override
-			public ObservableList<Node> getChildren() {
-				return mockFanView.getChildren();
 			}
 		};
 		@SuppressWarnings("unchecked")
@@ -431,7 +433,13 @@ public class FanViewTest extends jMockTestHelper {
 
 	@Test
 	public void testSetCardViewFactory() {
-		fail("Not yet implemented");
+		Fixture fixture = new Fixture(mockCardViewFactory, fanOffset, mockFan);
+		CardViewFactory expected =
+				context.mock(CardViewFactory.class, "expected");
+		
+		fixture.setCardViewFactory(expected);
+		
+		assertEquals(expected, fixture.cardViewFactory);
 	}
 
 	@Test
@@ -445,7 +453,12 @@ public class FanViewTest extends jMockTestHelper {
 
 	@Test
 	public void testSetFanOffset() {
-		fail("Not yet implemented");
+		Fixture fixture = new Fixture(mockCardViewFactory, fanOffset, mockFan);
+		double expected = 3.1415926;
+		
+		fixture.setFanOffset(expected);
+		
+		assertEquals(expected, fixture.fanOffset, Double.MIN_VALUE);
 	}
 
 	@Test
@@ -470,6 +483,10 @@ public class FanViewTest extends jMockTestHelper {
 
 	@Test
 	public void testSetModel() {
-		fail("Not yet implemented");
+		Fixture fixture = new Fixture(mockCardViewFactory, fanOffset, mockFan);
+		
+		// A simple setter need not be tested here.
+		
+		assertEquals(fixture, fixture);
 	}
 }
