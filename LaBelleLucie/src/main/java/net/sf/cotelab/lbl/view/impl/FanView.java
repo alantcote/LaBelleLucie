@@ -41,6 +41,7 @@ public class FanView extends AnchorPane implements View {
 	protected FanBinding fanBinding;
 	protected double fanOffset;
 	protected InputHandlerSupport inputHandlerSupport;
+	protected Tooltip[] kidTips = new Tooltip[0];
 	protected Fan model;
 	
 	/**
@@ -112,7 +113,13 @@ public class FanView extends AnchorPane implements View {
 		ObservableList<Node> kids = getChildren();
 		InputHandler ih = getInputHandler();
 		
+		for (int i = 0; i < kids.size(); ++i) {
+			uninstallTooltip(kids.get(i), kidTips[i]);
+		}
+		
 		kids.clear();
+		
+		kidTips = new Tooltip[model.size()];
 		
 		for (Card card : model) {
 			CardView cardView = cardViewFactory.getFrontView(card);
@@ -122,6 +129,8 @@ public class FanView extends AnchorPane implements View {
 			
 			doSetGraphic(tooltip, ttView);
 			installTooltip(cardView, tooltip);
+			kidTips[kids.size()] = tooltip;
+			
 			
 			kids.add(cardView);
 			ihs.setInputHandler(ih);
@@ -282,7 +291,7 @@ public class FanView extends AnchorPane implements View {
 	protected FanBinding newFanBinding(FanView supported) {
 		return new FanBinding(supported);
 	}
-	
+
 	/**
 	 * Create a new object.
 	 * This method is provided to enable mocking the behavior.
@@ -302,7 +311,7 @@ public class FanView extends AnchorPane implements View {
 	protected InputHandlerSupport newInputHandlerSupport(Node supported) {
 		return new InputHandlerSupport(supported);
 	}
-
+	
 	/**
 	 * Manufacture a new <tt>Insets</tt> object.
 	 * @param topRightBottomLeft the inset to apply to all 4 edges.
@@ -330,5 +339,9 @@ public class FanView extends AnchorPane implements View {
 	 */
 	protected void setCSSId(String id) {
 		setId(id);
+	}
+
+	protected void uninstallTooltip(Node node, Tooltip tooltip) {
+		Tooltip.uninstall(node, tooltip);
 	}
 }
