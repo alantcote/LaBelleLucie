@@ -60,13 +60,14 @@ public class LaBelleLucieTest extends jMockTestHelper {
 			oneOf(mockLaBelleLucie).newController(mockGameState);
 			will(returnValue(mockController));
 			
-			oneOf(mockLaBelleLucie).newView(mockStage, mockGameState);
-			will(returnValue(mockView));
-			
 			oneOf(mockController).getInputHandler();
 			will(returnValue(mockInputHandler));
 			
-			oneOf(mockView).setInputHandler(mockInputHandler);
+			oneOf(mockLaBelleLucie).newView(
+					mockStage, mockGameState, mockInputHandler);
+			will(returnValue(mockView));
+			
+//			oneOf(mockView).setInputHandler(mockInputHandler);
 			
 			oneOf(mockLaBelleLucie).show(mockStage);
 		}});
@@ -92,8 +93,10 @@ public class LaBelleLucieTest extends jMockTestHelper {
 			 * @see net.sf.cotelab.lbl.LaBelleLucie#newView(javafx.stage.Stage, net.sf.cotelab.lbl.model.facade.GameState)
 			 */
 			@Override
-			protected View newView(Stage primaryStage, GameState model) {
-				return mockLaBelleLucie.newView(primaryStage, model);
+			protected View newView(Stage primaryStage,
+					GameState model, InputHandler inputHandler) {
+				return mockLaBelleLucie.newView(
+						primaryStage, model, inputHandler);
 			}
 
 			/* (non-Javadoc)

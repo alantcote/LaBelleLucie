@@ -389,7 +389,13 @@ public class FanViewTest extends jMockTestHelper {
 			oneOf(mockFanView).getInputHandler();
 			will(returnValue(mockInputHandler));
 			
+			oneOf(kids).size();
+			will(returnValue(0));
+			
 			oneOf(kids).clear();
+			
+			oneOf(mockFan).size();
+			will(returnValue(1));
 			
 			oneOf(mockFan).iterator();
 			will(returnValue(mockIterator_Card));
@@ -418,6 +424,9 @@ public class FanViewTest extends jMockTestHelper {
 			oneOf(mockFanView).doSetGraphic(mockTooltip, mockImageView);
 
 			oneOf(mockFanView).installTooltip(mockCardView, mockTooltip);
+			
+			oneOf(kids).size();
+			will(returnValue(0));
 			
 			oneOf(kids).add(mockCardView);
 			

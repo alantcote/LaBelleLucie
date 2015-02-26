@@ -15,7 +15,7 @@ public class ViewImpl implements View {
 	protected SceneView sceneView;
 	protected Window window;
 
-	public ViewImpl(Stage stage, GameState model) {
+	public ViewImpl(Stage stage, GameState model, InputHandler inputHandler) {
 		super();
 		
 		sceneView = new SceneView(model);
@@ -29,6 +29,8 @@ public class ViewImpl implements View {
 		closeRequestHandler = new CloseRequestHandler(inputHandler);
 		
 		stage.setOnCloseRequest(closeRequestHandler);
+		
+		setInputHandler(inputHandler);
 	}
 
 	@Override

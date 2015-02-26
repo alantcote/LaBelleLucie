@@ -48,10 +48,10 @@ public class LaBelleLucie extends Application {
 	public void start(final Stage primaryStage) {
 		GameState model = newGameState();
 		Controller controller = newController(model);
-		View view = newView(primaryStage, model);
 		final InputHandler inputHandler = controller.getInputHandler();
+		View view = newView(primaryStage, model, inputHandler);
 		
-		view.setInputHandler(inputHandler);
+//		view.setInputHandler(inputHandler);
 		
 		primaryStage.setOnShown(new EventHandler<WindowEvent>() {
 			@Override
@@ -72,8 +72,9 @@ public class LaBelleLucie extends Application {
 		return new GameStateImpl();
 	}
 
-	protected View newView(final Stage primaryStage, GameState model) {
-		return new ViewImpl(primaryStage, model);
+	protected View newView(final Stage primaryStage,
+			GameState model, InputHandler inputHandler) {
+		return new ViewImpl(primaryStage, model, inputHandler);
 	}
 	
 	protected void show(Stage stage) {
