@@ -10,7 +10,7 @@ package net.sf.cotelab.lbl;
  *   . (refactor) extract inner classes into independent files
  *   . (refactor) extract phrases of the form "new Mumble()" into methods of the
  *     form "Mumble newMumble() { return new Mumble(); }
- * . (refactor) organize classes into packages by category
+ * . [done] (refactor) organize classes into packages by category
  * . [done] undo/redo command hot-keys
  * . restart game command
  * . animation of card moves
