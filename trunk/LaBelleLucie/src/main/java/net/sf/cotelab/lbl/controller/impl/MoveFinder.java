@@ -118,10 +118,36 @@ public class MoveFinder {
 		Fan[] foundation = model.getFoundation();
 
 		for (int destIndex = 0; destIndex < foundation.length; ++destIndex) {
-			Move move = findMoveToFoundation(destIndex);
+			List<Move> newMoves = findMovesToFoundation(destIndex);
 			
-			if (move != null) {
-				moves.add(move);
+			if (newMoves != null) {
+				moves.addAll(newMoves);
+			}
+		}
+		
+		return moves;
+	}
+
+	/**
+	 * Find the legal moves from tableau to a given foundation fan.
+	 * @param destIndex the index of the foundation fan.
+	 * @return a move (<tt>null</tt> if no such exists).
+	 */
+	public List<Move> findMovesToFoundation(int destIndex) {
+		List<Move> moves = newListOfMove();
+		Card destCard = model.getFoundation()[destIndex].getTopCard();
+		Fan[] tableau = model.getTableau();
+		
+		for (int srcIndex = 0; srcIndex < tableau.length; ++srcIndex) {
+			Card srcCard = tableau[srcIndex].getTopCard();
+			
+			if (srcCard != null) {
+				if (canPlayOnFoundation(srcCard, destCard)) {
+					Move move = newMove(destIndex, srcIndex,
+							MoveType.TABLEAU_TO_FOUNDATION);
+					
+					moves.add(move);
+				}
 			}
 		}
 		
@@ -145,32 +171,6 @@ public class MoveFinder {
 		}
 		
 		return moves;
-	}
-
-	/**
-	 * Find a legal move from tableau to a given foundation fan.
-	 * @param destIndex the index of the foundation fan.
-	 * @return a move (<tt>null</tt> if no such exists).
-	 */
-	public Move findMoveToFoundation(int destIndex) {
-		Move move = null;
-		Card destCard = model.getFoundation()[destIndex].getTopCard();
-		Fan[] tableau = model.getTableau();
-		
-		for (int srcIndex = 0; srcIndex < tableau.length; ++srcIndex) {
-			Card srcCard = tableau[srcIndex].getTopCard();
-			
-			if (srcCard != null) {
-				if (canPlayOnFoundation(srcCard, destCard)) {
-					move = newMove(destIndex, srcIndex,
-							MoveType.TABLEAU_TO_FOUNDATION);
-					
-					break;	// there is at most 1 candidate
-				}
-			}
-		}
-		
-		return move;
 	}
 
 	/**

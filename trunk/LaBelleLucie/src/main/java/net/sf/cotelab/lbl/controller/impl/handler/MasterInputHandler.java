@@ -1,12 +1,14 @@
 package net.sf.cotelab.lbl.controller.impl.handler;
 
+import java.util.logging.Logger;
+
 import net.sf.cotelab.lbl.controller.facade.DefaultInputHandler;
 import net.sf.cotelab.lbl.controller.impl.ControllerImpl;
 import net.sf.cotelab.playingcards.Card;
 
 public class MasterInputHandler extends DefaultInputHandler {
-//	private static final Logger log =
-//			Logger.getLogger(MasterInputHandler.class.getName());
+	private static Logger log =
+			Logger.getLogger(MasterInputHandler.class.getName());
 	
 	protected ControllerImpl controller;
 
@@ -23,6 +25,8 @@ public class MasterInputHandler extends DefaultInputHandler {
 	 */
 	@Override
 	public void onCardMoveRequested(Card card) {
+//		log.info("calling controller.onCardMoveRequested");
+		
 		controller.onCardMoveRequested(card);
 	}
 
