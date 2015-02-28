@@ -1,5 +1,7 @@
 package net.sf.cotelab.lbl.view.impl.support;
 
+import java.util.logging.Logger;
+
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
@@ -13,6 +15,9 @@ import net.sf.cotelab.playingcards.javafx.CardView;
  * methods.
  */
 public class InputHandlerSupport {
+	private static Logger log =
+			Logger.getLogger(InputHandlerSupport.class.getName());
+	
 	protected InputHandler inputHandler = new DefaultInputHandler();
 
 	public InputHandlerSupport(Node source) {
@@ -62,6 +67,8 @@ public class InputHandlerSupport {
 					
 					if (MouseButton.PRIMARY == event.getButton()) {
 						if (1 == event.getClickCount()) {
+//							log.info("calling onCardMoveRequested");
+							
 							inputHandler.onCardMoveRequested(cardView.getCard());
 						}
 					}

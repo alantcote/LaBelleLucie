@@ -1,6 +1,7 @@
 package net.sf.cotelab.lbl.controller.impl;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
@@ -22,6 +23,9 @@ import net.sf.cotelab.playingcards.Deck;
  * @author cote
  */
 public class ControllerImpl implements Controller {
+	private static Logger log =
+			Logger.getLogger(ControllerImpl.class.getName());
+	
 	protected InputHandler inputHandler;
 	protected GameState model;
 	protected MoveFinder moveFinder;
@@ -127,10 +131,16 @@ public class ControllerImpl implements Controller {
 	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onMouseClicked(net.sf.cotelab.playingcards.Card)
 	 */
 	public void onCardMoveRequested(Card card) {
+//		log.info("card = " + card.getSuit() + " " + card.getRank());
+		
 		int sourceFanIndex = indexOfTableauFanWithTopCard(card);
+
+//		log.info("sourceFanIndex = " + sourceFanIndex);
 		
 		if (sourceFanIndex >= 0) {
 			List<Move> moves = moveFinder.findSimpleMoves();
+
+//			log.info("moves = " + moves);
 			
 			for (Move move : moves) {
 				if (sourceFanIndex == move.getSrcFanIndex()) {

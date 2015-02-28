@@ -371,12 +371,9 @@ public class MoveFinderTest extends jMockTestHelper {
 	@Test
 	public void testFindMovesToFoundation() {
 		MoveFinder fixture = new MoveFinder(mockGameState) {
-			/* (non-Javadoc)
-			 * @see net.sf.cotelab.lbl.controller.impl.MoveFinder#findMoveToFoundation(int)
-			 */
 			@Override
-			public Move findMoveToFoundation(int destIndex) {
-				return mockMoveFinder.findMoveToFoundation(destIndex);
+			public List<Move> findMovesToFoundation(int destIndex) {
+				return mockMoveFinder.findMovesToFoundation(destIndex);
 			}
 
 			/* (non-Javadoc)
@@ -391,6 +388,9 @@ public class MoveFinderTest extends jMockTestHelper {
 		@SuppressWarnings("unchecked")
 		final List<Move> mockListOfMove = (List<Move>)
 				context.mock(List.class, "mockListOfMove");
+		@SuppressWarnings("unchecked")
+		final List<Move> mockListOfMove2 = (List<Move>)
+				context.mock(List.class, "mockListOfMove2");
 		final Fan mockFan0 = context.mock(Fan.class, "mockFan0");
 		final Fan mockFan1 = context.mock(Fan.class, "mockFan1");
 		final Fan[] mockFoundation = { mockFan0, mockFan1 };
@@ -403,13 +403,17 @@ public class MoveFinderTest extends jMockTestHelper {
 			oneOf(mockGameState).getFoundation();
 			will(returnValue(mockFoundation));
 			
-			oneOf(mockMoveFinder).findMoveToFoundation(0);
-			will(returnValue((Move) null));
+			oneOf(mockMoveFinder).findMovesToFoundation(0);
+			will(returnValue(mockListOfMove2));
 			
-			oneOf(mockMoveFinder).findMoveToFoundation(1);
-			will(returnValue(mockMove));
+			oneOf(mockListOfMove).addAll(mockListOfMove2);
+			will(returnValue(true));
 			
-			oneOf(mockListOfMove).add(mockMove);
+			oneOf(mockMoveFinder).findMovesToFoundation(1);
+			will(returnValue(mockListOfMove2));
+			
+			oneOf(mockListOfMove).addAll(mockListOfMove2);
+			will(returnValue(true));
 		}});
 		
 		assertEquals(mockListOfMove, fixture.findMovesToFoundation());
@@ -514,7 +518,7 @@ public class MoveFinderTest extends jMockTestHelper {
 			will(returnValue(mockMove));
 		}});
 		
-		assertEquals(mockMove, fixture.findMoveToFoundation(0));
+		fixture.findMovesToFoundation(0);
 	}
 
 	@Test
