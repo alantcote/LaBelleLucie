@@ -42,8 +42,8 @@ public class MessageDialog {
 	
 	protected Parent createDialogPane(Stage stage, String message) {
 		BorderPane dialog = new BorderPane();
-		Node buttonNode = createOKButtonNode(stage);
-		Node iconNode = createInfoIconNode();
+		Node buttonNode = createButtonNode(stage);
+		Node iconNode = createIconNode();
 		Node messageNode = createMessageNode(message);
 		double hInset = WIDTH / 10;
 		double vInset = HEIGHT / 8;
@@ -58,7 +58,7 @@ public class MessageDialog {
 		return dialog;
 	}
 	
-	protected Node createInfoIconNode() {
+	protected Node createIconNode() {
 		URL rsrc = getClass().getResource(INFO_ICON_RESOURCE);
 		Image image = new Image(rsrc.toExternalForm());
 		ImageView imageView = new ImageView(image);
@@ -85,7 +85,7 @@ public class MessageDialog {
 		return new Label(message, graphic);
 	}
 
-	protected Node createOKButtonNode(final Stage stage) {
+	protected Node createButtonNode(final Stage stage) {
 		HBox node = new HBox();
 		Button button = new Button("OK");
 		
