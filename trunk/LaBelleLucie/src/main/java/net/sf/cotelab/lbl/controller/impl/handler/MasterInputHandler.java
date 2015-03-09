@@ -7,6 +7,7 @@ import net.sf.cotelab.lbl.controller.impl.ControllerImpl;
 import net.sf.cotelab.playingcards.Card;
 
 public class MasterInputHandler extends DefaultInputHandler {
+	@SuppressWarnings("unused")
 	private static Logger log =
 			Logger.getLogger(MasterInputHandler.class.getName());
 	
