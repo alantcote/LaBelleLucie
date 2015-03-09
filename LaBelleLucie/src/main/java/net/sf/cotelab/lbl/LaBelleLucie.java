@@ -49,6 +49,7 @@ public class LaBelleLucie extends Application {
 		GameState model = newGameState();
 		Controller controller = newController(model);
 		final InputHandler inputHandler = controller.getInputHandler();
+		@SuppressWarnings("unused")
 		View view = newView(primaryStage, model, inputHandler);
 		
 //		view.setInputHandler(inputHandler);

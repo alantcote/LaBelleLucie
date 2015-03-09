@@ -394,7 +394,7 @@ public class MoveFinderTest extends jMockTestHelper {
 		final Fan mockFan0 = context.mock(Fan.class, "mockFan0");
 		final Fan mockFan1 = context.mock(Fan.class, "mockFan1");
 		final Fan[] mockFoundation = { mockFan0, mockFan1 };
-		final Move mockMove = context.mock(Move.class, "mockMove");
+//		final Move mockMove = context.mock(Move.class, "mockMove");
 		
 		context.checking(new Expectations() {{
 			oneOf(mockMoveFinder).newListOfMove();

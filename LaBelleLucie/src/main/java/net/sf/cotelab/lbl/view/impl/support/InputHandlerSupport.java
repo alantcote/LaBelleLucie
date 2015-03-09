@@ -15,6 +15,7 @@ import net.sf.cotelab.playingcards.javafx.CardView;
  * methods.
  */
 public class InputHandlerSupport {
+	@SuppressWarnings("unused")
 	private static Logger log =
 			Logger.getLogger(InputHandlerSupport.class.getName());
 	

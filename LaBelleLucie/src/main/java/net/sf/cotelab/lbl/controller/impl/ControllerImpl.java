@@ -23,6 +23,7 @@ import net.sf.cotelab.playingcards.Deck;
  * @author cote
  */
 public class ControllerImpl implements Controller {
+	@SuppressWarnings("unused")
 	private static Logger log =
 			Logger.getLogger(ControllerImpl.class.getName());
 	
