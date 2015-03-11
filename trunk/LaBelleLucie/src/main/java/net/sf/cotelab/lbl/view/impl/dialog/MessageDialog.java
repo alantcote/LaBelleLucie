@@ -106,12 +106,13 @@ public class MessageDialog {
 			Window owner, String title, String message, Color background) {
 		final Stage stage = new Stage();
 
-		if (owner == null) {
+		if (owner != null) {
 			stage.initModality(Modality.WINDOW_MODAL);
 			stage.initOwner(owner);
 		}
 		
-		stage.initStyle(StageStyle.UTILITY);
+//		stage.initStyle(StageStyle.UTILITY);
+		stage.initStyle(StageStyle.UNDECORATED);
 		stage.setFullScreen(false);
 		stage.setIconified(false);
 		stage.setResizable(false);
