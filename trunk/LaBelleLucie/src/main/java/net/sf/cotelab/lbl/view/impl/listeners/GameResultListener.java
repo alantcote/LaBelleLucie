@@ -1,5 +1,6 @@
 package net.sf.cotelab.lbl.view.impl.listeners;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.paint.Color;
@@ -21,18 +22,39 @@ public class GameResultListener implements ChangeListener<GameSummary> {
 	@Override
 	public void changed(ObservableValue<? extends GameSummary> src,
 			GameSummary oldValue, GameSummary newValue) {
+		MessageDialog dialog = newMessageDialog();
+		String tryAgain = "Return and try again";
+		String newGame = "Start new game";
+		String exitProgram = "Exit";
+		Object[] options;
+		Object chosen = newGame;
+		
 		switch (newValue) {
 		case LOST:
-			newMessageDialog().show(window, "Game lost",
-					"There are no legal plays remaining.", Color.RED);
+			options = new Object[] { tryAgain, newGame, exitProgram };
+			
+			chosen = dialog.showInputDialog(window, "Game lost",
+					"There are no legal plays remaining.", options, tryAgain);
+			
 			break;
 		case WON:
-			newMessageDialog().show(window, "Game won",
-					"All cards have been moved to foundations.",
-					Color.LIMEGREEN);
+			options = new Object[] { newGame, exitProgram };
+			
+			chosen = dialog.showInputDialog(
+					window, "Game won",
+					"All cards have been moved to foundations.", options,
+					newGame);
 			break;
 		default:
 			break;
+		}
+		
+		if (newGame.equals(chosen)) {
+			inputHandler.onNewGameRequested();
+		}
+		
+		if (exitProgram.equals(chosen)) {
+			inputHandler.onExitRequest();
 		}
 	}
 
