@@ -1,9 +1,7 @@
 package net.sf.cotelab.lbl.view.impl.listeners;
 
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.paint.Color;
 import javafx.stage.Window;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.model.facade.GameSummary;
