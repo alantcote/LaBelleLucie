@@ -43,7 +43,7 @@ public class MessageDialog {
 	protected Parent createDialogPane(Stage stage, String message) {
 		BorderPane dialog = new BorderPane();
 		Node buttonNode = createButtonNode(stage);
-		Node iconNode = createIconNode();
+//		Node iconNode = createIconNode();
 		Node messageNode = createMessageNode(message);
 		double hInset = WIDTH / 10;
 		double vInset = HEIGHT / 8;
@@ -53,7 +53,7 @@ public class MessageDialog {
 
 		dialog.setBottom(buttonNode);
 		dialog.setCenter(messageNode);
-		dialog.setLeft(iconNode);
+//		dialog.setLeft(iconNode);
 		
 		return dialog;
 	}
