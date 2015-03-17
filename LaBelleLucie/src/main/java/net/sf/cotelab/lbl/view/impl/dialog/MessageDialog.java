@@ -40,6 +40,104 @@ public class MessageDialog {
 		stage.showAndWait();
 	}
 	
+	/**
+	 * Show a modal dialog with multiple response options.
+	 * Waits for a response, returning the response option chosen.
+	 * @param owner the window relative to which the dialog is modal and
+	 *		positioned.
+	 * @param message the object to display - must be a <tt>String</tt> or a
+	 *		<tt>Node</tt>.
+	 * @param selectionValues the response options - each must be a
+	 *		<tt>String</tt> (used as the text on a <tt>Button</tt>) or a
+	 *		<tt>Button</tt> (used as-is) - the dialog is closed when one of
+	 *		these is selected.
+	 * @param title the title of the dialog.
+	 * @param defaultSelectionValue the default response.
+	 * @return the selected response option.
+	 */
+	public Object showInputDialog(Window owner, String title, Object message,
+			Object[] selectionValues, Object defaultSelectionValue) {
+		Stage stage;
+		Node messageNode;
+		HBox buttonBox;
+		BorderPane rootPane;
+		Insets insets = new Insets(10);
+		Scene scene;
+		Object[] selection = { defaultSelectionValue };
+		
+		// set up the stage
+		stage = createStage(owner, title);
+		
+		// set up the message node
+		messageNode = messageNode(message);
+		
+		// set up the buttons node
+		buttonBox = new HBox();
+		buttonBox.setAlignment(Pos.BASELINE_CENTER);
+		for (Object selVal : selectionValues) {
+			Button button;
+			
+			if (selVal instanceof Button) {
+				button = (Button) selVal;
+			} else if (selVal instanceof String) {
+				button = new Button((String) selVal);
+			} else {
+				throw new IllegalArgumentException(
+						"selectionValues[i] must be a String or a Button");
+			}
+			
+			button.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent arg0) {
+					selection[0] = selVal;
+					
+					stage.close();
+				}
+			});
+			
+			buttonBox.getChildren().add(button);
+
+			HBox.setMargin(button, insets);
+		}
+		
+		// create the dialog root pane
+		rootPane = new BorderPane();
+		rootPane.setCenter(messageNode);
+		BorderPane.setMargin(messageNode, insets);
+		rootPane.setBottom(buttonBox);
+		BorderPane.setMargin(buttonBox, insets);
+		
+		// create the dialog scene
+		scene = new Scene(rootPane);
+		
+		// attach the dialog scene to the dialog
+		stage.setScene(scene);
+		
+		// show the dialog and get the response
+		stage.showAndWait();
+		
+		return selection[0];
+	}
+
+	/**
+	 * @param message
+	 * @throws IllegalArgumentException
+	 */
+	protected Node messageNode(Object message) throws IllegalArgumentException {
+		Node messageNode;
+		
+		if (message instanceof Node) {
+			messageNode = (Node) message;
+		} else if (message instanceof String) {
+			messageNode = createMessageNode((String) message);
+		} else {
+			throw new IllegalArgumentException(
+					"message must be a String or a Node");
+		}
+		
+		return messageNode;
+	}
+	
 	protected Parent createDialogPane(Stage stage, String message) {
 		BorderPane dialog = new BorderPane();
 		Node buttonNode = createButtonNode(stage);
@@ -100,6 +198,49 @@ public class MessageDialog {
 		node.setAlignment(Pos.BASELINE_CENTER);
 		
 		return node;
+	}
+
+	protected Stage createStage(Window owner, String title) {
+		final Stage stage = new Stage();
+
+		if (owner != null) {
+			stage.initModality(Modality.WINDOW_MODAL);
+			stage.initOwner(owner);
+		}
+		
+		stage.initStyle(StageStyle.UNDECORATED);
+		stage.setFullScreen(false);
+		stage.setIconified(false);
+		stage.setResizable(false);
+		stage.setTitle(title);
+		stage.sizeToScene();
+		
+		// center stage relative to owner
+		if (owner != null) {
+			double ownerWidth = owner.getWidth();
+			double ownerHeight = owner.getHeight();
+			double ownerX = owner.getX();
+			double ownerY = owner.getY();
+			final double centerX = ownerX + (ownerWidth / 2);
+			final double centerY = ownerY + (ownerHeight / 2);
+			
+			stage.setOnShown(new EventHandler<WindowEvent>() {
+				@Override
+				public void handle(WindowEvent arg0) {
+					double stageWidth = stage.getWidth();
+					double stageHeight = stage.getHeight();
+					double offsetX = stageWidth / 2;
+					double offsetY = stageHeight / 2;
+					double stageX = centerX - offsetX;
+					double stageY = centerY - offsetY;
+					
+					stage.setX(stageX);
+					stage.setY(stageY);
+				}
+			});
+		}
+		
+		return stage;
 	}
 
 	protected Stage createStage(

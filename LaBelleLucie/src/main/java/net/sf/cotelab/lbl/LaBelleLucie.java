@@ -15,8 +15,8 @@ package net.sf.cotelab.lbl;
  * . restart game command
  * . animation of card moves
  * . save/resume games
- * . enhance end-game dialog with exit/restart game/return and retry/new game
- *   buttons
+ * . [done] enhance end-game dialog with exit/restart game/return and retry/new
+ *   game buttons
  * . potential preferences
  *   . card size
  *   . trefoil rule (aces begin game on foundations)
