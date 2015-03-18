@@ -50,6 +50,10 @@ public class TableView extends GridPane implements View {
 		return inputHandlerSupport.getInputHandler();
 	}
 
+	public void highlightTopTableauCard(int fanIndex) {
+		tableauFanView[fanIndex].highlightTopCard();
+	}
+
 	/**
 	 * @param inputHandler
 	 * @see net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport#setInputHandler(net.sf.cotelab.lbl.controller.facade.InputHandler)
@@ -67,7 +71,7 @@ public class TableView extends GridPane implements View {
 		
 		stockView.setInputHandler(inputHandler);
 	}
-
+	
 	protected ContextMenu createContextMenu(List<Card> options) {
 		ContextMenu contextMenu = new ContextMenu();
 		Menu drawMenu = new Menu("Draw");
@@ -122,7 +126,7 @@ public class TableView extends GridPane implements View {
 
 		add(stockView, TableView.TABLEAU_COLUMN_COUNT - 1, 3);
 	}
-	
+
 	protected void inizTableau() {
 		Fan[] fan = model.getTableau();
 		

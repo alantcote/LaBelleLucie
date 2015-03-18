@@ -1,6 +1,8 @@
-package net.sf.cotelab.lbl.controller.impl;
+package net.sf.cotelab.lbl.controller.facade;
 
 import static org.junit.Assert.*;
+import net.sf.cotelab.lbl.controller.facade.Move;
+import net.sf.cotelab.lbl.controller.facade.MoveType;
 
 import org.junit.Test;
 

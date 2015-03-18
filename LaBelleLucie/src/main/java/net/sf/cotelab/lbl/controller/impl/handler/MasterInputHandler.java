@@ -1,8 +1,10 @@
 package net.sf.cotelab.lbl.controller.impl.handler;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import net.sf.cotelab.lbl.controller.facade.DefaultInputHandler;
+import net.sf.cotelab.lbl.controller.facade.Move;
 import net.sf.cotelab.lbl.controller.impl.ControllerImpl;
 import net.sf.cotelab.playingcards.Card;
 
@@ -21,6 +23,11 @@ public class MasterInputHandler extends DefaultInputHandler {
 		controller.updateGameSummary();
 	}
 	
+	@Override
+	public List<Move> listMoves() {
+		return controller.listMoves();
+	}
+
 	/* (non-Javadoc)
 	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onMouseClicked(net.sf.cotelab.playingcards.Card)
 	 */

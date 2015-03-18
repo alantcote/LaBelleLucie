@@ -1,4 +1,4 @@
-package net.sf.cotelab.lbl.controller.impl;
+package net.sf.cotelab.lbl.controller.facade;
 
 /**
  * A move.

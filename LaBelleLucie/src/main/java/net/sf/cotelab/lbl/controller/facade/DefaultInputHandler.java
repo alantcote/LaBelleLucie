@@ -3,12 +3,20 @@
  */
 package net.sf.cotelab.lbl.controller.facade;
 
+import java.util.List;
+
 import net.sf.cotelab.playingcards.Card;
 
 /**
  * This default <tt>InputHandler</tt> quietly does nothing.
  */
 public class DefaultInputHandler implements InputHandler {
+	@Override
+	public List<Move> listMoves() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	@Override
 	public void onCardMoveRequested(Card card) {
 		// NOTHING		
