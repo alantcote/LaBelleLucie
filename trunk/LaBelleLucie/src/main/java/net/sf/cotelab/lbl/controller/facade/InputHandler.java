@@ -1,8 +1,16 @@
 package net.sf.cotelab.lbl.controller.facade;
 
+import java.util.List;
+
 import net.sf.cotelab.playingcards.Card;
 
 public interface InputHandler {
+	/**
+	 * Get a list of available legal moves of cards.
+	 * @return the list of moves.
+	 */
+	public List<Move> listMoves();
+	
 	/**
 	 * Called to move a card to its best valid destination.
 	 * @param card the card.

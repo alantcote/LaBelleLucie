@@ -1,13 +1,18 @@
 package net.sf.cotelab.lbl.view.impl;
 
 import javafx.collections.ObservableList;
+import javafx.geometry.Bounds;
 import javafx.geometry.Dimension2D;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.ColorInput;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.model.facade.Fan;
 import net.sf.cotelab.lbl.view.facade.View;
@@ -105,7 +110,27 @@ public class FanView extends AnchorPane implements View {
 		return model;
 	}
 	
-	/**
+	public void highlightTopCard() {
+		int count = model.size();
+		
+		if (count > 0) {
+			Node node = getChildren().get(count - 1);
+			
+			if (node instanceof CardView) {
+				Bounds bounds = node.getBoundsInLocal();
+				ColorInput colorInput = new ColorInput(
+						bounds.getMinX(), bounds.getMinY(),
+						bounds.getWidth(), bounds.getHeight(), Color.WHITE);
+				Blend effect = new Blend(BlendMode.DIFFERENCE);
+				
+				effect.setTopInput(colorInput);
+				
+				node.setEffect(effect);
+			}
+		}
+	}
+
+	/** 
 	 * Rebuild the hierarchy beneath this node, by removing the existing one and
 	 * building up a replacement.
 	 */
@@ -143,7 +168,7 @@ public class FanView extends AnchorPane implements View {
 	public void setCardViewFactory(CardViewFactory cardViewFactory) {
 		this.cardViewFactory = cardViewFactory;
 	}
-
+	
 	/**
 	 * @param fanOffset the fanOffset to set
 	 */
@@ -206,7 +231,7 @@ public class FanView extends AnchorPane implements View {
 	protected void applyMinHeight(double value) {
 		setMinHeight(value);
 	}
-	
+
 	protected void applyMinWidth(double value) {
 		setMinWidth(value);
 	}
@@ -291,7 +316,7 @@ public class FanView extends AnchorPane implements View {
 	protected FanBinding newFanBinding(FanView supported) {
 		return new FanBinding(supported);
 	}
-
+	
 	/**
 	 * Create a new object.
 	 * This method is provided to enable mocking the behavior.
@@ -311,7 +336,7 @@ public class FanView extends AnchorPane implements View {
 	protected InputHandlerSupport newInputHandlerSupport(Node supported) {
 		return new InputHandlerSupport(supported);
 	}
-	
+
 	/**
 	 * Manufacture a new <tt>Insets</tt> object.
 	 * @param topRightBottomLeft the inset to apply to all 4 edges.

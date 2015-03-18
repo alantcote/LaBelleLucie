@@ -8,6 +8,8 @@ import java.util.List;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
+import net.sf.cotelab.lbl.controller.facade.Move;
+import net.sf.cotelab.lbl.controller.facade.MoveType;
 import net.sf.cotelab.lbl.controller.impl.undoableop.DrawOp;
 import net.sf.cotelab.lbl.controller.impl.undoableop.MoveCardTableauToFoundationOp;
 import net.sf.cotelab.lbl.controller.impl.undoableop.MoveCardTableauToTableauOp;

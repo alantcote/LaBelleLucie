@@ -1,5 +1,7 @@
 package net.sf.cotelab.lbl.view.impl;
 
+import java.util.List;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -9,10 +11,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.KeyCharacterCombination;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.layout.BorderPane;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
+import net.sf.cotelab.lbl.controller.facade.Move;
+import net.sf.cotelab.lbl.controller.facade.MoveType;
 import net.sf.cotelab.lbl.model.facade.GameState;
 import net.sf.cotelab.lbl.view.facade.View;
 import net.sf.cotelab.lbl.view.impl.menu.EditMenu;
@@ -34,6 +39,7 @@ public class RootView extends BorderPane implements View {
 	protected Menu fileMenu;
 	protected Menu gameMenu;
 	protected MenuItem gameReshuffleItem;
+	protected MenuItem helpHintItem;
 	protected Menu helpMenu;
 	protected InputHandlerSupport inputHandlerSupport;
 	protected MenuBar menuBar;
@@ -132,9 +138,41 @@ public class RootView extends BorderPane implements View {
 		
 		menuBar.getMenus().add(gameMenu);
 	}
+
+	protected void establishHelpHintItem() {
+		helpHintItem = new MenuItem("Hint");
+		
+		helpHintItem.setAccelerator(new KeyCharacterCombination("h"));
+		
+		helpHintItem.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				List<Move> moves =
+						inputHandlerSupport.getInputHandler().listMoves();
+				
+//				System.out.println("hint selected");
+//				System.out.println("moves = " + moves);
+				
+				if (0 < moves.size()) {
+					Move move = moves.get(0);
+					MoveType moveType = move.getType();
+					int srcFanIndex = move.getSrcFanIndex();
+					
+					if ((moveType == MoveType.TABLEAU_TO_FOUNDATION) ||
+							(moveType == MoveType.TABLEAU_TO_TABLEAU)) {
+						tableView.highlightTopTableauCard(srcFanIndex);
+					}
+				}
+			}
+		});
+		
+		helpMenu.getItems().add(helpHintItem);
+	}
 	
 	protected void establishHelpMenu() {
 		helpMenu = new Menu("Help");
+		
+		establishHelpHintItem();
 
 		menuBar.getMenus().add(helpMenu);
 	}

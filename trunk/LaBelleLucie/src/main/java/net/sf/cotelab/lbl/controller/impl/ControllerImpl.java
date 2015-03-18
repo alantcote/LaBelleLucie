@@ -8,6 +8,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import net.sf.cotelab.lbl.controller.facade.Controller;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
+import net.sf.cotelab.lbl.controller.facade.Move;
+import net.sf.cotelab.lbl.controller.facade.MoveType;
 import net.sf.cotelab.lbl.controller.impl.handler.MasterInputHandler;
 import net.sf.cotelab.lbl.controller.impl.undoableop.DrawOp;
 import net.sf.cotelab.lbl.controller.impl.undoableop.MoveCardTableauToFoundationOp;
@@ -412,5 +414,9 @@ public class ControllerImpl implements Controller {
 		stock.set(deck);
 		
 		updateGameSummary();
+	}
+
+	public List<Move> listMoves() {
+		return moveFinder.findMoves();
 	}
 }

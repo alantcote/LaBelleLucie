@@ -3,6 +3,8 @@ package net.sf.cotelab.lbl.controller.impl;
 import java.util.LinkedList;
 import java.util.List;
 
+import net.sf.cotelab.lbl.controller.facade.Move;
+import net.sf.cotelab.lbl.controller.facade.MoveType;
 import net.sf.cotelab.lbl.model.facade.Fan;
 import net.sf.cotelab.lbl.model.facade.GameState;
 import net.sf.cotelab.playingcards.Card;
