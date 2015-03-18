@@ -70,7 +70,8 @@ public class InputHandlerSupport {
 						if (1 == event.getClickCount()) {
 //							log.info("calling onCardMoveRequested");
 							
-							inputHandler.onCardMoveRequested(cardView.getCard());
+							inputHandler.onCardMoveRequested(
+									cardView.getCard());
 						}
 					}
 				}
