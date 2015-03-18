@@ -1,5 +1,6 @@
 package net.sf.cotelab.lbl.view.impl;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.geometry.Bounds;
 import javafx.geometry.Dimension2D;
@@ -28,11 +29,13 @@ import net.sf.cotelab.playingcards.javafx.CardViewFactory;
  */
 public class FanView extends AnchorPane implements View {
 	public static final String CSS_ID = "fan-view";
+	public static final long HIGHLIGHT_ACTIVE_MILLIS = 2000;
 	
 	/**
 	 * The insets.
 	 */
 	public static final double MARGIN = 5;
+	
 	/**
 	 * The number of cards in a fan that can be displayed with minimum overlap,
 	 * this is used to calculate the size of the view. When the actual number of
@@ -41,7 +44,6 @@ public class FanView extends AnchorPane implements View {
 	 * smaller visible portions.
 	 */
 	public static final int MAX_FAN_SIZE = 8;
-	
 	protected CardViewFactory cardViewFactory;
 	protected FanBinding fanBinding;
 	protected double fanOffset;
@@ -117,15 +119,41 @@ public class FanView extends AnchorPane implements View {
 			Node node = getChildren().get(count - 1);
 			
 			if (node instanceof CardView) {
-				Bounds bounds = node.getBoundsInLocal();
-				ColorInput colorInput = new ColorInput(
-						bounds.getMinX(), bounds.getMinY(),
-						bounds.getWidth(), bounds.getHeight(), Color.WHITE);
-				Blend effect = new Blend(BlendMode.DIFFERENCE);
+				Thread thread = new Thread() {
+					@Override
+					public void run() {
+						Bounds bounds = node.getBoundsInLocal();
+						ColorInput colorInput = new ColorInput(
+								bounds.getMinX(), bounds.getMinY(),
+								bounds.getWidth(), bounds.getHeight(),
+								Color.WHITE);
+						Blend effect = new Blend(BlendMode.DIFFERENCE);
+						
+						effect.setTopInput(colorInput);
+						
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								node.setEffect(effect);
+							}
+						});
+						
+						try {
+							sleep(HIGHLIGHT_ACTIVE_MILLIS);
+						} catch (InterruptedException e) {
+							// ignore the interruption
+						}
+						
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								node.setEffect(null);
+							}
+						});
+					}
+				};
 				
-				effect.setTopInput(colorInput);
-				
-				node.setEffect(effect);
+				thread.start();
 			}
 		}
 	}
