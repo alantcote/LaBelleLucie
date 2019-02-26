@@ -4,12 +4,14 @@ package net.sf.cotelab.lbl;
  * Wish list
  * 
  * . ubiquitous test cases
- *   . one source file per Node type
- *   . (refactor) extract anonymous classes into independent files with named
- *     classes
- *   . (refactor) extract inner classes into independent files
- *   . (refactor) extract phrases of the form "new Mumble()" into methods of the
- *     form "Mumble newMumble() { return new Mumble(); }
+ * . (bug) undo history persists through reshuffle, but reshuffle not undoable
+ * . should be some notification when user hits meaningless keystroke
+ * . one source file per Node type
+ * . (refactor) extract anonymous classes into independent files with named
+ *   classes
+ * . (refactor) extract inner classes into independent files
+ * . (refactor) extract phrases of the form "new Mumble()" into methods of the
+ *   form "Mumble newMumble() { return new Mumble(); }
  * . [done] (refactor) organize classes into packages by category
  * . [done] undo/redo command hot-keys
  * . restart game command
