@@ -413,6 +413,8 @@ public class ControllerImpl implements Controller {
 		stock.set(null);
 		stock.set(deck);
 		
+		model.getUndoManager().reset();
+		
 		updateGameSummary();
 	}
 
