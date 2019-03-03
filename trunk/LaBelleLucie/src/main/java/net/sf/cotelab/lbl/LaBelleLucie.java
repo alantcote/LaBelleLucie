@@ -4,7 +4,7 @@ package net.sf.cotelab.lbl;
  * Wish list
  * 
  * . ubiquitous test cases
- * . (bug) undo history persists through reshuffle, but reshuffle not undoable
+ * . [done] undo history persists through reshuffle, but reshuffle not undoable
  * . should be some notification when user hits meaningless keystroke
  * . one source file per Node type
  * . (refactor) extract anonymous classes into independent files with named
