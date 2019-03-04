@@ -627,6 +627,8 @@ public class ControllerImplTest extends jMockTestHelper {
 		final Iterator<Card> mockIterator = (Iterator<Card>)
 				context.mock(Iterator.class, "mockIterator");
 		final Card mockCard = context.mock(Card.class, "mockCard");
+		final UndoManager mockUndoManager =
+				context.mock(UndoManager.class, "mockUndoManager");
 		
 		context.checking(new Expectations() {{
 			oneOf(mockControllerImpl).newDeck();
@@ -663,6 +665,11 @@ public class ControllerImplTest extends jMockTestHelper {
 			oneOf(mockStock).set(null);
 			
 			oneOf(mockStock).set(mockDeck);
+			
+			oneOf(mockGameState).getUndoManager();
+			will(returnValue(mockUndoManager));
+			
+			oneOf(mockUndoManager).reset();
 			
 			oneOf(mockControllerImpl).updateGameSummary();
 		}});
