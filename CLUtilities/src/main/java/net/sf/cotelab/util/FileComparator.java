@@ -14,13 +14,13 @@ import javax.swing.filechooser.FileSystemView;
 import net.sf.cotelab.util.io.DecoratedFile;
 
 /**
- * A <tt>Comparator</tt> for <tt>File</tt>s.
+ * A <code>Comparator</code> for <code>File</code>s.
  * Objects of this class collate their arguments as follows:
  * <ol>
- * <li><tt>File</tt>s that are not in filesystems, have no parents, or for which
- *     <tt>
+ * <li><code>File</code>s that are not in filesystems, have no parents, or for which
+ *     <code>
  *         !file.getAbsoluteFile.getParentFile().equals(file.getParentFile())
- *     </tt>.
+ *     </code>.
  * </ol>
  * @author us80653h
  */
@@ -117,7 +117,7 @@ public class FileComparator implements Comparator<File> {
     /**
      * Perform the usual comparison of values.
      * This method is used iff the directory status of both arguments match.
-     * This method delegates to <tt>f1.compareTo(f2)</tt>.
+     * This method delegates to <code>f1.compareTo(f2)</code>.
      * @param f1 the first file to be compared.
      * @param f2 the second file to be compared.
      * @return a negative integer, zero, or a positive integer as the first

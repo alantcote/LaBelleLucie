@@ -628,11 +628,11 @@ public class DFFFrame extends JFrame implements ResettableObject {
 	}
 	
 	/**
-     * Get a new <tt>List</tt> of <tt>File</tt>s from a given one.
+     * Get a new <code>List</code> of <code>File</code>s from a given one.
      * The new list contains all of the entries from the given list except for
      * any which include any of the others as ancestors.
-     * @param rawList the given <tt>List</tt> of <tt>File</tt>s.
-     * @return the filtered <tt>List</tt> of <tt>File</tt>s.
+     * @param rawList the given <code>List</code> of <code>File</code>s.
+     * @return the filtered <code>List</code> of <code>File</code>s.
      */
     protected List<File> filterRedundantEntries(List<File> rawList) {
         List<File> filteredList = new ArrayList<File>();

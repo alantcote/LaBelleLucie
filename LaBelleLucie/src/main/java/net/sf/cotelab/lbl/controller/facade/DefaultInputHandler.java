@@ -8,7 +8,7 @@ import java.util.List;
 import net.sf.cotelab.playingcards.Card;
 
 /**
- * This default <tt>InputHandler</tt> quietly does nothing.
+ * This default <code>InputHandler</code> quietly does nothing.
  */
 public class DefaultInputHandler implements InputHandler {
 	@Override

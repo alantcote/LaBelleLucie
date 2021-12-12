@@ -4,7 +4,7 @@ import net.sf.cotelab.lbl.controller.impl.ControllerImpl;
 import net.sf.cotelab.lbl.undo.UndoableOp;
 
 /**
- * An <tt>UndoableOp</tt> that implements the draw.
+ * An <code>UndoableOp</code> that implements the draw.
  * @author cote
  */
 public class DrawOp implements UndoableOp {

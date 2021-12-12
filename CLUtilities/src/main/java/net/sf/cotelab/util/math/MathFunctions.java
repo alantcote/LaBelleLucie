@@ -109,8 +109,8 @@ public class MathFunctions {
 	}
 	
 	/**
-	 * Get the word phrase that communicates a number (<tt>1 &lt;= number &lt;=
-	 * 19</tt>) as it is spoken in England.
+	 * Get the word phrase that communicates a number (<code>1 &lt;= number &lt;=
+	 * 19</code>) as it is spoken in England.
 	 * @param number the number.
 	 * @return the word phrase.
 	 */
@@ -127,8 +127,8 @@ public class MathFunctions {
 	}
 	
 	/**
-	 * Get the word phrase that communicates a number (<tt>1 &lt;= number &lt;=
-	 * 99</tt>) as it is spoken in England.
+	 * Get the word phrase that communicates a number (<code>1 &lt;= number &lt;=
+	 * 99</code>) as it is spoken in England.
 	 * @param number the number.
 	 * @return the word phrase.
 	 */
@@ -145,8 +145,8 @@ public class MathFunctions {
 	}
 	
 	/**
-	 * Get the word phrase that communicates a number (<tt>1 &lt;= number &lt;=
-	 * 999</tt>) as it is spoken in England.
+	 * Get the word phrase that communicates a number (<code>1 &lt;= number &lt;=
+	 * 999</code>) as it is spoken in England.
 	 * @param number the number.
 	 * @return the word phrase.
 	 */
@@ -163,8 +163,8 @@ public class MathFunctions {
 	}
 	
 	/**
-	 * Get the word phrase that communicates a number (<tt>100 &lt;= number
-	 * &lt;= 999</tt>) as it is spoken in England.
+	 * Get the word phrase that communicates a number (<code>100 &lt;= number
+	 * &lt;= 999</code>) as it is spoken in England.
 	 * @param number the number.
 	 * @return the word phrase.
 	 */
@@ -194,8 +194,8 @@ public class MathFunctions {
 	}
 	
 	/**
-	 * Get the word phrase that communicates a number (<tt>20 &lt;= number &lt;=
-	 * 99</tt>) as it is spoken in England.
+	 * Get the word phrase that communicates a number (<code>20 &lt;= number &lt;=
+	 * 99</code>) as it is spoken in England.
 	 * @param number the number.
 	 * @return the word phrase.
 	 */
@@ -225,9 +225,9 @@ public class MathFunctions {
 	
 	/**
 	 * Calculate the factorial of a number.
-	 * This calculation uses <tt>double</tt> to handle larger values of base.
+	 * This calculation uses <code>double</code> to handle larger values of base.
 	 * @param base the number whose factorial is to be calculated.
-	 * @return the factorial of <tt>base</tt>.
+	 * @return the factorial of <code>base</code>.
 	 */
 	public static double factorial(double base) {
 		double result = 1;
@@ -309,12 +309,12 @@ public class MathFunctions {
 	 * down and left or down and right.
 	 * <p>
 	 * For example, given the triangle . . .
-	 * <pre><tt>
+	 * <pre><code>
 	 *    3
 	 *   7 4
 	 *  2 4 6
 	 * 8 5 9 3
-	 * </tt></pre>
+	 * </code></pre>
 	 * . . . the maximum sum, 23, is the sum of the numbers on the path, { 3, 7,
 	 * 4, 9 }.
 	 * @param triangle the triangle.

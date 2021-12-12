@@ -23,8 +23,8 @@ import net.sf.cotelab.util.collections.HashMultiMap;
  */
 public class GroupSubtreesPhase extends Phase {
     /**
-	 * A pair of <tt>File</tt> objects, suitable for use as a key in a
-	 * <tt>HashMap</tt>.
+	 * A pair of <code>File</code> objects, suitable for use as a key in a
+	 * <code>HashMap</code>.
 	 * @author cote
 	 */
 	public class FilePair {
@@ -132,7 +132,7 @@ public class GroupSubtreesPhase extends Phase {
 	 * 
 	 * @param input standard input to the phase.
 	 * @param output standard output from the phase.
-	 * @param worker the <tt>SwingWorker</tt> in charge.
+	 * @param worker the <code>SwingWorker</code> in charge.
 	 */
 	public GroupSubtreesPhase(PhaseStats input, PhaseStats output,
 			Future<Void> worker) {

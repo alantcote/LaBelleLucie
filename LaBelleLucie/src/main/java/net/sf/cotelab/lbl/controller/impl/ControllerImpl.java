@@ -21,7 +21,7 @@ import net.sf.cotelab.playingcards.Card;
 import net.sf.cotelab.playingcards.Deck;
 
 /**
- * An implementation of a <tt>Controller</tt>.
+ * An implementation of a <code>Controller</code>.
  * @author cote
  */
 public class ControllerImpl implements Controller {
@@ -225,7 +225,7 @@ public class ControllerImpl implements Controller {
 	}
 	
 	/**
-	 * Reverse the effect of an invocation of <tt>draw()</tt> with corresponding
+	 * Reverse the effect of an invocation of <code>draw()</code> with corresponding
 	 * parameters.
 	 * @param fanIndex the index of the tableau fan to be affected.
 	 * @param cardIndex the index in the fan from which the card was drawn.
@@ -275,7 +275,7 @@ public class ControllerImpl implements Controller {
 	/**
 	 * Find the index of a tableau fan with a given card on top.
 	 * @param card the candidate top card.
-	 * @return the index (<tt>-1</tt> if <tt>card</tt> is not a tableau top
+	 * @return the index (<code>-1</code> if <code>card</code> is not a tableau top
 	 * 		card).
 	 */
 	protected int indexOfTableauFanWithTopCard(Card card) {
@@ -347,7 +347,6 @@ public class ControllerImpl implements Controller {
 	
 	/**
 	 * Create a new input handler.
-	 * @param controller the controller to which the new object will delegate.
 	 * @return the new input handler.
 	 */
 	protected InputHandler newInputHandler() {
@@ -380,8 +379,8 @@ public class ControllerImpl implements Controller {
 	}
 	
 	/**
-	 * Create a new <tt>MoveFinder</tt>.
-	 * @return the new <tt>MoveFinder</tt>.
+	 * Create a new <code>MoveFinder</code>.
+	 * @return the new <code>MoveFinder</code>.
 	 */
 	protected MoveFinder newMoveFinder() {
 		return new MoveFinder(model);

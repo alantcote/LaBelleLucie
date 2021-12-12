@@ -17,7 +17,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
 /**
- * A <tt>DefaultTreeCellRenderer</tt> that renders <tt>File</tt> objects with
+ * A <code>DefaultTreeCellRenderer</code> that renders <code>File</code> objects with
  * platform-authentic icons and text.
  * @author  acote
  */
@@ -34,8 +34,8 @@ public class FileTreeCellRenderer extends DefaultTreeCellRenderer {
     private static final long serialVersionUID = 1L;
     
     /**
-     * If this value is <tt>true</tt>, then the text shown for each node is the
-     * absolute path of the <tt>File</tt>.  Otherwise, the value calculated by
+     * If this value is <code>true</code>, then the text shown for each node is the
+     * absolute path of the <code>File</code>.  Otherwise, the value calculated by
      * the superclass is used.
      */
     protected boolean showAbsolutePaths = false;

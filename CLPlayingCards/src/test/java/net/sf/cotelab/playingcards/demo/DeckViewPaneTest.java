@@ -1,21 +1,50 @@
 package net.sf.cotelab.playingcards.demo;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import org.jmock.Expectations;
+import org.jmock.Mockery;
+import org.jmock.Sequence;
+import org.jmock.imposters.ByteBuddyClassImposteriser;
+import org.jmock.lib.concurrent.Synchroniser;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import net.sf.cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
 import net.sf.cotelab.playingcards.Card;
 import net.sf.cotelab.playingcards.Deck;
 import net.sf.cotelab.playingcards.Rank;
 import net.sf.cotelab.playingcards.Suit;
 import net.sf.cotelab.playingcards.javafx.CardView;
 import net.sf.cotelab.playingcards.javafx.CardViewFactory;
-import net.sf.cotelab.testutils.jMockTestHelper;
 
-import org.jmock.Expectations;
-import org.junit.Test;
-
-public class DeckViewPaneTest extends jMockTestHelper {
+@RunWith(JavaFxJUnit4ClassRunner.class)
+public class DeckViewPaneTest {
+	protected Mockery context;
+	protected Sequence sequence;
+	
+	@Before
+	public void runBeforeTests() throws Exception {
+		context = new Mockery() {{
+			setThreadingPolicy( new Synchroniser());
+			setImposteriser( ByteBuddyClassImposteriser.INSTANCE );
+		}};
+		
+		sequence = context.sequence( getClass().getName());
+	}
+	
+	@After
+	public void runAfterTests() throws Exception {
+		context.assertIsSatisfied();
+	}
+	
 	@Test
 	public void testAddKids() {
 		final DeckViewPane mockDeckViewPane =

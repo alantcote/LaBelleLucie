@@ -27,8 +27,8 @@ import java.util.Set;
 /**
  * An implementation of the {@link BidiMultiMap} interface, using hashed
  * indexes.
- * @param K the type of key to be supported.
- * @param V the type of value to be supported.
+ * @param <K> the type of key to be supported.
+ * @param <V> the type of value to be supported.
  * @author alancote@rochester.rr.com
  */
 public class HashBidiMultiMap<K, V>

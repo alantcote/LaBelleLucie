@@ -1,18 +1,40 @@
 package net.sf.cotelab.lbl.controller.facade;
 
-import static org.junit.Assert.*;
-import net.sf.cotelab.playingcards.Card;
-import net.sf.cotelab.testutils.jMockTestHelper;
+import static org.junit.Assert.assertNotNull;
 
+import org.jmock.Mockery;
+import org.jmock.Sequence;
+import org.jmock.imposters.ByteBuddyClassImposteriser;
+import org.jmock.lib.concurrent.Synchroniser;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-public class DefaultInputHandlerTest extends jMockTestHelper {
+import net.sf.cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
+import net.sf.cotelab.playingcards.Card;
+
+@RunWith(JavaFxJUnit4ClassRunner.class)
+public class DefaultInputHandlerTest {
+	protected Mockery context;
+	protected Sequence sequence;
+	
+	@After
+	public void runAfterTests() throws Exception {
+		context.assertIsSatisfied();
+	}
 	protected DefaultInputHandler fixture;
 	protected Card mockCard;
 	
 	@Before
 	public void setup() {
+		context = new Mockery() {{
+			setThreadingPolicy( new Synchroniser());
+			setImposteriser( ByteBuddyClassImposteriser.INSTANCE );
+		}};
+		
+		sequence = context.sequence( getClass().getName());
+
 		fixture = new DefaultInputHandler();
 		
 		assertNotNull(fixture);

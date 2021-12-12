@@ -56,7 +56,7 @@ public abstract class Phase implements Runnable {
 	protected double progressWeightUsingCksum = 1;
 	
 	/**
-	 * The owner of the thread in which <tt>run()</tt> is executed.
+	 * The owner of the thread in which <code>run()</code> is executed.
 	 */
 	protected Future<Void> worker;
 
@@ -65,7 +65,7 @@ public abstract class Phase implements Runnable {
 	 * 
 	 * @param input standard input to the phase.
 	 * @param output standard output from the phase.
-	 * @param worker the <tt>SwingWorker</tt> in charge.
+	 * @param worker the <code>SwingWorker</code> in charge.
 	 */
 	public Phase(PhaseStats input, PhaseStats output, Future<Void> worker) {
 		super();
@@ -87,7 +87,7 @@ public abstract class Phase implements Runnable {
 	}
 
 	/**
-	 * @return the value of <tt>worker</tt>'s <tt>cancelled</tt> property.
+	 * @return the value of <code>worker</code>'s <code>cancelled</code> property.
 	 * @see javax.swing.SwingWorker#isCancelled()
 	 */
 	public final boolean isCancelled() {
@@ -121,7 +121,7 @@ public abstract class Phase implements Runnable {
 	}
 
 	/**
-	 * Do the Real Work&tm; of the phase.
+	 * Do the Real Work (TM) of the phase.
 	 */
 	protected abstract void runPhase();
 }

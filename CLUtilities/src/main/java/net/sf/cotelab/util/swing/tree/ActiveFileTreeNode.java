@@ -14,9 +14,9 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 /**
- * A <tt>DefaultMutableTreeNode</tt> that represents a <tt>File</tt>.
+ * A <code>DefaultMutableTreeNode</code> that represents a <code>File</code>.
  * Objects of this class create their child nodes dynamically, as needed, based
- * upon the children of the <tt>File</tt>.
+ * upon the children of the <code>File</code>.
  * @author  acote
  */
 public class ActiveFileTreeNode
@@ -27,7 +27,7 @@ public class ActiveFileTreeNode
     private static final long serialVersionUID = 1L;
     
     /**
-     * The <tt>DefaultTreeModel</tt> of which this object is a part.
+     * The <code>DefaultTreeModel</code> of which this object is a part.
      */
     protected DefaultTreeModel containingModel = null;
     
@@ -40,8 +40,8 @@ public class ActiveFileTreeNode
 
     /**
      * Construct a new object to represent the parent of nodes representing the
-     * <tt>File</tt>s returned from <tt>File.listRoots()</tt>.
-     * @param containingModel the <tt>DefaultTreeModel</tt> of which the new
+     * <code>File</code>s returned from <code>File.listRoots()</code>.
+     * @param containingModel the <code>DefaultTreeModel</code> of which the new
      *                        object will be a part.
      */
     public ActiveFileTreeNode(DefaultTreeModel containingModel) {
@@ -50,12 +50,12 @@ public class ActiveFileTreeNode
     
     /**
      * Construct a new object.
-     * @param containingModel the <tt>DefaultTreeModel</tt> of which the new
+     * @param containingModel the <code>DefaultTreeModel</code> of which the new
      *                        object will be a part.
-     * @param file the <tt>File</tt> to be represented by the new object, or
-     *             <tt>null</tt>, which causes this object to represent the
-     *             parent of nodes representing the <tt>File</tt>s returned from
-     *             <tt>File.listRoots()</tt>.
+     * @param file the <code>File</code> to be represented by the new object, or
+     *             <code>null</code>, which causes this object to represent the
+     *             parent of nodes representing the <code>File</code>s returned from
+     *             <code>File.listRoots()</code>.
      */
     public ActiveFileTreeNode(DefaultTreeModel containingModel, File file) {
         super(file);
@@ -198,7 +198,6 @@ public class ActiveFileTreeNode
      * throws NoSuchElementException.
      *
      * @return	the first child of this node
-     * @exception	NoSuchElementException	if this node has no children
      *
      */
     public TreeNode getFirstChild() {
@@ -251,7 +250,6 @@ public class ActiveFileTreeNode
      * throws NoSuchElementException.
      *
      * @return	the last child of this node
-     * @exception	NoSuchElementException	if this node has no children
      *
      */
     public TreeNode getLastChild() {

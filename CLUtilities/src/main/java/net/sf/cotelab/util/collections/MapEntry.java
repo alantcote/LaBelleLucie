@@ -25,9 +25,9 @@ package net.sf.cotelab.util.collections;
 import java.io.Serializable;
 
 /**
- * A map entry (key-value pair) as used in {@link net.cote.collections}.
- * @param K the type of key to be supported.
- * @param V the type of value to be supported.
+ * A map entry (key-value pair) as used in {@link net.sf.cotelab.util.collections}.
+ * @param <K> the type of key to be supported.
+ * @param <V> the type of value to be supported.
  * @author alancote@rochester.rr.com
  */
 public class MapEntry<K, V> implements Serializable {
@@ -60,17 +60,17 @@ public class MapEntry<K, V> implements Serializable {
 	
 	/**
 	 * Compare the specified object with this object for equality.
-	 * Returns <tt>true</tt> if the given object is also a {@link MapEntry}
+	 * Returns <code>true</code> if the given object is also a {@link MapEntry}
 	 * and the two entries represent the same mapping.  More formally, two
-	 * entries <tt>e1</tt> and <tt>e2</tt> represent the same mapping if
-	 * <pre><tt>
+	 * entries <code>e1</code> and <code>e2</code> represent the same mapping if
+	 * <pre><code>
 	 *     (e1.getKey()==null ?
-	 *      e2.getKey()==null : e1.getKey().equals(e2.getKey()))  &&
+	 *      e2.getKey()==null : e1.getKey().equals(e2.getKey()))  &amp;&amp;
 	 *     (e1.getValue()==null ?
 	 *      e2.getValue()==null : e1.getValue().equals(e2.getValue()))
-	 * </tt></pre>
+	 * </code></pre>
 	 * @param obj the object to be compared for equality with this object.
-	 * @return <tt>true</tt> if the specified object is equal to this
+	 * @return <code>true</code> if the specified object is equal to this
 	 *         object.
 	 */
 	@SuppressWarnings("unchecked")
@@ -107,11 +107,11 @@ public class MapEntry<K, V> implements Serializable {
 	
 	/**
 	 * Get the hash code value for this object.
-	 * The hash code for a {@link MapEntry}} <tt>e</tt> is defined to be
-	 * <pre><tt>
+	 * The hash code for a {@link MapEntry}} <code>e</code> is defined to be
+	 * <pre><code>
 	 *     (e.getKey()==null   ? 0 : e.getKey().hashCode()) ^
 	 *     (e.getValue()==null ? 0 : e.getValue().hashCode())
-	 * </tt></pre>
+	 * </code></pre>
 	 * @return the hash code for this object.
 	 */
 	public int hashCode() {

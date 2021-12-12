@@ -79,11 +79,11 @@ public class PhaseStats {
     private List<Collection<File>> groups =
             new LinkedList<Collection<File>>();
     /**
-     * The truth-value of the assertion, "The value of <tt>percentComplete</tt>
+     * The truth-value of the assertion, "The value of <code>percentComplete</code>
      * should be considered meaningful".
      * <p>
      * This could be useful in calculating a parameter to be passed to
-     * <tt>JProgressBar.isIndeterminate()</tt>.
+     * <code>JProgressBar.isIndeterminate()</code>.
      * <p>
      * This is a bound property.
      */
@@ -107,13 +107,13 @@ public class PhaseStats {
      */
     private int percentComplete = 0;
     /**
-     * Timestamp on entry to <tt>doInBackground()</tt>.
+     * Timestamp on entry to <code>doInBackground()</code>.
      * <p>
      * This is a bound property.
      */
     private Date phaseEntryStamp = new Date();
     /**
-     * Timestamp on exit from <tt>doInBackground()</tt>.
+     * Timestamp on exit from <code>doInBackground()</code>.
      * <p>
      * This is a bound property.
      */
@@ -157,9 +157,9 @@ public class PhaseStats {
     }
 
     /**
-     * Add a group to <tt>groups</tt>.
+     * Add a group to <code>groups</code>.
      * <p>
-     * Calls <tt>reportProgress()</tt> to alert interested parties.
+     * Calls <code>reportProgress()</code> to alert interested parties.
      * 
      * @param group
      *            the group to add.
@@ -396,7 +396,7 @@ public class PhaseStats {
 
     /**
      * @param propertyName
-     * @return what <tt>propertyChangeSupport.hasListeners()</tt> does.
+     * @return what <code>propertyChangeSupport.hasListeners()</code> does.
      * @see java.beans.PropertyChangeSupport#hasListeners(java.lang.String)
      */
     public boolean hasListeners(String propertyName) {
@@ -455,9 +455,9 @@ public class PhaseStats {
     /**
      * Propagate "global" fields from another object.
      * <p>
-     * The "global" fields propagated are <tt>directoriesIdentified</tt>,
-     * <tt>regularFiles</tt>, <tt>uniqueFilesIdentified</tt>, and
-     * <tt>unreadableFilesIdentified</tt>.
+     * The "global" fields propagated are <code>directoriesIdentified</code>,
+     * <code>regularFiles</code>, <code>uniqueFilesIdentified</code>, and
+     * <code>unreadableFilesIdentified</code>.
      */
     public synchronized void propagateGlobalsFrom(PhaseStats other) {
         directoriesIdentified.addAll(other.directoriesIdentified);

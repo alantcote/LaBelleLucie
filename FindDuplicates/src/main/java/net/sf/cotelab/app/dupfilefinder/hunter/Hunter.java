@@ -113,11 +113,11 @@ public class Hunter
             Logger.getLogger(Hunter.class.getName());
     
     /**
-     * Timestamp on entry to <tt>doInBackground()</tt>.
+     * Timestamp on entry to <code>doInBackground()</code>.
      */
     protected Date entryStamp = new Date();
     /**
-     * Timestamp on exit from <tt>doInBackground()</tt>.
+     * Timestamp on exit from <code>doInBackground()</code>.
      */
     protected Date exitStamp = new Date();
     protected FileComparator fileComparator = new FileComparator();

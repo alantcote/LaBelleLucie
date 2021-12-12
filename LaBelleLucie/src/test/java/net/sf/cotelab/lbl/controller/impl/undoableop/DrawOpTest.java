@@ -1,13 +1,39 @@
 package net.sf.cotelab.lbl.controller.impl.undoableop;
 
-import static org.junit.Assert.*;
-import net.sf.cotelab.lbl.controller.impl.ControllerImpl;
-import net.sf.cotelab.testutils.jMockTestHelper;
+import static org.junit.Assert.assertEquals;
 
 import org.jmock.Expectations;
+import org.jmock.Mockery;
+import org.jmock.Sequence;
+import org.jmock.imposters.ByteBuddyClassImposteriser;
+import org.jmock.lib.concurrent.Synchroniser;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-public class DrawOpTest extends jMockTestHelper {
+import net.sf.cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
+import net.sf.cotelab.lbl.controller.impl.ControllerImpl;
+
+@RunWith(JavaFxJUnit4ClassRunner.class)
+public class DrawOpTest {
+	protected Mockery context;
+	protected Sequence sequence;
+	
+	@Before
+	public void runBeforeTests() throws Exception {
+		context = new Mockery() {{
+			setThreadingPolicy( new Synchroniser());
+			setImposteriser( ByteBuddyClassImposteriser.INSTANCE );
+		}};
+		
+		sequence = context.sequence( getClass().getName());
+	}
+	
+	@After
+	public void runAfterTests() throws Exception {
+		context.assertIsSatisfied();
+	}
 	@Test
 	public void testDoOp() {
 		final ControllerImpl mockControllerImpl =

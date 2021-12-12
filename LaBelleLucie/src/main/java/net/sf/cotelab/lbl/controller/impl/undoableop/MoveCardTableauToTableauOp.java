@@ -5,7 +5,7 @@ import net.sf.cotelab.lbl.model.facade.GameSummary;
 import net.sf.cotelab.lbl.undo.UndoableOp;
 
 /**
- * An <tt>UndoableOp</tt> that implements playing a the top card from one
+ * An <code>UndoableOp</code> that implements playing a the top card from one
  * tableau fan to the top of another tableau fan.
  * @author cote
  */

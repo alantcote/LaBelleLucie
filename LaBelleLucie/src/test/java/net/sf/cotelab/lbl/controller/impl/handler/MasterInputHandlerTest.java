@@ -1,20 +1,43 @@
 package net.sf.cotelab.lbl.controller.impl.handler;
 
-import static org.junit.Assert.*;
-import net.sf.cotelab.lbl.controller.impl.ControllerImpl;
-import net.sf.cotelab.playingcards.Card;
-import net.sf.cotelab.testutils.jMockTestHelper;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.jmock.Expectations;
+import org.jmock.Mockery;
+import org.jmock.Sequence;
+import org.jmock.imposters.ByteBuddyClassImposteriser;
+import org.jmock.lib.concurrent.Synchroniser;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-public class MasterInputHandlerTest extends jMockTestHelper {
+import net.sf.cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
+import net.sf.cotelab.lbl.controller.impl.ControllerImpl;
+import net.sf.cotelab.playingcards.Card;
+
+@RunWith(JavaFxJUnit4ClassRunner.class)
+public class MasterInputHandlerTest {
+	protected Mockery context;
+	protected Sequence sequence;
+	
+	@After
+	public void runAfterTests() throws Exception {
+		context.assertIsSatisfied();
+	}
 	protected MasterInputHandler fixture;
 	protected ControllerImpl mockControllerImpl;
 	
 	@Before
 	public void setup() {
+		context = new Mockery() {{
+			setThreadingPolicy( new Synchroniser());
+			setImposteriser( ByteBuddyClassImposteriser.INSTANCE );
+		}};
+		
+		sequence = context.sequence( getClass().getName());
+		
 		mockControllerImpl =
 				context.mock(ControllerImpl.class, "mockControllerImpl");
 		

@@ -1,12 +1,25 @@
 package net.sf.cotelab.lbl.controller.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Iterator;
 import java.util.List;
 
+import org.jmock.Expectations;
+import org.jmock.Mockery;
+import org.jmock.Sequence;
+import org.jmock.imposters.ByteBuddyClassImposteriser;
+import org.jmock.lib.concurrent.Synchroniser;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
+import net.sf.cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.controller.facade.Move;
 import net.sf.cotelab.lbl.controller.facade.MoveType;
@@ -19,13 +32,16 @@ import net.sf.cotelab.lbl.model.facade.GameSummary;
 import net.sf.cotelab.lbl.undo.UndoManager;
 import net.sf.cotelab.playingcards.Card;
 import net.sf.cotelab.playingcards.Deck;
-import net.sf.cotelab.testutils.jMockTestHelper;
 
-import org.jmock.Expectations;
-import org.junit.Before;
-import org.junit.Test;
-
-public class ControllerImplTest extends jMockTestHelper {
+@RunWith(JavaFxJUnit4ClassRunner.class)
+public class ControllerImplTest {
+	protected Mockery context;
+	protected Sequence sequence;
+	
+	@After
+	public void runAfterTests() throws Exception {
+		context.assertIsSatisfied();
+	}
 	public class Fixture extends ControllerImpl {
 		public Fixture(GameState model) {
 			super(model);
@@ -55,6 +71,13 @@ public class ControllerImplTest extends jMockTestHelper {
 
 	@Before
 	public void setup() {
+		context = new Mockery() {{
+			setThreadingPolicy( new Synchroniser());
+			setImposteriser( ByteBuddyClassImposteriser.INSTANCE );
+		}};
+		
+		sequence = context.sequence( getClass().getName());
+		
 		mockControllerImpl =
 				context.mock(ControllerImpl.class, "mockControllerImpl");
 		mockGameState = context.mock(GameState.class, "mockGameState");

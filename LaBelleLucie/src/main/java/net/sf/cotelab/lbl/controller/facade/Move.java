@@ -23,8 +23,8 @@ public class Move {
 	
 	/**
 	 * Construct a new object.
-	 * The index parameters are not applicable to moves of type <tt>DRAW</tt> or
-	 * <tt>RESHUFFLE</tt> in the current implementation.
+	 * The index parameters are not applicable to moves of type <code>DRAW</code> or
+	 * <code>RESHUFFLE</code> in the current implementation.
 	 * @param destFanIndex the destination fan index (zero if not applicable).
 	 * @param srcFanIndex the source fan index (zero if not applicable).
 	 * @param type the kind of move.

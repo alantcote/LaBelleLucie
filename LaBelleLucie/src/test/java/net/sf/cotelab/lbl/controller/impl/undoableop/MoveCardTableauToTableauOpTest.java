@@ -1,16 +1,42 @@
 package net.sf.cotelab.lbl.controller.impl.undoableop;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import org.jmock.Expectations;
+import org.jmock.Mockery;
+import org.jmock.Sequence;
+import org.jmock.imposters.ByteBuddyClassImposteriser;
+import org.jmock.lib.concurrent.Synchroniser;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import javafx.beans.property.ObjectProperty;
+import net.sf.cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
 import net.sf.cotelab.lbl.controller.impl.ControllerImpl;
 import net.sf.cotelab.lbl.model.facade.GameState;
 import net.sf.cotelab.lbl.model.facade.GameSummary;
-import net.sf.cotelab.testutils.jMockTestHelper;
 
-import org.jmock.Expectations;
-import org.junit.Test;
-
-public class MoveCardTableauToTableauOpTest extends jMockTestHelper {
+@RunWith(JavaFxJUnit4ClassRunner.class)
+public class MoveCardTableauToTableauOpTest {
+	protected Mockery context;
+	protected Sequence sequence;
+	
+	@Before
+	public void runBeforeTests() throws Exception {
+		context = new Mockery() {{
+			setThreadingPolicy( new Synchroniser());
+			setImposteriser( ByteBuddyClassImposteriser.INSTANCE );
+		}};
+		
+		sequence = context.sequence( getClass().getName());
+	}
+	
+	@After
+	public void runAfterTests() throws Exception {
+		context.assertIsSatisfied();
+	}
 	@Test
 	public void testDoOp() {
 		final ControllerImpl mockControllerImpl =
