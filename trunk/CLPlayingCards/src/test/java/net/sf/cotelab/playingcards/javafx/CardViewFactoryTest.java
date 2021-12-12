@@ -1,18 +1,44 @@
 package net.sf.cotelab.playingcards.javafx;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import org.jmock.Expectations;
+import org.jmock.Mockery;
+import org.jmock.Sequence;
+import org.jmock.imposters.ByteBuddyClassImposteriser;
+import org.jmock.lib.concurrent.Synchroniser;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import javafx.geometry.Dimension2D;
 import javafx.scene.image.Image;
+import net.sf.cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
 import net.sf.cotelab.playingcards.Card;
 import net.sf.cotelab.playingcards.Rank;
 import net.sf.cotelab.playingcards.Suit;
-import net.sf.cotelab.testutils.jMockTestHelper;
 
-import org.jmock.Expectations;
-import org.junit.Test;
-
-
-public class CardViewFactoryTest extends jMockTestHelper {
+@RunWith(JavaFxJUnit4ClassRunner.class)
+public class CardViewFactoryTest {
+	protected Mockery context;
+	protected Sequence sequence;
+	
+	@Before
+	public void runBeforeTests() throws Exception {
+		context = new Mockery() {{
+			setThreadingPolicy( new Synchroniser());
+			setImposteriser( ByteBuddyClassImposteriser.INSTANCE );
+		}};
+		
+		sequence = context.sequence( getClass().getName());
+	}
+	
+	@After
+	public void runAfterTests() throws Exception {
+		context.assertIsSatisfied();
+	}
+	
 	@Test
 	public void testCardViewFactory() {
 		final double expectedMaxDim = CardViewFactory.DEFAULT_MAX_DIM;

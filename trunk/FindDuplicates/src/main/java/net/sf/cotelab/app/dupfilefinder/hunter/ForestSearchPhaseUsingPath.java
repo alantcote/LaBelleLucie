@@ -58,7 +58,7 @@ import net.sf.cotelab.app.dupfilefinder.beans.PhaseStats;
  * The "forest search" duplicate file finder phase identifies the files to be
  * examined for duplication.
  * <p>
- * This phase ignores <tt>input</tt>, so it is useful only as the first phase in
+ * This phase ignores <code>input</code>, so it is useful only as the first phase in
  * a pipeline.
  * 
  * @author cote
@@ -173,7 +173,7 @@ public class ForestSearchPhaseUsingPath extends Phase {
 
     /**
      * Enumerate the files and directories in the subtree rooted at
-     * <tt>root</tt>.
+     * <code>root</code>.
      * @param root the root of the subtree to be enumerated.
      */
     // This is a recursive enumeration of a directory tree.

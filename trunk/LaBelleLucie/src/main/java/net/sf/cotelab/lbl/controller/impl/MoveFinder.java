@@ -33,8 +33,8 @@ public class MoveFinder {
 	 * played atop an existing top card, in a foundation fan.
 	 * @param newTopCard the prospective new top card.
 	 * @param oldTopCard the existing top card.
-	 * @return the truth-value of the assertion, "<tt>newTopCard</tt> may be
-	 * 		played atop <tt>oldTopCard</tt> in a foundation fan".
+	 * @return the truth-value of the assertion, "<code>newTopCard</code> may be
+	 * 		played atop <code>oldTopCard</code> in a foundation fan".
 	 */
 	public boolean canPlayOnFoundation(Card newTopCard, Card oldTopCard) {
 		boolean result = false;
@@ -60,8 +60,8 @@ public class MoveFinder {
 	 * played atop an existing top card, in a tableau fan.
 	 * @param newTopCard the prospective new top card.
 	 * @param oldTopCard the existing top card.
-	 * @return the truth-value of the assertion, "<tt>newTopCard</tt> may be
-	 * 		played atop <tt>oldTopCard</tt> in a tableau fan".
+	 * @return the truth-value of the assertion, "<code>newTopCard</code> may be
+	 * 		played atop <code>oldTopCard</code> in a tableau fan".
 	 */
 	public boolean canPlayOnTableau(Card newTopCard, Card oldTopCard) {
 		boolean result = false;
@@ -133,7 +133,7 @@ public class MoveFinder {
 	/**
 	 * Find the legal moves from tableau to a given foundation fan.
 	 * @param destIndex the index of the foundation fan.
-	 * @return a move (<tt>null</tt> if no such exists).
+	 * @return a move (<code>null</code> if no such exists).
 	 */
 	public List<Move> findMovesToFoundation(int destIndex) {
 		List<Move> moves = newListOfMove();
@@ -178,7 +178,7 @@ public class MoveFinder {
 	/**
 	 * Find a legal move from tableau to a given tableau fan.
 	 * @param destIndex the index of the destination tableau fan.
-	 * @return a move (<tt>null</tt> if no such exists).
+	 * @return a move (<code>null</code> if no such exists).
 	 */
 	public Move findMoveToTableau(int destIndex) {
 		Move move = null;

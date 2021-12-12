@@ -42,11 +42,11 @@ import java.util.Collection;
 public interface BidiMultiMap<K, V> extends MultiMap<K, V> {
 	/**
 	 * Returns the collection of keys to which this object maps a given value,
-	 * or <tt>null</tt> if this object contains no mapping for the value.
+	 * or <code>null</code> if this object contains no mapping for the value.
 	 * @param value the given value.
-	 * @return the collection of keys to which this object maps <tt>value</tt>,
-	 *         or <tt>null</tt> if this object contains no mapping for
-	 *         <tt>value</tt>.
+	 * @return the collection of keys to which this object maps <code>value</code>,
+	 *         or <code>null</code> if this object contains no mapping for
+	 *         <code>value</code>.
 	 */
     public Collection<K> getKeys(V value);
 
@@ -68,7 +68,7 @@ public interface BidiMultiMap<K, V> extends MultiMap<K, V> {
 	/**
 	 * Remove all key/value mappings for a given value.
 	 * @param value the given value.
-	 * @return The set of keys which were associated with <tt>value</tt>.
+	 * @return The set of keys which were associated with <code>value</code>.
 	 */
     public Collection<K> removeValue(V value);
 }

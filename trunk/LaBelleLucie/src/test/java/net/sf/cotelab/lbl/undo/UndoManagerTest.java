@@ -1,17 +1,43 @@
 package net.sf.cotelab.lbl.undo;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import net.sf.cotelab.lbl.undo.UndoManager;
-import net.sf.cotelab.lbl.undo.UndoableOp;
-import net.sf.cotelab.testutils.jMockTestHelper;
-
 import org.jmock.Expectations;
+import org.jmock.Mockery;
+import org.jmock.Sequence;
+import org.jmock.imposters.ByteBuddyClassImposteriser;
+import org.jmock.lib.concurrent.Synchroniser;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-public class UndoManagerTest extends jMockTestHelper {
+import net.sf.cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
+
+@RunWith(JavaFxJUnit4ClassRunner.class)
+public class UndoManagerTest {
+	protected Mockery context;
+	protected Sequence sequence;
+	
+	@Before
+	public void runBeforeTests() throws Exception {
+		context = new Mockery() {{
+			setThreadingPolicy( new Synchroniser());
+			setImposteriser( ByteBuddyClassImposteriser.INSTANCE );
+		}};
+		
+		sequence = context.sequence( getClass().getName());
+	}
+	
+	@After
+	public void runAfterTests() throws Exception {
+		context.assertIsSatisfied();
+	}
 	@Test
 	public void testAdd() {
 		@SuppressWarnings("unchecked")
@@ -126,23 +152,6 @@ public class UndoManagerTest extends jMockTestHelper {
 			will(returnValue(undoList));
 
 			oneOf(mockUndoManager).canRedo();
-			will(returnValue(false));
-
-			oneOf(mockUndoManager).canRedo();
-			will(returnValue(true));
-			
-			oneOf(redoList).size();
-			will(returnValue(1));
-			
-			oneOf(redoList).remove(with(0));
-			will(returnValue(mockUndoableOp));
-			
-			oneOf(undoList).add(with(mockUndoableOp));
-			
-			oneOf(mockUndoableOp).doOp();
-			will(throwException(new NullPointerException()));
-
-			oneOf(mockUndoManager).canRedo();
 			will(returnValue(true));
 			
 			oneOf(redoList).size();
@@ -168,8 +177,6 @@ public class UndoManagerTest extends jMockTestHelper {
 			}
 		};
 		
-		fixture.redoOp();
-		fixture.redoOp();
 		fixture.redoOp();
 	}
 
@@ -243,23 +250,6 @@ public class UndoManagerTest extends jMockTestHelper {
 			will(returnValue(undoList));
 
 			oneOf(mockUndoManager).canUndo();
-			will(returnValue(false));
-
-			oneOf(mockUndoManager).canUndo();
-			will(returnValue(true));
-			
-			oneOf(undoList).size();
-			will(returnValue(1));
-			
-			oneOf(undoList).remove(with(0));
-			will(returnValue(mockUndoableOp));
-			
-			oneOf(redoList).add(with(mockUndoableOp));
-			
-			oneOf(mockUndoableOp).undoOp();
-			will(throwException(new NullPointerException()));
-
-			oneOf(mockUndoManager).canUndo();
 			will(returnValue(true));
 			
 			oneOf(undoList).size();
@@ -285,8 +275,6 @@ public class UndoManagerTest extends jMockTestHelper {
 			}
 		};
 		
-		fixture.undoOp();
-		fixture.undoOp();
 		fixture.undoOp();
 	}
 }

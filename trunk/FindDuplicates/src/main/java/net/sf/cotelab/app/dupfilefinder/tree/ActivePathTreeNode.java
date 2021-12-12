@@ -29,9 +29,9 @@ import javax.swing.tree.TreeNode;
 import net.sf.cotelab.util.FileComparator;
 
 /**
- * A <tt>DefaultMutableTreeNode</tt> that represents a <tt>Path</tt>.
+ * A <code>DefaultMutableTreeNode</code> that represents a <code>Path</code>.
  * Objects of this class create their child nodes dynamically, as needed, based
- * upon the children of the <tt>Path</tt>.
+ * upon the children of the <code>Path</code>.
  * @author  acote
  */
 public class ActivePathTreeNode
@@ -91,7 +91,7 @@ public class ActivePathTreeNode
     	return rootDirs;
     }
     /**
-     * The <tt>DefaultTreeModel</tt> of which this object is a part.
+     * The <code>DefaultTreeModel</code> of which this object is a part.
      */
     protected DefaultTreeModel containingModel = null;
     protected boolean kidsLoaded = false;
@@ -105,8 +105,8 @@ public class ActivePathTreeNode
 
     /**
      * Construct a new object to represent the parent of nodes representing the
-     * <tt>File</tt>s returned from <tt>File.listRoots()</tt>.
-     * @param containingModel the <tt>DefaultTreeModel</tt> of which the new
+     * <code>File</code>s returned from <code>File.listRoots()</code>.
+     * @param containingModel the <code>DefaultTreeModel</code> of which the new
      *                        object will be a part.
      */
     public ActivePathTreeNode(DefaultTreeModel containingModel) {
@@ -115,12 +115,12 @@ public class ActivePathTreeNode
 
     /**
      * Construct a new object.
-     * @param containingModel the <tt>DefaultTreeModel</tt> of which the new
+     * @param containingModel the <code>DefaultTreeModel</code> of which the new
      *                        object will be a part.
-     * @param path the <tt>File</tt> to be represented by the new object, or
-     *             <tt>null</tt>, which causes this object to represent the
-     *             parent of nodes representing the <tt>File</tt>s returned from
-     *             <tt>File.listRoots()</tt>.
+     * @param path the <code>File</code> to be represented by the new object, or
+     *             <code>null</code>, which causes this object to represent the
+     *             parent of nodes representing the <code>File</code>s returned from
+     *             <code>File.listRoots()</code>.
      */
     public ActivePathTreeNode(DefaultTreeModel containingModel, Path path) {
         super(path);

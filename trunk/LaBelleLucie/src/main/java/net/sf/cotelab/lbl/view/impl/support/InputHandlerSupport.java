@@ -11,7 +11,7 @@ import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.playingcards.javafx.CardView;
 
 /**
- * An adapter for converting input events into calls on <tt>InputHandler</tt>
+ * An adapter for converting input events into calls on <code>InputHandler</code>
  * methods.
  */
 public class InputHandlerSupport {
@@ -44,7 +44,7 @@ public class InputHandlerSupport {
 	/**
 	 * Set event handlers on a node.
 	 * Each handler forwards its received events to the relevant method of
-	 * <tt>inputHandler</tt>.
+	 * <code>inputHandler</code>.
 	 * @param source the node.
 	 */
 	protected void monitorEvents(Node source) {
@@ -54,7 +54,7 @@ public class InputHandlerSupport {
 	/**
 	 * Set MouseEvent handlers on a node.
 	 * Each handler forwards its received events to the relevant method of
-	 * <tt>inputHandler</tt>.
+	 * <code>inputHandler</code>.
 	 * @param source the node.
 	 */
 	protected void monitorMouseEvents(Node source) {

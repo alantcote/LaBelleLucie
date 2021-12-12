@@ -7,18 +7,18 @@ import java.util.NoSuchElementException;
 /**
  * A permutation generator.
  * <p>
- * This permutation generator is modeled after <tt>java.util.Iterator</tt>,
+ * This permutation generator is modeled after <code>java.util.Iterator</code>,
  * even though the underlying sequence of permutations is not really a
- * <tt>java.util.Collection</tt>, but rather is calculated on-the-fly.
+ * <code>java.util.Collection</code>, but rather is calculated on-the-fly.
  * <p>
- * The <tt>order</tt> of a permutation iterator is the number of elements
+ * The <code>order</code> of a permutation iterator is the number of elements
  * included in each of the iterator's generated permutations. A single generated
- * permutation is an array of integers on the range <tt>0..(order-1)</tt>, in
+ * permutation is an array of integers on the range <code>0..(order-1)</code>, in
  * an order determined by the iterator's algorithm. Once created, a permutation
  * generator returns a different permutation from each call to its
- * <tt>next()</tt> method, without repetition, until all possible such
- * permutations have been produced, when <tt>hasNext()</tt> returns
- * <tt>false</tt>.
+ * <code>next()</code> method, without repetition, until all possible such
+ * permutations have been produced, when <code>hasNext()</code> returns
+ * <code>false</code>.
  * <p>
  * This implementation is an adaptation of a method described in section 1.2.5
  * of Knuth's Fundamental Algorithms, Volume 1, second edition.
@@ -53,16 +53,16 @@ public class RawPermutationIterator implements Iterator<int[]> {
 	private RawPermutationIterator rawPermutationIteratorOfOrderMinusOne;
 	
 	/**
-	 * The number of permutations that remain to be returned by <tt>next()</tt>.
+	 * The number of permutations that remain to be returned by <code>next()</code>.
 	 */
 	private int remainingCount;
 
 	/**
 	 * Construct a new instance.
-	 * @param order the order of the permutation (<tt>order > 0</tt>).
+	 * @param order the order of the permutation (<code>order > 0</code>).
 	 * @throws IllegalArgumentException
-	 *             if <tt>order <= 0 || order >
-	 *             Factorial.MAX_INT_FACTORIAL_BASE</tt>.
+	 *             if <code>order &lt;= 0 || order >
+	 *             Factorial.MAX_INT_FACTORIAL_BASE</code>.
 	 */
 	public RawPermutationIterator(int order) throws IllegalArgumentException {
 		super();

@@ -232,8 +232,8 @@ public class FanView extends AnchorPane implements View {
 	/**
 	 * Anchor a given view at a given distance from the left-hand edge of this
 	 * view.
-	 * The method that <tt>AnchorPane</tt> provides for this purpose is
-	 * <tt>static</tt>, and therefore unmockable. This method provides a means
+	 * The method that <code>AnchorPane</code> provides for this purpose is
+	 * <code>static</code>, and therefore unmockable. This method provides a means
 	 * of mocking out the behavior, for unit testing.
 	 * @param view the view to be anchored.
 	 * @param indent the distance at which the given view is to be placed from
@@ -245,8 +245,8 @@ public class FanView extends AnchorPane implements View {
 	
 	/**
 	 * Anchor a given view at a given distance from the top edge of this view.
-	 * The method that <tt>AnchorPane</tt> provides for this purpose is
-	 * <tt>static</tt>, and therefore unmockable. This method provides a means
+	 * The method that <code>AnchorPane</code> provides for this purpose is
+	 * <code>static</code>, and therefore unmockable. This method provides a means
 	 * of mocking out the behavior, for unit testing.
 	 * @param view the view to be anchored.
 	 * @param indent the distance at which the given view is to be placed from
@@ -295,7 +295,7 @@ public class FanView extends AnchorPane implements View {
 	/**
 	 * Install a given tooltip on a node.
 	 * This method exists to provide a means of mocking calls to
-	 * <tt>Tooltip</tt>'s <tt>install() static</tt> method.
+	 * <code>Tooltip</code>'s <code>install() static</code> method.
 	 * @param node the node.
 	 * @param tooltip the tooltip.
 	 */
@@ -336,7 +336,7 @@ public class FanView extends AnchorPane implements View {
 	}
 
 	/**
-	 * Create a new <tt>FanBinding</tt> object.
+	 * Create a new <code>FanBinding</code> object.
 	 * This method is included here to enable mocking new object creation.
 	 * @param supported the supported object.
 	 * @return the new object.
@@ -356,7 +356,7 @@ public class FanView extends AnchorPane implements View {
 	}
 	
 	/**
-	 * Create a new <tt>InputHandlerSupport</tt> object.
+	 * Create a new <code>InputHandlerSupport</code> object.
 	 * This method is included here to enable mocking new object creation.
 	 * @param supported the supported object.
 	 * @return the new object.
@@ -366,7 +366,7 @@ public class FanView extends AnchorPane implements View {
 	}
 
 	/**
-	 * Manufacture a new <tt>Insets</tt> object.
+	 * Manufacture a new <code>Insets</code> object.
 	 * @param topRightBottomLeft the inset to apply to all 4 edges.
 	 * @return the new object.
 	 */
@@ -385,7 +385,7 @@ public class FanView extends AnchorPane implements View {
 
 	/**
 	 * Set the id of this node, to enable CSS to support it.
-	 * The method that <tt>Node</tt> provides for this purpose is final, so it
+	 * The method that <code>Node</code> provides for this purpose is final, so it
 	 * cannot be mocked. This method is used to wrap that method, to facilitate
 	 * unit testing of this class.
 	 * @param id the id.

@@ -10,9 +10,9 @@ public class Factorial {
 	 * Calculate n!.
 	 * @param n the number for which to calculate the factorial.
 	 * @return n!.
-	 * @throws IllegalArgumentException if n < 0 or n > MAX_INT_FACTORIAL_BASE,
+	 * @throws IllegalArgumentException if n &lt; 0 or n &gt; MAX_INT_FACTORIAL_BASE,
 	 *                                  because (1 + MAX_INT_FACTORIAL_BASE)!
-	 *                                  > Integer.MAX_VALUE.
+	 *                                  &gt; Integer.MAX_VALUE.
 	 */
 	public static final int intFactorial(int n)
 			throws IllegalArgumentException {

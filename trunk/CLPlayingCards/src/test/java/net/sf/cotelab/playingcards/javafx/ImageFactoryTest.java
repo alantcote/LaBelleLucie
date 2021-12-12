@@ -1,16 +1,42 @@
 package net.sf.cotelab.playingcards.javafx;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Map;
 
-import javafx.scene.image.Image;
-import net.sf.cotelab.testutils.jMockTestHelper;
-
 import org.jmock.Expectations;
+import org.jmock.Mockery;
+import org.jmock.Sequence;
+import org.jmock.imposters.ByteBuddyClassImposteriser;
+import org.jmock.lib.concurrent.Synchroniser;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-public class ImageFactoryTest extends jMockTestHelper {
+import javafx.scene.image.Image;
+import net.sf.cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
+
+@RunWith(JavaFxJUnit4ClassRunner.class)
+public class ImageFactoryTest {
+	protected Mockery context;
+	protected Sequence sequence;
+	
+	@Before
+	public void runBeforeTests() throws Exception {
+		context = new Mockery() {{
+			setThreadingPolicy( new Synchroniser());
+			setImposteriser( ByteBuddyClassImposteriser.INSTANCE );
+		}};
+		
+		sequence = context.sequence( getClass().getName());
+	}
+	
+	@After
+	public void runAfterTests() throws Exception {
+		context.assertIsSatisfied();
+	}
+	
 	@Test
 	public void testFlush() {
 		@SuppressWarnings("unchecked")

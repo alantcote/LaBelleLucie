@@ -38,7 +38,7 @@ import net.sf.cotelab.util.collections.HashMultiMap;
 
 /**
  * The "group by checksum" duplicate file finder phase partitions the input
- * files into groups by checksum of the first <tt>SAMPLE_SIZE</tt> bytes of each
+ * files into groups by checksum of the first <code>SAMPLE_SIZE</code> bytes of each
  * file.
  * 
  * @author cote

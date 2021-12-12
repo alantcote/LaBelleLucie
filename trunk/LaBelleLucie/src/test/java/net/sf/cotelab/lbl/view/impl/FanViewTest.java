@@ -1,8 +1,18 @@
 package net.sf.cotelab.lbl.view.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Iterator;
+
+import org.jmock.Expectations;
+import org.jmock.Mockery;
+import org.jmock.Sequence;
+import org.jmock.imposters.ByteBuddyClassImposteriser;
+import org.jmock.lib.concurrent.Synchroniser;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import javafx.collections.ObservableList;
 import javafx.geometry.Dimension2D;
@@ -19,15 +29,16 @@ import net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport;
 import net.sf.cotelab.playingcards.Card;
 import net.sf.cotelab.playingcards.javafx.CardView;
 import net.sf.cotelab.playingcards.javafx.CardViewFactory;
-import net.sf.cotelab.testutils.jMockTestHelper;
-
-import org.jmock.Expectations;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 
 @RunWith(JavaFxJUnit4ClassRunner.class)
-public class FanViewTest extends jMockTestHelper {
+public class FanViewTest {
+	protected Mockery context;
+	protected Sequence sequence;
+	
+	@After
+	public void runAfterTests() throws Exception {
+		context.assertIsSatisfied();
+	}
 	protected class Fixture extends FanView {
 		public Fixture(CardViewFactory cardViewFactory, double fanOffset,
 				Fan model) {
@@ -150,6 +161,13 @@ public class FanViewTest extends jMockTestHelper {
 	
 	@Before
 	public void setup() {
+		context = new Mockery() {{
+			setThreadingPolicy( new Synchroniser());
+			setImposteriser( ByteBuddyClassImposteriser.INSTANCE );
+		}};
+		
+		sequence = context.sequence( getClass().getName());
+		
 		cardHeight = CARD_HEIGHT;
 		cardWidth = CARD_WIDTH;
 		fanOffset = FAN_OFFSET;

@@ -56,12 +56,7 @@ public class LaBelleLucie extends Application {
 		
 //		view.setInputHandler(inputHandler);
 		
-		primaryStage.setOnShown(new EventHandler<WindowEvent>() {
-			@Override
-			public void handle(WindowEvent event) {
-				inputHandler.onNewGameRequested();
-			}
-		});
+		primaryStage.setOnShown(newWindowEventHandler(inputHandler));
 		
 		// show the stage
 		show(primaryStage);
@@ -78,6 +73,15 @@ public class LaBelleLucie extends Application {
 	protected View newView(final Stage primaryStage,
 			GameState model, InputHandler inputHandler) {
 		return new ViewImpl(primaryStage, model, inputHandler);
+	}
+	
+	protected EventHandler<WindowEvent> newWindowEventHandler(InputHandler ih) {
+		return new EventHandler<WindowEvent>() {
+			@Override
+			public void handle(WindowEvent event) {
+				ih.onNewGameRequested();
+			}
+		};
 	}
 	
 	protected void show(Stage stage) {

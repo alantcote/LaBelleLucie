@@ -45,11 +45,11 @@ public class MessageDialog {
 	 * Waits for a response, returning the response option chosen.
 	 * @param owner the window relative to which the dialog is modal and
 	 *		positioned.
-	 * @param message the object to display - must be a <tt>String</tt> or a
-	 *		<tt>Node</tt>.
+	 * @param message the object to display - must be a <code>String</code> or a
+	 *		<code>Node</code>.
 	 * @param selectionValues the response options - each must be a
-	 *		<tt>String</tt> (used as the text on a <tt>Button</tt>) or a
-	 *		<tt>Button</tt> (used as-is) - the dialog is closed when one of
+	 *		<code>String</code> (used as the text on a <code>Button</code>) or a
+	 *		<code>Button</code> (used as-is) - the dialog is closed when one of
 	 *		these is selected.
 	 * @param title the title of the dialog.
 	 * @param defaultSelectionValue the default response.

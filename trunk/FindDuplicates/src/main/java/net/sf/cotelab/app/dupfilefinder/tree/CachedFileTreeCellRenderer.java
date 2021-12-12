@@ -43,7 +43,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import net.sf.cotelab.util.swing.tree.FileTreeCellRenderer;
 
 /**
- * A <tt>FileTreeCellRenderer</tt> that caches <tt>File</tt>-to-<tt>Icon</tt>
+ * A <code>FileTreeCellRenderer</code> that caches <code>File</code>-to-<code>Icon</code>
  * relationships in an effort to improve performance.
  * @author cote
  */

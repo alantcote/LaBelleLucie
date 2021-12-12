@@ -1,17 +1,41 @@
 package net.sf.cotelab.playingcards.demo;
 
-import static org.junit.Assert.*;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import net.sf.cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
-import net.sf.cotelab.testutils.jMockTestHelper;
+import static org.junit.Assert.assertTrue;
 
 import org.jmock.Expectations;
+import org.jmock.Mockery;
+import org.jmock.Sequence;
+import org.jmock.imposters.ByteBuddyClassImposteriser;
+import org.jmock.lib.concurrent.Synchroniser;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import net.sf.cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
+
 @RunWith(JavaFxJUnit4ClassRunner.class)
-public class DeckViewerTest extends jMockTestHelper {
+public class DeckViewerTest {
+	protected Mockery context;
+	protected Sequence sequence;
+	
+	@Before
+	public void runBeforeTests() throws Exception {
+		context = new Mockery() {{
+			setThreadingPolicy( new Synchroniser());
+			setImposteriser( ByteBuddyClassImposteriser.INSTANCE );
+		}};
+		
+		sequence = context.sequence( getClass().getName());
+	}
+	
+	@After
+	public void runAfterTests() throws Exception {
+		context.assertIsSatisfied();
+	}
+	
 	@Test
 	public void testMain() {
 		// Identical to most main()s in JavaFX applications, this needs no test

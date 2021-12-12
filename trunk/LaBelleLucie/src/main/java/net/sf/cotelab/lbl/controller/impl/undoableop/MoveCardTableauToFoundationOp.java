@@ -5,7 +5,7 @@ import net.sf.cotelab.lbl.model.facade.GameSummary;
 import net.sf.cotelab.lbl.undo.UndoableOp;
 
 /**
- * An <tt>UndoableOp</tt> that implements playing a tableau card to the
+ * An <code>UndoableOp</code> that implements playing a tableau card to the
  * foundation.
  * @author cote
  */

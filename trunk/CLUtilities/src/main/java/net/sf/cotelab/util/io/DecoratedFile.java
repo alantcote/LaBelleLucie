@@ -12,7 +12,7 @@ import java.net.URI;
 import java.net.URL;
 
 /**
- * A base class for decorating <tt>java.io.File</tt>s.
+ * A base class for decorating <code>java.io.File</code>s.
  * @author us80653h
  */
 public class DecoratedFile extends File {

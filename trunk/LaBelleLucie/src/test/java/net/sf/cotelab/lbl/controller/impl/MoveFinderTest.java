@@ -1,10 +1,25 @@
 package net.sf.cotelab.lbl.controller.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.jmock.Expectations;
+import org.jmock.Mockery;
+import org.jmock.Sequence;
+import org.jmock.imposters.ByteBuddyClassImposteriser;
+import org.jmock.lib.concurrent.Synchroniser;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import javafx.beans.property.IntegerProperty;
+import net.sf.cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
 import net.sf.cotelab.lbl.controller.facade.Move;
 import net.sf.cotelab.lbl.controller.facade.MoveType;
 import net.sf.cotelab.lbl.model.facade.Fan;
@@ -12,18 +27,28 @@ import net.sf.cotelab.lbl.model.facade.GameState;
 import net.sf.cotelab.playingcards.Card;
 import net.sf.cotelab.playingcards.Rank;
 import net.sf.cotelab.playingcards.Suit;
-import net.sf.cotelab.testutils.jMockTestHelper;
 
-import org.jmock.Expectations;
-import org.junit.Before;
-import org.junit.Test;
-
-public class MoveFinderTest extends jMockTestHelper {
+@RunWith(JavaFxJUnit4ClassRunner.class)
+public class MoveFinderTest {
+	protected Mockery context;
+	protected Sequence sequence;
+	
+	@After
+	public void runAfterTests() throws Exception {
+		context.assertIsSatisfied();
+	}
 	protected GameState mockGameState;
 	protected MoveFinder mockMoveFinder;
 	
 	@Before
 	public void setup() {
+		context = new Mockery() {{
+			setThreadingPolicy( new Synchroniser());
+			setImposteriser( ByteBuddyClassImposteriser.INSTANCE );
+		}};
+		
+		sequence = context.sequence( getClass().getName());
+		
 		mockGameState = context.mock(GameState.class, "mockGameState");
 		mockMoveFinder = context.mock(MoveFinder.class, "mockMoveFinder");
 	}

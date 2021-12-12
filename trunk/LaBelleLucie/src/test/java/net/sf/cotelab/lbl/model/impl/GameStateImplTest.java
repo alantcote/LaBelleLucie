@@ -1,20 +1,48 @@
 package net.sf.cotelab.lbl.model.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import org.jmock.Expectations;
+import org.jmock.Mockery;
+import org.jmock.Sequence;
+import org.jmock.imposters.ByteBuddyClassImposteriser;
+import org.jmock.lib.concurrent.Synchroniser;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import net.sf.cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
 import net.sf.cotelab.lbl.model.facade.Fan;
 import net.sf.cotelab.lbl.model.facade.GameSummary;
 import net.sf.cotelab.lbl.undo.UndoManager;
 import net.sf.cotelab.playingcards.Card;
 import net.sf.cotelab.playingcards.Deck;
-import net.sf.cotelab.testutils.jMockTestHelper;
 
-import org.jmock.Expectations;
-import org.junit.Test;
-
-public class GameStateImplTest extends jMockTestHelper {
+@RunWith(JavaFxJUnit4ClassRunner.class)
+public class GameStateImplTest {
+	protected Mockery context;
+	protected Sequence sequence;
+	
+	@Before
+	public void runBeforeTests() throws Exception {
+		context = new Mockery() {{
+			setThreadingPolicy( new Synchroniser());
+			setImposteriser( ByteBuddyClassImposteriser.INSTANCE );
+		}};
+		
+		sequence = context.sequence( getClass().getName());
+	}
+	
+	@After
+	public void runAfterTests() throws Exception {
+		context.assertIsSatisfied();
+	}
 	@Test
 	public void testDealTableau() {
 		final GameStateImpl mockGameStateImpl =

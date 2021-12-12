@@ -25,7 +25,7 @@ public class Primes {
 	/**
 	 * Determine whether a given number is a prime number.
 	 * @param n the given number.
-	 * @return the truth-value of the assertion, "<tt>candidate</tt> is a prime
+	 * @return the truth-value of the assertion, "<code>candidate</code> is a prime
 	 *		   number".
 	 */
 	public boolean isPrime(long n) {

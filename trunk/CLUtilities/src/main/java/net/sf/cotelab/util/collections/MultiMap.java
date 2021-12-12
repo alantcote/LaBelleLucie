@@ -53,8 +53,8 @@ import java.util.Set;
  * <p>
  * As with the standard Java collections classes, instances of {@link MultiMap}
  * are unsynchronized.
- * @param K the type of key to be supported.
- * @param V the type of value to be supported.
+ * @param <K> the type of key to be supported.
+ * @param <V> the type of value to be supported.
  * @author alancote@rochester.rr.com
  */
 public interface MultiMap<K, V> {
@@ -65,20 +65,20 @@ public interface MultiMap<K, V> {
     public void clear();
 
     /**
-     * Returns <tt>true</tt> if this object contains at least one mapping for
+     * Returns <code>true</code> if this object contains at least one mapping for
      * the given key.
      * @param key the given key.
-     * @return <tt>true</tt> if this object contains at least one mapping for
+     * @return <code>true</code> if this object contains at least one mapping for
      *         the given key.
      */
     public boolean containsKey(K key);
 
     /**
-     * Returns <tt>true</tt> if this object maps at least one key to the
+     * Returns <code>true</code> if this object maps at least one key to the
      * specified value.  This operation probably will require time directly
      * proportional to the value obtained from {@link MultiMap#size()}.
      * @param value the specified value.
-     * @return <tt>true</tt> if this object maps at least one key to the
+     * @return <code>true</code> if this object maps at least one key to the
      *         specified value.
      */
     public boolean containsValue(V value);
@@ -94,20 +94,20 @@ public interface MultiMap<K, V> {
 
     /**
      * Compare the specified object with this object for equality.
-     * Returns <tt>true</tt> if the specified object is also a {@link MultiMap}
+     * Returns <code>true</code> if the specified object is also a {@link MultiMap}
      * and the two objects contain the same mappings.
      * @param o the specified object.
-     * @return <tt>true</tt> if the specified object is equal to this object.
+     * @return <code>true</code> if the specified object is equal to this object.
      */
     public boolean equals(Object o);
 
     /**
      * Returns the collection of values to which this object maps a given key,
-     * or <tt>null</tt> if this object contains no mapping for the key.
+     * or <code>null</code> if this object contains no mapping for the key.
      * @param key the given key.
-     * @return the collection of values to which this object maps <tt>key</tt>,
-     *         or <tt>null</tt> if this object contains no mapping for
-     *         <tt>key</tt>.
+     * @return the collection of values to which this object maps <code>key</code>,
+     *         or <code>null</code> if this object contains no mapping for
+     *         <code>key</code>.
      */
     public Collection<V> get(K key);
 
@@ -120,8 +120,8 @@ public interface MultiMap<K, V> {
     public int hashCode();
 
     /**
-     * Returns <tt>true</tt> if this object contains no key-value mappings.
-     * @return <tt>true</tt> if this object contains no key-value mappings.
+     * Returns <code>true</code> if this object contains no key-value mappings.
+     * @return <code>true</code> if this object contains no key-value mappings.
      */
     public boolean isEmpty();
 
@@ -140,7 +140,7 @@ public interface MultiMap<K, V> {
      * already in this object, it will not be added again.
      * @param key the key portion of the mapping.
      * @param value the value portion of the mapping.
-     * @return <tt>true</tt> if the new key/value pair was not already in this
+     * @return <code>true</code> if the new key/value pair was not already in this
      *         object.
      */
     public boolean put(K key, V value);
@@ -150,7 +150,7 @@ public interface MultiMap<K, V> {
      * addition to any existing mappings for the given key.
      * @param key the key portion of the mappings.
      * @param values the value portions of the mappings.
-     * @return <tt>true</tt> if any of the new key-value pairs were not already
+     * @return <code>true</code> if any of the new key-value pairs were not already
      *         in this object.
      */
     public boolean putAll(K key, Collection<? extends V> values);
@@ -180,7 +180,7 @@ public interface MultiMap<K, V> {
     /**
      * Remove all key/value mappings for a given key.
      * @param key the given key.
-     * @return The set of values which were associated with <tt>key</tt>.
+     * @return The set of values which were associated with <code>key</code>.
      */
     public Collection<V> removeKey(K key);
 
