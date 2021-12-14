@@ -7,10 +7,10 @@ import javafx.scene.image.Image;
 import net.sf.cotelab.playingcards.Card;
 
 /**
- * A factory for <tt>CardView</tt> objects.
+ * A factory for <code>CardView</code> objects.
  * A view can only have one parent at a time, so views, per se, are not cached.
  * <p>
- * This class uses an instance of <tt>ImageFactory</tt>, to provide caching and
+ * This class uses an instance of <code>ImageFactory</code>, to provide caching and
  * image scaling.
  */
 public class CardViewFactory {
@@ -32,7 +32,7 @@ public class CardViewFactory {
 	 * Construct a new object, specifying the image bounding box dimension.
 	 * Each image is scaled to fit in a square bounding box. The aspect ratio is
 	 * preserved, so the effect is that the image's maximum dimension is given
-	 * by <tt>maxDim</tt>.
+	 * by <code>maxDim</code>.
 	 * @param maxDim the image bounding box dimension.
 	 */
 	public CardViewFactory(double maxDim) {
@@ -126,7 +126,7 @@ public class CardViewFactory {
 	}
 	
 	/**
-	 * Create a new <tt>CardView</tt>.
+	 * Create a new <code>CardView</code>.
 	 * @param card the card.
 	 * @param image the image.
 	 * @return the new object.
@@ -136,7 +136,7 @@ public class CardViewFactory {
 	}
 
 	/**
-	 * Create a new <tt>Dimension2D</tt>.
+	 * Create a new <code>Dimension2D</code>.
 	 * @param width the width.
 	 * @param height the height.
 	 * @return the new object.
@@ -146,7 +146,7 @@ public class CardViewFactory {
 	}
 	
 	/**
-	 * Create a new <tt>ImageFactory</tt>.
+	 * Create a new <code>ImageFactory</code>.
 	 * @param maxDim the bounding box maximum dimension.
 	 * @return the new object.
 	 */

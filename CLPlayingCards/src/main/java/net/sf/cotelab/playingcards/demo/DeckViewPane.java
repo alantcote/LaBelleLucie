@@ -138,9 +138,9 @@ public class DeckViewPane extends TilePane {
 	}
 	
 	/**
-	 * Create a new <tt>Insets</tt> object.
+	 * Create a new <code>Insets</code> object.
 	 * @param topRightBottomLeft the inset to apply on all sides.
-	 * @return the new <tt>Insets</tt> object.
+	 * @return the new <code>Insets</code> object.
 	 */
 	protected Insets newInsets(double topRightBottomLeft) {
 		return new Insets(topRightBottomLeft);

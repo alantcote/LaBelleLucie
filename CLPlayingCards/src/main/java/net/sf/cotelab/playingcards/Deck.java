@@ -8,7 +8,7 @@ import java.util.Collections;
  * This class does not presuppose any particular composition, other than that
  * the cards are playing cards. A subclass or external code must establish the
  * nature of the deck (i.e., the game for which it is intended) after initial
- * construction, generally by multiple invocations of the <tt>add()</tt> method.
+ * construction, generally by multiple invocations of the <code>add()</code> method.
  */
 public class Deck {
 	protected ArrayList<Card> master = new ArrayList<>();

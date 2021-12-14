@@ -6,8 +6,8 @@ import java.util.Map;
 import javafx.scene.image.Image;
 
 /**
- * A provider of <tt>Image</tt> objects.
- * This object maintains a cache of <tt>Image</tt> objects, for performance
+ * A provider of <code>Image</code> objects.
+ * This object maintains a cache of <code>Image</code> objects, for performance
  * reasons.
  */
 public class ImageFactory {
@@ -47,7 +47,7 @@ public class ImageFactory {
 	/**
 	 * Get an image from the given URL.
 	 * @param url the image source.
-	 * @return the image (<tt>null</tt> if the image cannot be retrieved).
+	 * @return the image (<code>null</code> if the image cannot be retrieved).
 	 */
 	public Image getImage(String url) {
 		Image image = cache.get(url);
@@ -75,7 +75,7 @@ public class ImageFactory {
 	}
 	
 	/**
-	 * Construct a new <tt>Map&lt;String, Image&gt;</tt>.
+	 * Construct a new <code>Map&lt;String, Image&gt;</code>.
 	 * @return the new object.
 	 */
 	protected Map<String, Image> newMap_String_Image() {
@@ -83,7 +83,7 @@ public class ImageFactory {
 	}
 	
 	/**
-	 * Create a new <tt>Image</tt>.
+	 * Create a new <code>Image</code>.
 	 * @param url the string representing the URL to use in fetching the pixel data.
 	 * @param requestedWidth the image's bounding box width.
 	 * @param requestedHeight the image's bounding box height.
