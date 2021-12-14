@@ -75,7 +75,7 @@ public class LaBelleLucie extends Application {
 		return new ViewImpl(primaryStage, model, inputHandler);
 	}
 	
-	protected EventHandler<WindowEvent> newWindowEventHandler(InputHandler ih) {
+	protected EventHandler<WindowEvent> newWindowEventHandler(final InputHandler ih) {
 		return new EventHandler<WindowEvent>() {
 			@Override
 			public void handle(WindowEvent event) {

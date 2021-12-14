@@ -386,18 +386,18 @@ public class FanViewTest {
 			}
 		};
 		@SuppressWarnings("unchecked")
-		ObservableList<Node> kids = (ObservableList<Node>)
+		final ObservableList<Node> kids = (ObservableList<Node>)
 				context.mock(ObservableList.class, "kids");
-		InputHandler mockInputHandler =
+		final InputHandler mockInputHandler =
 				context.mock(InputHandler.class, "mockInputHandler");
 		@SuppressWarnings("unchecked")
-		Iterator<Card> mockIterator_Card = (Iterator<Card>)
+		final Iterator<Card> mockIterator_Card = (Iterator<Card>)
 				context.mock(Iterator.class, "mockIterator_Card");
-		Card mockCard = context.mock(Card.class, "mockCard");
-		CardView mockCardView = context.mock(CardView.class, "mockCardView");
-		Tooltip mockTooltip = context.mock(Tooltip.class, "mockTooltip");
-		Image mockImage = context.mock(Image.class, "mockImage");
-		ImageView mockImageView =
+		final Card mockCard = context.mock(Card.class, "mockCard");
+		final CardView mockCardView = context.mock(CardView.class, "mockCardView");
+		final Tooltip mockTooltip = context.mock(Tooltip.class, "mockTooltip");
+		final Image mockImage = context.mock(Image.class, "mockImage");
+		final ImageView mockImageView =
 				context.mock(ImageView.class, "mockImageView");
 		
 		context.checking( new Expectations() {{

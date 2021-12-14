@@ -48,8 +48,8 @@
 	<inceptionYear>2014</inceptionYear>
 
 	<scm>
-		<url>https://github.com/alantcote/CLJunitForOpenJFX.git</url>
-		<connection>scm:git:https://github.com/alantcote/CLUtilities</connection>
+		<url>https://github.com/alantcote/${project.artifactId}</url>
+		<connection>scm:git:https://github.com/alantcote/${project.artifactId}</connection>
 	</scm>
 
 	<issueManagement>

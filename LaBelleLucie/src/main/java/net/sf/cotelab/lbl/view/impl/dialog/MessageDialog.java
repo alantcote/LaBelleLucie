@@ -57,16 +57,13 @@ public class MessageDialog {
 	 */
 	public Object showInputDialog(Window owner, String title, Object message,
 			Object[] selectionValues, Object defaultSelectionValue) {
-		Stage stage;
+		final Stage stage = createStage(owner, title);
 		Node messageNode;
 		HBox buttonBox;
 		BorderPane rootPane;
 		Insets insets = new Insets(10);
 		Scene scene;
-		Object[] selection = { defaultSelectionValue };
-		
-		// set up the stage
-		stage = createStage(owner, title);
+		final Object[] selection = { defaultSelectionValue };
 		
 		// set up the message node
 		messageNode = messageNode(message);
@@ -76,11 +73,12 @@ public class MessageDialog {
 		buttonBox.setAlignment(Pos.BASELINE_CENTER);
 		for (Object selVal : selectionValues) {
 			Button button;
+			final Object finalSelVal = selVal;
 			
-			if (selVal instanceof Button) {
-				button = (Button) selVal;
-			} else if (selVal instanceof String) {
-				button = new Button((String) selVal);
+			if (finalSelVal instanceof Button) {
+				button = (Button) finalSelVal;
+			} else if (finalSelVal instanceof String) {
+				button = new Button((String) finalSelVal);
 			} else {
 				throw new IllegalArgumentException(
 						"selectionValues[i] must be a String or a Button");
@@ -89,7 +87,7 @@ public class MessageDialog {
 			button.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent arg0) {
-					selection[0] = selVal;
+					selection[0] = finalSelVal;
 					
 					stage.close();
 				}

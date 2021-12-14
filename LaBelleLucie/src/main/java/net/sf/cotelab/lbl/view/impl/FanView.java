@@ -116,7 +116,7 @@ public class FanView extends AnchorPane implements View {
 		int count = model.size();
 		
 		if (count > 0) {
-			Node node = getChildren().get(count - 1);
+			final Node node = getChildren().get(count - 1);
 			
 			if (node instanceof CardView) {
 				Thread thread = new Thread() {
@@ -127,7 +127,7 @@ public class FanView extends AnchorPane implements View {
 								bounds.getMinX(), bounds.getMinY(),
 								bounds.getWidth(), bounds.getHeight(),
 								Color.WHITE);
-						Blend effect = new Blend(BlendMode.DIFFERENCE);
+						final Blend effect = new Blend(BlendMode.DIFFERENCE);
 						
 						effect.setTopInput(colorInput);
 						
