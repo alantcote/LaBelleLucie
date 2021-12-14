@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"net.sf.cotelab.util"},{"l":"net.sf.cotelab.util.collections"},{"l":"net.sf.cotelab.util.io"},{"l":"net.sf.cotelab.util.math"},{"l":"net.sf.cotelab.util.swing.tree"}];updateSearchResults();

@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"net.sf.cotelab.playingcards"},{"l":"net.sf.cotelab.playingcards.decks"},{"l":"net.sf.cotelab.playingcards.demo"},{"l":"net.sf.cotelab.playingcards.javafx"}];updateSearchResults();
