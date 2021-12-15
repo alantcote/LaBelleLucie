@@ -99,7 +99,7 @@ public class RootView extends BorderPane implements View {
 		// setting min width
 		myview.minWidth(1050);
 		final WebEngine mywebEngine = myview.getEngine();
-		mywebEngine.load(getResource("/filtered/helpAbout.html"));
+		mywebEngine.load(getResource("helpAbout.html"));
 
 		myDialogPane.setContent(myview);
 		myDialog.showAndWait();

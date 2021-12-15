@@ -153,7 +153,7 @@
 		</plugins>
         <resources>
             <resource>
-                <directory>src/filtered</directory>
+                <directory>src/net/sf/cotelab/lbl/view/impl</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
