@@ -8,6 +8,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Dimension2D;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
@@ -15,10 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.input.KeyCharacterCombination;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -36,6 +34,7 @@ public class RootView extends BorderPane implements View {
 	public static final double CARD_ZOOM = 1.0;
 	public static final double FAN_OFFSET_FACTOR = 5;
 
+	protected Stage appStage;
 	protected Dimension2D cardSize;
 	protected CardViewFactory cardViewFactory;
 	protected Label drawsLabel;
@@ -50,6 +49,8 @@ public class RootView extends BorderPane implements View {
 	protected MenuItem helpAboutItem;
 	protected MenuItem helpHintItem;
 	protected Menu helpMenu;
+	protected MenuItem helpRulesItem;
+	protected MenuItem helpUsageItem;
 	protected InputHandlerSupport inputHandlerSupport;
 	protected MenuBar menuBar;
 	protected BorderPane messageBar;
@@ -57,7 +58,6 @@ public class RootView extends BorderPane implements View {
 	protected MenuItem newGameItem;
 	protected Label reshufflesLabel;
 	protected TableView tableView;
-	protected Stage appStage;
 
 	public RootView(Stage parentStage, GameState model) {
 		super();
@@ -79,37 +79,6 @@ public class RootView extends BorderPane implements View {
 		return inputHandlerSupport.getInputHandler();
 	}
 
-	public void showHelpAboutDialog() {
-		Dialog<ButtonType> myDialog = new Dialog<ButtonType>();
-		DialogPane myDialogPane = myDialog.getDialogPane();
-		ButtonType okButtonType = new ButtonType("OK", ButtonData.OK_DONE);
-		WebView myview = new WebView();
-
-		myDialog.initOwner(appStage);
-		myDialog.setTitle("About LaBelleLucie");
-		myDialogPane.getButtonTypes().add(okButtonType);
-		myDialogPane.lookupButton(okButtonType).setDisable(false);
-
-		// setting min height
-		myview.minHeight(400);
-		myview.maxHeight(400);
-		// setting preferred width
-		myview.prefWidth(400);
-		// setting preferred height
-		myview.prefHeight(400);
-		// setting min width
-		myview.minWidth(400);
-		myview.maxWidth(400);
-		final WebEngine mywebEngine = myview.getEngine();
-		mywebEngine.load(getResource("helpAbout.html"));
-
-		myDialogPane.setContent(myview);
-		
-		myDialogPane.setMaxSize(400,  700);
-		
-		myDialog.showAndWait();
-	}
-
 	/**
 	 * @param inputHandler
 	 * @see net.sf.cotelab.lbl.view.impl.support.InputHandlerSupport#setInputHandler(net.sf.cotelab.lbl.controller.facade.InputHandler)
@@ -117,6 +86,37 @@ public class RootView extends BorderPane implements View {
 	public void setInputHandler(InputHandler inputHandler) {
 		inputHandlerSupport.setInputHandler(inputHandler);
 		tableView.setInputHandler(inputHandler);
+	}
+
+	public void showHelpAboutDialog() {
+		showHelpDialog("About LaBelleLucie", getResource("helpAbout.html"));
+	}
+
+	public void showHelpDialog(String title, String contentURL) {
+		Dialog<ButtonType> myDialog = new Dialog<ButtonType>();
+		DialogPane myDialogPane = myDialog.getDialogPane();
+		ButtonType okButtonType = new ButtonType("OK", ButtonData.OK_DONE);
+		WebView myview = new WebView();
+		final WebEngine mywebEngine = myview.getEngine();
+
+		myDialog.initOwner(appStage);
+		myDialog.setTitle(title);
+		myDialogPane.getButtonTypes().add(okButtonType);
+		myDialogPane.lookupButton(okButtonType).setDisable(false);
+
+		mywebEngine.load(contentURL);
+
+		myDialogPane.setContent(myview);
+		
+		myDialog.showAndWait();
+	}
+	
+	public void showHelpRulesDialog() {
+		showHelpDialog("Rules", "https://en.wikipedia.org/wiki/La_Belle_Lucie");
+	}
+
+	public void showHelpUsageDialog() {
+		showHelpDialog("Usage", "https://github.com/alantcote/LaBelleLucie/wiki/UsingLaBelleLucie");
 	}
 
 	protected double calcFanOffset() {
@@ -225,9 +225,37 @@ public class RootView extends BorderPane implements View {
 		helpMenu = new Menu("Help");
 
 		establishHelpHintItem();
+		establishHelpRulesItem();
+		establishHelpUsageItem();
 		establishHelpAboutItem();
 
 		menuBar.getMenus().add(helpMenu);
+	}
+
+	protected void establishHelpRulesItem() {
+		helpRulesItem = new MenuItem("Rules");
+
+		helpRulesItem.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				showHelpRulesDialog();
+			}
+		});
+
+		helpMenu.getItems().add(helpRulesItem);
+	}
+
+	protected void establishHelpUsageItem() {
+		helpUsageItem = new MenuItem("Usage");
+
+		helpUsageItem.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				showHelpUsageDialog();
+			}
+		});
+
+		helpMenu.getItems().add(helpUsageItem);
 	}
 
 	protected void establishMenuBar() {
@@ -313,12 +341,6 @@ public class RootView extends BorderPane implements View {
 		setCenter(tableView);
 	}
 
-	protected void inizChildren() {
-		establishMenuBar();
-		establishTableView();
-		establishMessageBar();
-	}
-
 	/**
 	 * Get the URL of a given resource.
 	 * 
@@ -331,6 +353,12 @@ public class RootView extends BorderPane implements View {
 		URL url = getClass().getResource(resourceName);
 
 		return url.toExternalForm();
+	}
+
+	protected void inizChildren() {
+		establishMenuBar();
+		establishTableView();
+		establishMessageBar();
 	}
 
 	protected void inizVariables() {
