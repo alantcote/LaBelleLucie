@@ -91,17 +91,22 @@ public class RootView extends BorderPane implements View {
 		myDialogPane.lookupButton(okButtonType).setDisable(false);
 
 		// setting min height
-		myview.minHeight(1050);
+		myview.minHeight(400);
+		myview.maxHeight(400);
 		// setting preferred width
-		myview.prefWidth(1950);
-		// setting pref heigth
-		myview.prefHeight(1070);
+		myview.prefWidth(400);
+		// setting preferred height
+		myview.prefHeight(400);
 		// setting min width
-		myview.minWidth(1050);
+		myview.minWidth(400);
+		myview.maxWidth(400);
 		final WebEngine mywebEngine = myview.getEngine();
 		mywebEngine.load(getResource("helpAbout.html"));
 
 		myDialogPane.setContent(myview);
+		
+		myDialogPane.setMaxSize(400,  700);
+		
 		myDialog.showAndWait();
 	}
 

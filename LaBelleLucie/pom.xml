@@ -7,6 +7,7 @@
 	<artifactId>LaBelleLucie</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
+	<description>The LaBelleLucie solitaire game.</description>
 
 	<name>${project.groupId}:${project.artifactId}</name>
 	<url>https://github.com/alantcote</url>
@@ -39,8 +40,6 @@
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
-
-	<description>The LaBelleLucie solitaire game.</description>
 
 	<organization>
 		<name>Cote' Lab</name>
@@ -85,6 +84,12 @@
 	</pluginRepositories>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -151,12 +156,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
-        <resources>
-            <resource>
-                <directory>src/net/sf/cotelab/lbl/view/impl</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
 	</build>
 
 	<profiles>
