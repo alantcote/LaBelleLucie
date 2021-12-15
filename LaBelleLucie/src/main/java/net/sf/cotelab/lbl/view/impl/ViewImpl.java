@@ -18,7 +18,7 @@ public class ViewImpl implements View {
 	public ViewImpl(Stage stage, GameState model, InputHandler inputHandler) {
 		super();
 		
-		sceneView = new SceneView(model);
+		sceneView = new SceneView(stage, model);
 		stage.setScene(sceneView);
 		
 		window = stage;

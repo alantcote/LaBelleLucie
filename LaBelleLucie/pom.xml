@@ -29,6 +29,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>dd-MM-yyyy HH:mm</maven.build.timestamp.format>
 	</properties>
 
 	<distributionManagement>
@@ -49,7 +51,7 @@
 
 	<scm>
 		<url>https://github.com/alantcote/${project.artifactId}</url>
-		<connection>scm:git:https://github.com/alantcote/${project.artifactId}</connection>
+		<connection>scm:git:https://github.com/alantcote/${project.artifactId}.git</connection>
 	</scm>
 
 	<issueManagement>
@@ -149,6 +151,12 @@
 				</configuration>
 			</plugin>
 		</plugins>
+        <resources>
+            <resource>
+                <directory>src/filtered</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
 	</build>
 
 	<profiles>
@@ -186,6 +194,11 @@
 			<groupId>net.sf.cotelab</groupId>
 			<artifactId>CLPlayingCards</artifactId>
 			<version>0.1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-web</artifactId>
+			<version>17.0.1</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy -->
 		<dependency>

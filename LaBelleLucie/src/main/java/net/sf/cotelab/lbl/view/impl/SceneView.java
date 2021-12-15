@@ -2,6 +2,7 @@ package net.sf.cotelab.lbl.view.impl;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.model.facade.GameState;
 import net.sf.cotelab.lbl.view.facade.View;
@@ -9,8 +10,8 @@ import net.sf.cotelab.lbl.view.facade.View;
 public class SceneView extends Scene implements View {
 	protected RootView rootView;
 
-	public SceneView(GameState model) {
-		super(new RootView(model));
+	public SceneView(Stage parentStage, GameState model) {
+		super(new RootView(parentStage, model));
 		
 		Parent root = getRoot();
 		

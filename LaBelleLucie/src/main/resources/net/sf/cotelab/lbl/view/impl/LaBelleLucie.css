@@ -13,7 +13,7 @@
 }
 
 #stock-view {
-	-fx-background-image: url("stockSilhouette.gif");
+	-fx-background-image: url("cardSilhouette.gif");
 	-fx-background-position: 5 5; 
 	-fx-background-repeat: no-repeat;
 }
