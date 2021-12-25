@@ -42,6 +42,8 @@ import net.sf.cotelab.lbl.view.facade.View;
 import net.sf.cotelab.lbl.view.impl.ViewImpl;
 
 public class LaBelleLucie extends Application {
+	protected AppPrefs appPrefs = null;
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -53,8 +55,8 @@ public class LaBelleLucie extends Application {
 		final InputHandler inputHandler = controller.getInputHandler();
 		@SuppressWarnings("unused")
 		View view = newView(primaryStage, model, inputHandler);
-		
-//		view.setInputHandler(inputHandler);
+
+		appPrefs = new AppPrefs(primaryStage);
 		
 		primaryStage.setOnShown(newWindowEventHandler(inputHandler));
 		

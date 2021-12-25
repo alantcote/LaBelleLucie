@@ -21,6 +21,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import net.sf.cotelab.lbl.NodeAdapter;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.controller.facade.Move;
 import net.sf.cotelab.lbl.controller.facade.MoveType;
@@ -69,6 +70,19 @@ public class RootView extends BorderPane implements View {
 		inizVariables();
 
 		inizChildren();
+		
+//		traverseSceneGraph(this);
+	}
+	
+	protected void traverseSceneGraph(Object root) {
+		NodeAdapter nodeAdapter = new NodeAdapter(root);
+		
+		for (NodeAdapter na : nodeAdapter.getChildrenUnmodifiable()) {
+			Object fxObject = na.fxObject;
+			Class<? extends Object> fxClass = fxObject.getClass();
+			
+			System.out.println("RootView.traverseSceneGraph: " + fxClass);
+		}
 	}
 
 	/**

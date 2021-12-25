@@ -3,6 +3,7 @@ package net.sf.cotelab.lbl.view.impl;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import net.sf.cotelab.lbl.NodeAdapter;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.model.facade.GameState;
 import net.sf.cotelab.lbl.view.facade.View;
