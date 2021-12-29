@@ -57,6 +57,14 @@ public class StockView extends AnchorPane implements View {
 				updateChildren();
 			}
 		});
+		model.getRedealsRemaining().addListener(new ChangeListener<Number>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				updateChildren();
+				
+			}
+		});
 		
 		updateChildren();
 		
@@ -97,16 +105,26 @@ public class StockView extends AnchorPane implements View {
 	}
 
 	protected void updateChildren() {
-		ObjectProperty<Deck> stock = model.getStock();
-		Deck stockDeck = stock.get();
+//		ObjectProperty<Deck> stock = model.getStock();
+//		Deck stockDeck = stock.get();
 		
-		getChildren().remove(stockView);
+//		getChildren().remove(stockView);
 		
-		if ((stockDeck != null) && (!stockDeck.isEmpty())) {
+		if (model.getRedealsRemaining().get() > 0) {
+			getChildren().remove(stockView);
 			getChildren().add(stockView);
 			
 			anchorLeft(stockView, 0);
 			anchorTop(stockView, 0);
+			
+		} else {
+			getChildren().remove(stockView);
 		}
+//		if ((stockDeck != null) && (!stockDeck.isEmpty())) {
+//			getChildren().add(stockView);
+//			
+//			anchorLeft(stockView, 0);
+//			anchorTop(stockView, 0);
+//		}
 	}
 }
