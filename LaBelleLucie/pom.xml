@@ -152,7 +152,7 @@
 						</goals>
 						<configuration>
 							<descriptors>
-								<descriptor>src/main/assembly/zip.xml</descriptor>
+								<descriptor>zip.xml</descriptor>
 							</descriptors>
 						</configuration>
 					</execution>
@@ -309,49 +309,42 @@
 			<artifactId>javafx-base</artifactId>
 			<version>${openjfx.version}</version>
 			<classifier>${javafx.classifier}</classifier>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-controls</artifactId>
 			<version>${openjfx.version}</version>
 			<classifier>${javafx.classifier}</classifier>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-fxml</artifactId>
 			<version>${openjfx.version}</version>
 			<classifier>${javafx.classifier}</classifier>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-graphics</artifactId>
 			<version>${openjfx.version}</version>
 			<classifier>${javafx.classifier}</classifier>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-media</artifactId>
 			<version>${openjfx.version}</version>
 			<classifier>${javafx.classifier}</classifier>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-swing</artifactId>
 			<version>${openjfx.version}</version>
 			<classifier>${javafx.classifier}</classifier>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-web</artifactId>
 			<version>${openjfx.version}</version>
 			<classifier>${javafx.classifier}</classifier>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jmock</groupId>

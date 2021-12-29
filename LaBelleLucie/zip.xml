@@ -10,7 +10,7 @@
 	</formats>
 	<fileSets>
 		<fileSet>
-			<directory>${project.basedir}/src/main/zipbasis</directory>
+			<directory>${project.basedir}/zipbasis</directory>
 			<outputDirectory>/</outputDirectory>
 		</fileSet>
 	</fileSets>
