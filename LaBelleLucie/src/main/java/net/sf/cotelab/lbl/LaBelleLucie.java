@@ -74,7 +74,7 @@ public class LaBelleLucie extends Application {
 
 	protected View newView(final Stage primaryStage,
 			GameState model, InputHandler inputHandler) {
-		return new ViewImpl(primaryStage, model, inputHandler);
+		return new ViewImpl(primaryStage, model, inputHandler, getHostServices());
 	}
 	
 	protected EventHandler<WindowEvent> newWindowEventHandler(final InputHandler ih) {

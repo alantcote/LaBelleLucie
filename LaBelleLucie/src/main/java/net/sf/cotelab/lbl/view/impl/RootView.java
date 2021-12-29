@@ -3,6 +3,7 @@ package net.sf.cotelab.lbl.view.impl;
 import java.net.URL;
 import java.util.List;
 
+import javafx.application.HostServices;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -52,6 +53,7 @@ public class RootView extends BorderPane implements View {
 	protected Menu helpMenu;
 	protected MenuItem helpRulesItem;
 	protected MenuItem helpUsageItem;
+	protected HostServices hostServices;
 	protected InputHandlerSupport inputHandlerSupport;
 	protected MenuBar menuBar;
 	protected BorderPane messageBar;
@@ -60,11 +62,13 @@ public class RootView extends BorderPane implements View {
 	protected Label reshufflesLabel;
 	protected TableView tableView;
 
-	public RootView(Stage parentStage, GameState model) {
+	public RootView(Stage parentStage, GameState model, HostServices theHostServices) {
 		super();
 
 		this.appStage = parentStage;
 		this.model = model;
+		this.hostServices = theHostServices;
+		
 		this.inputHandlerSupport = new InputHandlerSupport(this);
 
 		inizVariables();
@@ -126,11 +130,13 @@ public class RootView extends BorderPane implements View {
 	}
 	
 	public void showHelpRulesDialog() {
-		showHelpDialog("Rules", "https://en.wikipedia.org/wiki/La_Belle_Lucie");
+//		showHelpDialog("Rules", "https://en.wikipedia.org/wiki/La_Belle_Lucie");
+		hostServices.showDocument("https://en.wikipedia.org/wiki/La_Belle_Lucie");
 	}
 
 	public void showHelpUsageDialog() {
-		showHelpDialog("Usage", "https://github.com/alantcote/LaBelleLucie/wiki/UsingLaBelleLucie");
+//		showHelpDialog("Usage", "https://github.com/alantcote/LaBelleLucie/wiki/UsingLaBelleLucie");
+		hostServices.showDocument("https://github.com/alantcote/LaBelleLucie/wiki/UsingLaBelleLucie");
 	}
 
 	protected double calcFanOffset() {

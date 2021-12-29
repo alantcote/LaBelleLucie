@@ -1,5 +1,6 @@
 package net.sf.cotelab.lbl.view.impl;
 
+import javafx.application.HostServices;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
@@ -15,10 +16,10 @@ public class ViewImpl implements View {
 	protected SceneView sceneView;
 	protected Window window;
 
-	public ViewImpl(Stage stage, GameState model, InputHandler inputHandler) {
+	public ViewImpl(Stage stage, GameState model, InputHandler inputHandler, HostServices theHostServices) {
 		super();
 		
-		sceneView = new SceneView(stage, model);
+		sceneView = new SceneView(stage, model, theHostServices);
 		stage.setScene(sceneView);
 		
 		window = stage;
