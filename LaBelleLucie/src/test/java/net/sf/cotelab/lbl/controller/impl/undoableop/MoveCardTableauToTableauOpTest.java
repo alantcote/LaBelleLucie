@@ -12,8 +12,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
 import javafx.beans.property.ObjectProperty;
-import net.sf.cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
 import net.sf.cotelab.lbl.controller.impl.ControllerImpl;
 import net.sf.cotelab.lbl.model.facade.GameState;
 import net.sf.cotelab.lbl.model.facade.GameSummary;

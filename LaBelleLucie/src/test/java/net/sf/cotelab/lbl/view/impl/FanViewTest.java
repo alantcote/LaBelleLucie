@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
 import javafx.collections.ObservableList;
 import javafx.geometry.Dimension2D;
 import javafx.geometry.Insets;
@@ -21,7 +22,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import net.sf.cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
 import net.sf.cotelab.lbl.controller.facade.InputHandler;
 import net.sf.cotelab.lbl.model.facade.Fan;
 import net.sf.cotelab.lbl.view.impl.support.FanBinding;

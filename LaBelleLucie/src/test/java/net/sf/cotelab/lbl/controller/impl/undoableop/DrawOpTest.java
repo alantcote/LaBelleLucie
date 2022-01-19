@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import net.sf.cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
+import cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
 import net.sf.cotelab.lbl.controller.impl.ControllerImpl;
 
 @RunWith(JavaFxJUnit4ClassRunner.class)

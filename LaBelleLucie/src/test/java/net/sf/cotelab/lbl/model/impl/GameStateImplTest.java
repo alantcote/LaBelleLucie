@@ -14,10 +14,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import net.sf.cotelab.jfxrunner.JavaFxJUnit4ClassRunner;
 import net.sf.cotelab.lbl.model.facade.Fan;
 import net.sf.cotelab.lbl.model.facade.GameSummary;
 import net.sf.cotelab.lbl.undo.UndoManager;

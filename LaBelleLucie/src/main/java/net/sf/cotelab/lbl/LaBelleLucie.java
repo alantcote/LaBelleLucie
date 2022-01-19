@@ -56,7 +56,7 @@ public class LaBelleLucie extends Application {
 		@SuppressWarnings("unused")
 		View view = newView(primaryStage, model, inputHandler);
 
-		appPrefs = new AppPrefs(primaryStage);
+		appPrefs = new AppPrefs(getClass(), primaryStage);
 		
 		primaryStage.setOnShown(newWindowEventHandler(inputHandler));
 		

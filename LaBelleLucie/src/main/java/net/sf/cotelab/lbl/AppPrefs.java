@@ -18,6 +18,7 @@ public class AppPrefs {
 	public static final String KEY_WINDOW_X = "WINDOW_X";
 	public static final String KEY_WINDOW_Y = "WINDOW_Y";
 
+	protected Class<?> clazz = null;
 	protected Preferences prefs = null;
 	protected Stage stage = null;
 
@@ -26,10 +27,11 @@ public class AppPrefs {
 	 * 
 	 * @param aStage The app's @link(Stage).
 	 */
-	public AppPrefs(Stage aStage) {
+	public AppPrefs(Class<?> aClazz, Stage aStage) {
+		clazz = aClazz;
 		stage = aStage;
 
-		prefs = Preferences.userNodeForPackage(getClass());
+		establishPreferencesNode();
 
 		try {
 			prefs.sync();
@@ -40,6 +42,21 @@ public class AppPrefs {
 		}
 
 		inizGeometryPrefs();
+	}
+
+	/**
+	 * Set up the Preferences node, prefs.
+	 */
+	protected void establishPreferencesNode() {
+//		System.out.println("AppPrefs.establishPreferencesNode(): clazz.getPackageName() = \"" + clazz.getPackageName() + "\"");
+//		System.out.println("AppPrefs.establishPreferencesNode(): clazz.getSimpleName() = \"" + clazz.getSimpleName() + "\"");
+
+		String path = "/" + clazz.getPackageName().replace('.', '/') + "/" + clazz.getSimpleName();
+
+//		System.out.println("AppPrefs.establishPreferencesNode(): path = \"" + path + "\"");
+
+//		prefs = Preferences.userNodeForPackage(clazz);
+		prefs = Preferences.userRoot().node(path);
 	}
 
 	/**
