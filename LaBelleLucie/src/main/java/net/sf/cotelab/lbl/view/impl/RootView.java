@@ -121,6 +121,8 @@ public class RootView extends BorderPane implements View {
 		myDialog.setTitle(title);
 		myDialogPane.getButtonTypes().add(okButtonType);
 		myDialogPane.lookupButton(okButtonType).setDisable(false);
+		myDialogPane.setPrefHeight(250);
+		myDialogPane.setPrefWidth(500);
 
 		mywebEngine.load(contentURL);
 
