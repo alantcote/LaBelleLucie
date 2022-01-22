@@ -1,5 +1,9 @@
 package net.sf.cotelab.lbl;
 
+import java.util.prefs.BackingStoreException;
+
+import cotelab.util.javafx.windowprefs.WindowPrefs;
+
 /*
  * Wish list
  * 
@@ -42,7 +46,9 @@ import net.sf.cotelab.lbl.view.facade.View;
 import net.sf.cotelab.lbl.view.impl.ViewImpl;
 
 public class LaBelleLucie extends Application {
-	protected AppPrefs appPrefs = null;
+//	protected AppPrefs appPrefs = null;
+	protected Stage stage = null;
+	protected WindowPrefs windowPrefs = null;
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -50,13 +56,14 @@ public class LaBelleLucie extends Application {
 	
 	@Override
 	public void start(final Stage primaryStage) {
+		stage = primaryStage;
 		GameState model = newGameState();
 		Controller controller = newController(model);
 		final InputHandler inputHandler = controller.getInputHandler();
 		@SuppressWarnings("unused")
 		View view = newView(primaryStage, model, inputHandler);
 
-		appPrefs = new AppPrefs(getClass(), primaryStage);
+//		appPrefs = new AppPrefs(getClass(), primaryStage);
 		
 		primaryStage.setOnShown(newWindowEventHandler(inputHandler));
 		
@@ -82,6 +89,14 @@ public class LaBelleLucie extends Application {
 			@Override
 			public void handle(WindowEvent event) {
 				ih.onNewGameRequested();
+
+				try {
+					windowPrefs = new WindowPrefs(LaBelleLucie.class, stage);
+				} catch (BackingStoreException e) {
+					System.err.println("LaBelleLucie.newWindowEventHandler(): caught: " + e.getMessage());
+					e.printStackTrace();
+					System.err.println("LaBelleLucie.newWindowEventHandler(): continuing . . .");
+				}
 			}
 		};
 	}

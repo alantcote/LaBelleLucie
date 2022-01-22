@@ -4,10 +4,11 @@
 module labellelucie {
 	exports net.sf.cotelab.lbl;
 	
-	requires transitive javafx.graphics;
+	requires transitive clutilities;
+	requires java.logging;
 	requires java.prefs;
 	requires javafx.controls;
-	requires playingcards;
-	requires java.logging;
+	requires transitive javafx.graphics;
 	requires javafx.web;
+	requires playingcards;
 }
