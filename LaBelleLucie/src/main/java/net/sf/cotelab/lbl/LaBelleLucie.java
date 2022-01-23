@@ -16,35 +16,9 @@ import net.sf.cotelab.lbl.view.facade.View;
 import net.sf.cotelab.lbl.view.impl.ViewImpl;
 
 /**
- * Wish list
- * 
- * . ubiquitous test cases
- * . [done] undo history persists through reshuffle, but reshuffle not undoable
- * . should be some notification when user hits meaningless keystroke
- * . one source file per Node type
- * . (refactor) extract anonymous classes into independent files with named
- *   classes
- * . (refactor) extract inner classes into independent files
- * . (refactor) extract phrases of the form "new Mumble()" into methods of the
- *   form "Mumble newMumble() { return new Mumble(); }
- * . [done] (refactor) organize classes into packages by category
- * . [done] undo/redo command hot-keys
- * . restart game command
- * . animation of card moves
- * . save/resume games
- * . [done] enhance end-game dialog with exit/restart game/return and retry/new
- *   game buttons
- * . potential preferences
- *   . card size
- *   . trefoil rule (aces begin game on foundations)
- *   . tableau stacking by alternating colors
- *   . allow draw only when both reshuffles have been used
- *   . deck design
- *   . table background color
- *   . hinting (integrated with loss detection?)
+ * The start class of LaBelleLucie.
  */
 public class LaBelleLucie extends Application {
-//	protected AppPrefs appPrefs = null;
 	protected Stage stage = null;
 	protected WindowPrefs windowPrefs = null;
 	
@@ -60,8 +34,6 @@ public class LaBelleLucie extends Application {
 		final InputHandler inputHandler = controller.getInputHandler();
 		@SuppressWarnings("unused")
 		View view = newView(primaryStage, model, inputHandler);
-
-//		appPrefs = new AppPrefs(getClass(), primaryStage);
 		
 		primaryStage.setOnShown(newWindowEventHandler(inputHandler));
 		
