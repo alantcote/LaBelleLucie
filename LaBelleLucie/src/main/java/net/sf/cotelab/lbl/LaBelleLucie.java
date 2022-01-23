@@ -2,9 +2,20 @@ package net.sf.cotelab.lbl;
 
 import java.util.prefs.BackingStoreException;
 
-import cotelab.util.javafx.windowprefs.WindowPrefs;
+import io.github.alantcote.clutilities.javafx.windowprefs.WindowPrefs;
+import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import net.sf.cotelab.lbl.controller.facade.Controller;
+import net.sf.cotelab.lbl.controller.facade.InputHandler;
+import net.sf.cotelab.lbl.controller.impl.ControllerImpl;
+import net.sf.cotelab.lbl.model.facade.GameState;
+import net.sf.cotelab.lbl.model.impl.GameStateImpl;
+import net.sf.cotelab.lbl.view.facade.View;
+import net.sf.cotelab.lbl.view.impl.ViewImpl;
 
-/*
+/**
  * Wish list
  * 
  * . ubiquitous test cases
@@ -32,19 +43,6 @@ import cotelab.util.javafx.windowprefs.WindowPrefs;
  *   . table background color
  *   . hinting (integrated with loss detection?)
  */
-
-import javafx.application.Application;
-import javafx.event.EventHandler;
-import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import net.sf.cotelab.lbl.controller.facade.Controller;
-import net.sf.cotelab.lbl.controller.facade.InputHandler;
-import net.sf.cotelab.lbl.controller.impl.ControllerImpl;
-import net.sf.cotelab.lbl.model.facade.GameState;
-import net.sf.cotelab.lbl.model.impl.GameStateImpl;
-import net.sf.cotelab.lbl.view.facade.View;
-import net.sf.cotelab.lbl.view.impl.ViewImpl;
-
 public class LaBelleLucie extends Application {
 //	protected AppPrefs appPrefs = null;
 	protected Stage stage = null;
