@@ -2,7 +2,7 @@
  * @author alantcote
  */
 module labellelucie {
-	exports net.sf.cotelab.lbl;
+	exports io.github.alantcote.labellelucie;
 	
 	requires transitive clutilities;
 	requires java.logging;

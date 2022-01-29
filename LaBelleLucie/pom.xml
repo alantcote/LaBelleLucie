@@ -31,7 +31,7 @@
 		<timestamp>${maven.build.timestamp}</timestamp>
 		<maven.build.timestamp.format>dd-MM-yyyy HH:mm</maven.build.timestamp.format>
 		<java.version>17</java.version>
-		<javafx.main.class>net.sf.cotelab.lbl.LaBelleLucie</javafx.main.class>
+		<javafx.main.class>io.github.alantcote.labellelucie.LaBelleLucie</javafx.main.class>
 		<main.class>${javafx.main.class}</main.class>
 		<javafx.classifier>win</javafx.classifier>
 		<openjfx.version>18-ea+8</openjfx.version>
