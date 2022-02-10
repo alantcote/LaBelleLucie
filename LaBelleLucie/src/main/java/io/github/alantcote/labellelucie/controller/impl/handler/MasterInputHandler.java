@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import io.github.alantcote.labellelucie.controller.facade.DefaultInputHandler;
 import io.github.alantcote.labellelucie.controller.facade.Move;
 import io.github.alantcote.labellelucie.controller.impl.ControllerImpl;
-import net.sf.cotelab.playingcards.Card;
+import io.github.alantcote.playingcards.Card;
 
 public class MasterInputHandler extends DefaultInputHandler {
 	@SuppressWarnings("unused")
@@ -29,7 +29,7 @@ public class MasterInputHandler extends DefaultInputHandler {
 	}
 
 	/* (non-Javadoc)
-	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onMouseClicked(net.sf.cotelab.playingcards.Card)
+	 * @see io.github.alantcote.playingcards.lbl.controller.facade.DefaultInputHandler#onMouseClicked(io.github.alantcote.playingcards.Card)
 	 */
 	@Override
 	public void onCardMoveRequested(Card card) {
@@ -39,7 +39,7 @@ public class MasterInputHandler extends DefaultInputHandler {
 	}
 
 	/* (non-Javadoc)
-	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onDrawRequested(net.sf.cotelab.playingcards.Card)
+	 * @see io.github.alantcote.playingcards.lbl.controller.facade.DefaultInputHandler#onDrawRequested(io.github.alantcote.playingcards.Card)
 	 */
 	@Override
 	public void onDrawRequested(Card card) {
@@ -47,7 +47,7 @@ public class MasterInputHandler extends DefaultInputHandler {
 	}
 
 	/* (non-Javadoc)
-	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onExitRequest()
+	 * @see io.github.alantcote.playingcards.lbl.controller.facade.DefaultInputHandler#onExitRequest()
 	 */
 	@Override
 	public void onExitRequest() {
@@ -55,7 +55,7 @@ public class MasterInputHandler extends DefaultInputHandler {
 	}
 	
 	/* (non-Javadoc)
-	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onNewGameRequested()
+	 * @see io.github.alantcote.playingcards.lbl.controller.facade.DefaultInputHandler#onNewGameRequested()
 	 */
 	@Override
 	public void onNewGameRequested() {
@@ -63,7 +63,7 @@ public class MasterInputHandler extends DefaultInputHandler {
 	}
 
 	/* (non-Javadoc)
-	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onReshuffleRequest()
+	 * @see io.github.alantcote.playingcards.lbl.controller.facade.DefaultInputHandler#onReshuffleRequest()
 	 */
 	@Override
 	public void onReshuffleRequest() {

@@ -8,7 +8,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import net.sf.cotelab.playingcards.javafx.CardView;
+import io.github.alantcote.playingcards.javafx.CardView;
 
 /**
  * An adapter for converting input events into calls on <code>InputHandler</code>

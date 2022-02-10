@@ -1,6 +1,6 @@
 package io.github.alantcote.labellelucie.model.impl;
 
-import net.sf.cotelab.playingcards.decks.BridgeDeck;
+import io.github.alantcote.playingcards.decks.BridgeDeck;
 
 /**
  * A pack of cards suitable for playing La Belle Lucie.

@@ -19,9 +19,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import net.sf.cotelab.playingcards.Card;
-import net.sf.cotelab.playingcards.javafx.CardView;
-import net.sf.cotelab.playingcards.javafx.CardViewFactory;
+import io.github.alantcote.playingcards.Card;
+import io.github.alantcote.playingcards.javafx.CardView;
+import io.github.alantcote.playingcards.javafx.CardViewFactory;
 
 /**
  * A view of a fan.

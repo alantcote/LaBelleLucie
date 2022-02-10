@@ -30,7 +30,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import net.sf.cotelab.playingcards.javafx.CardViewFactory;
+import io.github.alantcote.playingcards.javafx.CardViewFactory;
 
 public class RootView extends BorderPane implements View {
 	public static final double CARD_ZOOM = 1.25;

@@ -17,8 +17,8 @@ import io.github.alantcote.labellelucie.model.facade.GameSummary;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
-import net.sf.cotelab.playingcards.Card;
-import net.sf.cotelab.playingcards.Deck;
+import io.github.alantcote.playingcards.Card;
+import io.github.alantcote.playingcards.Deck;
 
 /**
  * An implementation of a <code>Controller</code>.
@@ -68,7 +68,7 @@ public class ControllerImpl implements Controller {
 	}
 
 	/* (non-Javadoc)
-	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.IController#getInputHandler()
+	 * @see io.github.alantcote.playingcards.lbl.controller.facade.IController#getInputHandler()
 	 */
 	@Override
 	public InputHandler getInputHandler() {
@@ -76,7 +76,7 @@ public class ControllerImpl implements Controller {
 	}
 
 	/* (non-Javadoc)
-	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.IController#getModel()
+	 * @see io.github.alantcote.playingcards.lbl.controller.facade.IController#getModel()
 	 */
 	@Override
 	public GameState getModel() {
@@ -131,7 +131,7 @@ public class ControllerImpl implements Controller {
 	}
 
 	/* (non-Javadoc)
-	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onMouseClicked(net.sf.cotelab.playingcards.Card)
+	 * @see io.github.alantcote.playingcards.lbl.controller.facade.DefaultInputHandler#onMouseClicked(io.github.alantcote.playingcards.Card)
 	 */
 	public void onCardMoveRequested(Card card) {
 //		log.info("card = " + card.getSuit() + " " + card.getRank());
@@ -169,7 +169,7 @@ public class ControllerImpl implements Controller {
 	}
 
 	/* (non-Javadoc)
-	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onDrawRequested(net.sf.cotelab.playingcards.Card)
+	 * @see io.github.alantcote.playingcards.lbl.controller.facade.DefaultInputHandler#onDrawRequested(io.github.alantcote.playingcards.Card)
 	 */
 	public void onDrawRequested(Card card) {
 		IntegerProperty drawsRemaining = model.getDrawsRemaining();
@@ -196,14 +196,14 @@ public class ControllerImpl implements Controller {
 	}
 	
 	/* (non-Javadoc)
-	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onExitRequest()
+	 * @see io.github.alantcote.playingcards.lbl.controller.facade.DefaultInputHandler#onExitRequest()
 	 */
 	public void onExitRequest() {
 		Platform.exit();
 	}
 
 	/* (non-Javadoc)
-	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onNewGameRequested()
+	 * @see io.github.alantcote.playingcards.lbl.controller.facade.DefaultInputHandler#onNewGameRequested()
 	 */
 	public void onNewGameRequested() {
 		model.reset();
@@ -212,7 +212,7 @@ public class ControllerImpl implements Controller {
 	}
 
 	/* (non-Javadoc)
-	 * @see net.sf.cotelab.playingcards.lbl.controller.facade.DefaultInputHandler#onReshuffleRequest()
+	 * @see io.github.alantcote.playingcards.lbl.controller.facade.DefaultInputHandler#onReshuffleRequest()
 	 */
 	public void onReshuffleRequest() {
 		IntegerProperty redealsRemaining = model.getRedealsRemaining();

@@ -4,7 +4,7 @@
 package io.github.alantcote.labellelucie.model.facade;
 
 import javafx.collections.ObservableList;
-import net.sf.cotelab.playingcards.Card;
+import io.github.alantcote.playingcards.Card;
 
 /**
  */

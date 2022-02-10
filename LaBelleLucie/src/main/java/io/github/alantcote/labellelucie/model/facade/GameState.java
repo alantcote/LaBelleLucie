@@ -3,7 +3,7 @@ package io.github.alantcote.labellelucie.model.facade;
 import io.github.alantcote.labellelucie.undo.UndoManager;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
-import net.sf.cotelab.playingcards.Deck;
+import io.github.alantcote.playingcards.Deck;
 
 public interface GameState {
 	public static final int FOUNDATION_FAN_COUNT = 4;

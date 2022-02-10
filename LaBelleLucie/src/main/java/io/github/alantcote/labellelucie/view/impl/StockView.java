@@ -4,7 +4,6 @@ import io.github.alantcote.labellelucie.controller.facade.InputHandler;
 import io.github.alantcote.labellelucie.model.facade.GameState;
 import io.github.alantcote.labellelucie.view.facade.View;
 import io.github.alantcote.labellelucie.view.impl.support.InputHandlerSupport;
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -14,12 +13,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import net.sf.cotelab.playingcards.Card;
-import net.sf.cotelab.playingcards.Deck;
-import net.sf.cotelab.playingcards.Rank;
-import net.sf.cotelab.playingcards.Suit;
-import net.sf.cotelab.playingcards.javafx.CardView;
-import net.sf.cotelab.playingcards.javafx.CardViewFactory;
+import io.github.alantcote.playingcards.Card;
+import io.github.alantcote.playingcards.Deck;
+import io.github.alantcote.playingcards.Rank;
+import io.github.alantcote.playingcards.Suit;
+import io.github.alantcote.playingcards.javafx.CardView;
+import io.github.alantcote.playingcards.javafx.CardViewFactory;
 
 public class StockView extends AnchorPane implements View {
 	public static final double MARGIN = 5;

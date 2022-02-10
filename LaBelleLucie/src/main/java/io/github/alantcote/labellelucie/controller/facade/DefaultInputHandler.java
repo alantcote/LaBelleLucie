@@ -1,11 +1,8 @@
-/**
- * 
- */
 package io.github.alantcote.labellelucie.controller.facade;
 
 import java.util.List;
 
-import net.sf.cotelab.playingcards.Card;
+import io.github.alantcote.playingcards.Card;
 
 /**
  * This default <code>InputHandler</code> quietly does nothing.
@@ -13,7 +10,6 @@ import net.sf.cotelab.playingcards.Card;
 public class DefaultInputHandler implements InputHandler {
 	@Override
 	public List<Move> listMoves() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

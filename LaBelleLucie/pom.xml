@@ -1,51 +1,54 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>net.sf.cotelab</groupId>
-	<artifactId>LaBelleLucie</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<groupId>io.github.alantcote</groupId>
+	<artifactId>labellelucie</artifactId>
+	<version>0.2.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<description>The LaBelleLucie solitaire game.</description>
 
 	<name>${project.groupId}:${project.artifactId}</name>
-	<url>https://github.com/alantcote</url>
+	<url>https://github.com/alantcote/LaBelleLucie</url>
 
 	<licenses>
 		<license>
-			<name>The Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<name>The MIT License</name>
+			<url>https://github.com/alantcote/LaBelleLucie/blob/master/LICENSE</url>
 		</license>
 	</licenses>
 
 	<developers>
 		<developer>
-			<name>Alan T. Cote'</name>
+			<name>Alan T. Coté</name>
 			<email>alantcote@gmail.com</email>
-			<organization>Cote' Lab</organization>
+			<organization>Coté Lab</organization>
 			<organizationUrl>https://github.com/alantcote</organizationUrl>
 		</developer>
 	</developers>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<openjfx.version>18-ea+10</openjfx.version>
+		<java.version>17</java.version>
 		<timestamp>${maven.build.timestamp}</timestamp>
 		<maven.build.timestamp.format>dd-MM-yyyy HH:mm</maven.build.timestamp.format>
-		<java.version>17</java.version>
 		<javafx.main.class>io.github.alantcote.labellelucie.LaBelleLucie</javafx.main.class>
 		<main.class>${javafx.main.class}</main.class>
-		<javafx.classifier>win</javafx.classifier>
-		<openjfx.version>18-ea+8</openjfx.version>
 	</properties>
 
 	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<url>https://s01.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://s01.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
 	</distributionManagement>
 
 	<organization>
-		<name>Cote' Lab</name>
+		<name>Coté Lab</name>
 		<url>https://github.com/alantcote</url>
 	</organization>
 
@@ -58,7 +61,7 @@
 
 	<issueManagement>
 		<system>GitHub Issues</system>
-		<url>https://github.com/alantcote/issues</url>
+		<url>https://github.com/alantcote/CLPlayingCards/issues</url>
 	</issueManagement>
 
 	<repositories>
@@ -156,6 +159,16 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<id>tree</id>
+						<phase>package</phase>
+						<goals>
+							<goal>analyze</goal>
+							<goal>tree</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 			<plugin>
@@ -192,6 +205,11 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>3.3.1</version>
+				<configuration>
+					<links>
+						<link>https://openjfx.io/javadoc/17/</link>
+					</links>
+				</configuration>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
@@ -200,6 +218,18 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.2.0</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.10.0</version>
 			</plugin>
 
 			<plugin>
@@ -217,15 +247,28 @@
 			</plugin>
 
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M5</version>
+			</plugin>
+
+			<plugin>
 				<groupId>org.sonatype.plugins</groupId>
 				<artifactId>nexus-staging-maven-plugin</artifactId>
 				<version>1.6.8</version>
 				<extensions>true</extensions>
 				<configuration>
 					<serverId>ossrh</serverId>
-					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
 					<autoReleaseAfterClose>true</autoReleaseAfterClose>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.thoughtworks.xstream</groupId>
+						<artifactId>xstream</artifactId>
+						<version>1.4.15</version> <!-- apparently this needs to be exactly this version -->
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
@@ -252,97 +295,90 @@
 				</plugins>
 			</build>
 		</profile>
+		<profile>
+			<id>javafx4linux</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<os>
+					<family>unix</family>
+				</os>
+			</activation>
+			<properties>
+				<javafx.classifier>linux</javafx.classifier>
+			</properties>
+		</profile>
+		<profile>
+			<id>javafx4mac</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<os>
+					<family>mac</family>
+				</os>
+			</activation>
+			<properties>
+				<javafx.classifier>mac</javafx.classifier>
+			</properties>
+		</profile>
+		<profile>
+			<id>javafx4win</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<os>
+					<family>windows</family>
+				</os>
+			</activation>
+			<properties>
+				<javafx.classifier>win</javafx.classifier>
+			</properties>
+		</profile>
 	</profiles>
 
 	<dependencies>
 		<dependency>
-			<groupId>net.bytebuddy</groupId>
-			<artifactId>byte-buddy</artifactId>
-			<version>1.12.6</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib-nodep</artifactId>
-			<version>3.3.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.cotelab</groupId>
-			<artifactId>CLJUnitForOpenJFX</artifactId>
-			<version>0.1.0-SNAPSHOT</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.cotelab</groupId>
-			<artifactId>CLPlayingCards</artifactId>
-			<version>0.1.0-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
 			<groupId>io.github.alantcote</groupId>
 			<artifactId>clutilities</artifactId>
-			<version>0.1.0-SNAPSHOT</version>
+			<version>0.2.0-SNAPSHOT</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-base</artifactId>
 			<version>${openjfx.version}</version>
 			<classifier>${javafx.classifier}</classifier>
 		</dependency>
+
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-controls</artifactId>
 			<version>${openjfx.version}</version>
 			<classifier>${javafx.classifier}</classifier>
 		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-fxml</artifactId>
-			<version>${openjfx.version}</version>
-			<classifier>${javafx.classifier}</classifier>
-		</dependency>
+
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-graphics</artifactId>
 			<version>${openjfx.version}</version>
 			<classifier>${javafx.classifier}</classifier>
 		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-media</artifactId>
-			<version>${openjfx.version}</version>
-			<classifier>${javafx.classifier}</classifier>
-		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-swing</artifactId>
-			<version>${openjfx.version}</version>
-			<classifier>${javafx.classifier}</classifier>
-		</dependency>
+
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-web</artifactId>
 			<version>${openjfx.version}</version>
 			<classifier>${javafx.classifier}</classifier>
 		</dependency>
-		<dependency>
-			<groupId>org.jmock</groupId>
-			<artifactId>jmock-imposters</artifactId>
-			<version>2.12.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jmock</groupId>
-			<artifactId>jmock-legacy</artifactId>
-			<version>2.12.0</version>
-			<scope>provided</scope>
-		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.13.2</version>
-			<scope>provided</scope>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.github.alantcote</groupId>
+			<artifactId>playingcards</artifactId>
+			<version>0.1.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>

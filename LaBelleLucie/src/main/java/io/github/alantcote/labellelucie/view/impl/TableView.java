@@ -14,9 +14,9 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.GridPane;
-import net.sf.cotelab.playingcards.Card;
-import net.sf.cotelab.playingcards.javafx.CardView;
-import net.sf.cotelab.playingcards.javafx.CardViewFactory;
+import io.github.alantcote.playingcards.Card;
+import io.github.alantcote.playingcards.javafx.CardView;
+import io.github.alantcote.playingcards.javafx.CardViewFactory;
 
 public class TableView extends GridPane implements View {
 	public static final int FOUNDATION_COLUMN = 5;

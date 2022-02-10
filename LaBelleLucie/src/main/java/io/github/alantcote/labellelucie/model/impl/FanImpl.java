@@ -13,7 +13,7 @@ import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import net.sf.cotelab.playingcards.Card;
+import io.github.alantcote.playingcards.Card;
 
 /**
  */

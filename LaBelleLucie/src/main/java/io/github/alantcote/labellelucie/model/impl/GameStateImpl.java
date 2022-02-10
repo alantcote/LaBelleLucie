@@ -8,8 +8,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import net.sf.cotelab.playingcards.Card;
-import net.sf.cotelab.playingcards.Deck;
+import io.github.alantcote.playingcards.Card;
+import io.github.alantcote.playingcards.Deck;
 
 public class GameStateImpl implements GameState {
 	protected IntegerProperty drawsRemaining;
@@ -53,7 +53,7 @@ public class GameStateImpl implements GameState {
 	}
 	
 	/* (non-Javadoc)
-	 * @see net.sf.cotelab.playingcards.lbl.model.GameState#getFoundation()
+	 * @see io.github.alantcote.playingcards.lbl.model.GameState#getFoundation()
 	 */
 	@Override
 	public Fan[] getFoundation() {
@@ -71,7 +71,7 @@ public class GameStateImpl implements GameState {
 	}
 
 	/* (non-Javadoc)
-	 * @see net.sf.cotelab.playingcards.lbl.model.GameState#getStock()
+	 * @see io.github.alantcote.playingcards.lbl.model.GameState#getStock()
 	 */
 	@Override
 	public ObjectProperty<Deck> getStock() {
@@ -79,7 +79,7 @@ public class GameStateImpl implements GameState {
 	}
 
 	/* (non-Javadoc)
-	 * @see net.sf.cotelab.playingcards.lbl.model.GameState#getTableau()
+	 * @see io.github.alantcote.playingcards.lbl.model.GameState#getTableau()
 	 */
 	@Override
 	public Fan[] getTableau() {
@@ -92,7 +92,7 @@ public class GameStateImpl implements GameState {
 	}
 	
 	/* (non-Javadoc)
-	 * @see net.sf.cotelab.playingcards.lbl.model.GameState#reset()
+	 * @see io.github.alantcote.playingcards.lbl.model.GameState#reset()
 	 */
 	@Override
 	public void reset() {

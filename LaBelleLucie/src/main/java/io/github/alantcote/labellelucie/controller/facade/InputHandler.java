@@ -2,7 +2,7 @@ package io.github.alantcote.labellelucie.controller.facade;
 
 import java.util.List;
 
-import net.sf.cotelab.playingcards.Card;
+import io.github.alantcote.playingcards.Card;
 
 public interface InputHandler {
 	/**

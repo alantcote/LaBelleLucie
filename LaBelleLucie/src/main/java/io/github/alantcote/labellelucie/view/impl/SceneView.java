@@ -1,6 +1,5 @@
 package io.github.alantcote.labellelucie.view.impl;
 
-import io.github.alantcote.labellelucie.NodeAdapter;
 import io.github.alantcote.labellelucie.controller.facade.InputHandler;
 import io.github.alantcote.labellelucie.model.facade.GameState;
 import io.github.alantcote.labellelucie.view.facade.View;

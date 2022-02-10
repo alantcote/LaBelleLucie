@@ -7,9 +7,9 @@ import io.github.alantcote.labellelucie.controller.facade.Move;
 import io.github.alantcote.labellelucie.controller.facade.MoveType;
 import io.github.alantcote.labellelucie.model.facade.Fan;
 import io.github.alantcote.labellelucie.model.facade.GameState;
-import net.sf.cotelab.playingcards.Card;
-import net.sf.cotelab.playingcards.Rank;
-import net.sf.cotelab.playingcards.Suit;
+import io.github.alantcote.playingcards.Card;
+import io.github.alantcote.playingcards.Rank;
+import io.github.alantcote.playingcards.Suit;
 
 /**
  * A move generator.
