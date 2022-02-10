@@ -5,6 +5,7 @@ import io.github.alantcote.labellelucie.undo.UndoableOp;
 
 /**
  * An <code>UndoableOp</code> that implements the draw.
+ * 
  * @author cote
  */
 public class DrawOp implements UndoableOp {
@@ -14,14 +15,14 @@ public class DrawOp implements UndoableOp {
 
 	/**
 	 * Construct a new object.
+	 * 
 	 * @param controller the controller.
-	 * @param fanIndex the index of the tableau fan from which to draw.
-	 * @param cardIndex the index of the card to draw.
+	 * @param fanIndex   the index of the tableau fan from which to draw.
+	 * @param cardIndex  the index of the card to draw.
 	 */
-	public DrawOp(
-			ControllerImpl controller, int fanIndex, int cardIndex) {
+	public DrawOp(ControllerImpl controller, int fanIndex, int cardIndex) {
 		super();
-		
+
 		this.controller = controller;
 		this.fanIndex = fanIndex;
 		this.cardIndex = cardIndex;

@@ -9,7 +9,7 @@ public class CloseRequestHandler implements EventHandler<WindowEvent> {
 
 	public CloseRequestHandler(InputHandler inputHandler) {
 		super();
-		
+
 		this.inputHandler = inputHandler;
 	}
 
@@ -17,7 +17,7 @@ public class CloseRequestHandler implements EventHandler<WindowEvent> {
 	public void handle(WindowEvent arg0) {
 		inputHandler.onExitRequest();
 	}
-	
+
 	public void setInputHandler(InputHandler inputHandler) {
 		this.inputHandler = inputHandler;
 	}

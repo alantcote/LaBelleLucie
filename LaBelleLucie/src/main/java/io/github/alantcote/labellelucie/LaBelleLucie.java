@@ -123,6 +123,7 @@ public class LaBelleLucie extends Application {
 
 	/**
 	 * Create a new {@link View} object.
+	 * 
 	 * @param primaryStage the application window.
 	 * @param model        the model.
 	 * @param inputHandler the input handler.

@@ -13,44 +13,41 @@ public class GameResultListener implements ChangeListener<GameSummary> {
 
 	public GameResultListener(Window window) {
 		super();
-		
+
 		this.window = window;
 	}
 
 	@Override
-	public void changed(ObservableValue<? extends GameSummary> src,
-			GameSummary oldValue, GameSummary newValue) {
+	public void changed(ObservableValue<? extends GameSummary> src, GameSummary oldValue, GameSummary newValue) {
 		MessageDialog dialog = newMessageDialog();
 		String tryAgain = "Return and try again";
 		String newGame = "Start new game";
 		String exitProgram = "Exit";
 		Object[] options;
 		Object chosen = newGame;
-		
+
 		switch (newValue) {
 		case LOST:
 			options = new Object[] { tryAgain, newGame, exitProgram };
-			
-			chosen = dialog.showInputDialog(window, "Game lost",
-					"There are no legal plays remaining.", options, tryAgain);
-			
+
+			chosen = dialog.showInputDialog(window, "Game lost", "There are no legal plays remaining.", options,
+					tryAgain);
+
 			break;
 		case WON:
 			options = new Object[] { newGame, exitProgram };
-			
-			chosen = dialog.showInputDialog(
-					window, "Game won",
-					"All cards have been moved to foundations.", options,
+
+			chosen = dialog.showInputDialog(window, "Game won", "All cards have been moved to foundations.", options,
 					newGame);
 			break;
 		default:
 			break;
 		}
-		
+
 		if (newGame.equals(chosen)) {
 			inputHandler.onNewGameRequested();
 		}
-		
+
 		if (exitProgram.equals(chosen)) {
 			inputHandler.onExitRequest();
 		}

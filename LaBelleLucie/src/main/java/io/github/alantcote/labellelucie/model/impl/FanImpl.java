@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.ListIterator;
 
 import io.github.alantcote.labellelucie.model.facade.Fan;
+import io.github.alantcote.playingcards.Card;
 import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import io.github.alantcote.playingcards.Card;
 
 /**
  */
@@ -125,15 +125,15 @@ public class FanImpl implements Fan {
 	public Card get(int index) {
 		return cards.get(index);
 	}
-	
+
 	public Card getTopCard() {
 		Card result = null;
 		int fanSize = size();
-		
+
 		if (fanSize > 0) {
 			result = get(fanSize - 1);
 		}
-		
+
 		return result;
 	}
 

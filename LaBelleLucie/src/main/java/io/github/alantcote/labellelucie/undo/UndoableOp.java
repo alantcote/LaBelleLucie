@@ -8,7 +8,7 @@ public interface UndoableOp {
 	 * Do the operation.
 	 */
 	public void doOp();
-	
+
 	/**
 	 * Undo the operation.
 	 */

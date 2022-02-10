@@ -4,12 +4,12 @@ import io.github.alantcote.labellelucie.model.facade.Fan;
 import io.github.alantcote.labellelucie.model.facade.GameState;
 import io.github.alantcote.labellelucie.model.facade.GameSummary;
 import io.github.alantcote.labellelucie.undo.UndoManager;
+import io.github.alantcote.playingcards.Card;
+import io.github.alantcote.playingcards.Deck;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import io.github.alantcote.playingcards.Card;
-import io.github.alantcote.playingcards.Deck;
 
 public class GameStateImpl implements GameState {
 	protected IntegerProperty drawsRemaining;
@@ -23,36 +23,38 @@ public class GameStateImpl implements GameState {
 
 	public GameStateImpl() {
 		super();
-		
+
 		inizMembers();
 	}
-	
+
 	@Override
 	public void dealTableau(Deck deck) {
 		int cardIndex = 0;
-		
+
 		for (Fan fan : tableau) {
 			fan.clear();
 		}
-		
+
 		deck.shuffle();
-		
+
 		while (!deck.isEmpty()) {
 			Card card = deck.deal();
 			int tableauIndex = cardIndex / TABLEAU_FAN_INIT_SIZE;
-			
+
 			tableau[tableauIndex].add(card);
-			
+
 			++cardIndex;
 		}
 	}
-	
+
 	@Override
 	public IntegerProperty getDrawsRemaining() {
 		return drawsRemaining;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see io.github.alantcote.playingcards.lbl.model.GameState#getFoundation()
 	 */
 	@Override
@@ -70,7 +72,9 @@ public class GameStateImpl implements GameState {
 		return redealsRemaining;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see io.github.alantcote.playingcards.lbl.model.GameState#getStock()
 	 */
 	@Override
@@ -78,45 +82,49 @@ public class GameStateImpl implements GameState {
 		return stock;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see io.github.alantcote.playingcards.lbl.model.GameState#getTableau()
 	 */
 	@Override
 	public Fan[] getTableau() {
 		return tableau;
 	}
-	
+
 	@Override
 	public UndoManager getUndoManager() {
 		return undoManager;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see io.github.alantcote.playingcards.lbl.model.GameState#reset()
 	 */
 	@Override
 	public void reset() {
 		drawsRemaining.set(1);
-		
+
 		for (Fan fan : foundation) {
 			fan.clear();
 		}
-		
+
 		redealsRemaining.set(2);
-		
+
 		stock.set(pack);
 		dealTableau(pack);
-		
+
 		stock.set(null);
 		stock.set(pack);
-		
+
 		gameSummary.set(GameSummary.IN_PROGRESS);
 	}
-	
+
 	protected void inizMembers() {
 		drawsRemaining = newIntegerProperty();
 		gameSummary = newObjectProperty_GameSummary(GameSummary.IN_PROGRESS);
-		
+
 		foundation = newFanArray(FOUNDATION_FAN_COUNT);
 		for (int i = 0; i < FOUNDATION_FAN_COUNT; ++i) {
 			foundation[i] = newFan();
@@ -130,9 +138,9 @@ public class GameStateImpl implements GameState {
 		for (int i = 0; i < TABLEAU_FAN_COUNT; ++i) {
 			tableau[i] = newFan();
 		}
-		
+
 		undoManager = newUndoManager();
-		
+
 //		reset();
 	}
 
@@ -152,8 +160,7 @@ public class GameStateImpl implements GameState {
 		return new SimpleObjectProperty<Deck>();
 	}
 
-	protected ObjectProperty<GameSummary> newObjectProperty_GameSummary(
-			GameSummary gs) {
+	protected ObjectProperty<GameSummary> newObjectProperty_GameSummary(GameSummary gs) {
 		return new SimpleObjectProperty<GameSummary>(gs);
 	}
 

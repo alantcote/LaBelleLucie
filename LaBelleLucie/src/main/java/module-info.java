@@ -17,7 +17,7 @@ module labellelucie {
 	exports io.github.alantcote.labellelucie.view.impl.listeners;
 	exports io.github.alantcote.labellelucie.view.impl.menu;
 	exports io.github.alantcote.labellelucie.view.impl.support;
-	
+
 	requires transitive clutilities;
 	requires java.logging;
 	requires javafx.controls;

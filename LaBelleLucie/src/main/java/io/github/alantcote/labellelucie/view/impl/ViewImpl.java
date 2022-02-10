@@ -18,26 +18,26 @@ public class ViewImpl implements View {
 
 	public ViewImpl(Stage stage, GameState model, InputHandler inputHandler, HostServices theHostServices) {
 		super();
-		
+
 		sceneView = new SceneView(stage, model, theHostServices);
 		stage.setScene(sceneView);
-		
+
 		window = stage;
-		
+
 		gameResultListener = new GameResultListener(window);
 		model.getGameSummary().addListener(gameResultListener);
-		
+
 		closeRequestHandler = new CloseRequestHandler(inputHandler);
-		
+
 		stage.setOnCloseRequest(closeRequestHandler);
-		
+
 		setInputHandler(inputHandler);
 	}
 
 	@Override
 	public void setInputHandler(InputHandler inputHandler) {
 		this.inputHandler = inputHandler;
-		
+
 		sceneView.setInputHandler(inputHandler);
 		closeRequestHandler.setInputHandler(inputHandler);
 		gameResultListener.setInputHandler(inputHandler);

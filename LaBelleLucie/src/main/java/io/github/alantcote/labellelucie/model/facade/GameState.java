@@ -1,17 +1,18 @@
 package io.github.alantcote.labellelucie.model.facade;
 
 import io.github.alantcote.labellelucie.undo.UndoManager;
+import io.github.alantcote.playingcards.Deck;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
-import io.github.alantcote.playingcards.Deck;
 
 public interface GameState {
 	public static final int FOUNDATION_FAN_COUNT = 4;
 	public static final int TABLEAU_FAN_COUNT = 18;
 	public static final int TABLEAU_FAN_INIT_SIZE = 3;
-	
+
 	/**
 	 * Deal the cards from a deck to the tableau.
+	 * 
 	 * @param deck the deck.
 	 */
 	public void dealTableau(Deck deck);

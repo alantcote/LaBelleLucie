@@ -4,6 +4,12 @@ import io.github.alantcote.labellelucie.controller.facade.InputHandler;
 import io.github.alantcote.labellelucie.model.facade.GameState;
 import io.github.alantcote.labellelucie.view.facade.View;
 import io.github.alantcote.labellelucie.view.impl.support.InputHandlerSupport;
+import io.github.alantcote.playingcards.Card;
+import io.github.alantcote.playingcards.Deck;
+import io.github.alantcote.playingcards.Rank;
+import io.github.alantcote.playingcards.Suit;
+import io.github.alantcote.playingcards.javafx.CardView;
+import io.github.alantcote.playingcards.javafx.CardViewFactory;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -13,12 +19,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import io.github.alantcote.playingcards.Card;
-import io.github.alantcote.playingcards.Deck;
-import io.github.alantcote.playingcards.Rank;
-import io.github.alantcote.playingcards.Suit;
-import io.github.alantcote.playingcards.javafx.CardView;
-import io.github.alantcote.playingcards.javafx.CardViewFactory;
 
 public class StockView extends AnchorPane implements View {
 	public static final double MARGIN = 5;
@@ -34,10 +34,10 @@ public class StockView extends AnchorPane implements View {
 		Dimension2D cardSize = cardViewFactory.getDimensions();
 		double minHeight = cardSize.getHeight() + (MARGIN * 2);
 		double minWidth = cardSize.getWidth() + (MARGIN * 2);
-		
+
 		setId("stock-view");
 		setPadding(new Insets(MARGIN));
-		
+
 		setMinHeight(minHeight);
 		setMinWidth(minWidth);
 		setPrefHeight(minHeight);
@@ -46,13 +46,11 @@ public class StockView extends AnchorPane implements View {
 		this.cardViewFactory = cardViewFactory;
 		this.inputHandlerSupport = new InputHandlerSupport(this);
 		this.model = model;
-		this.stockView = cardViewFactory.getBackView(
-				new Card(Rank.JOKER_HIGH, Suit.JOKER));
-		
+		this.stockView = cardViewFactory.getBackView(new Card(Rank.JOKER_HIGH, Suit.JOKER));
+
 		model.getStock().addListener(new ChangeListener<Deck>() {
 			@Override
-			public void changed(ObservableValue<? extends Deck> arg0,
-					Deck arg1, Deck arg2) {
+			public void changed(ObservableValue<? extends Deck> arg0, Deck arg1, Deck arg2) {
 				updateChildren();
 			}
 		});
@@ -61,12 +59,12 @@ public class StockView extends AnchorPane implements View {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				updateChildren();
-				
+
 			}
 		});
-		
+
 		updateChildren();
-		
+
 		setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
@@ -86,7 +84,7 @@ public class StockView extends AnchorPane implements View {
 	public InputHandler getInputHandler() {
 		return inputHandlerSupport.getInputHandler();
 	}
-	
+
 	/**
 	 * @param inputHandler
 	 * @see io.github.alantcote.labellelucie.view.impl.support.InputHandlerSupport#setInputHandler(io.github.alantcote.labellelucie.controller.facade.InputHandler)
@@ -94,7 +92,7 @@ public class StockView extends AnchorPane implements View {
 	public void setInputHandler(InputHandler inputHandler) {
 		inputHandlerSupport.setInputHandler(inputHandler);
 	}
-	
+
 	protected void anchorLeft(ImageView view, double indent) {
 		setLeftAnchor(view, indent);
 	}
@@ -106,16 +104,16 @@ public class StockView extends AnchorPane implements View {
 	protected void updateChildren() {
 //		ObjectProperty<Deck> stock = model.getStock();
 //		Deck stockDeck = stock.get();
-		
+
 //		getChildren().remove(stockView);
-		
+
 		if (model.getRedealsRemaining().get() > 0) {
 			getChildren().remove(stockView);
 			getChildren().add(stockView);
-			
+
 			anchorLeft(stockView, 0);
 			anchorTop(stockView, 0);
-			
+
 		} else {
 			getChildren().remove(stockView);
 		}

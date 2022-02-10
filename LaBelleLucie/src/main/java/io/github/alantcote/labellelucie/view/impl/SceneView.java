@@ -13,15 +13,14 @@ public class SceneView extends Scene implements View {
 
 	public SceneView(Stage parentStage, GameState model, HostServices theHostServices) {
 		super(new RootView(parentStage, model, theHostServices));
-		
+
 		Parent root = getRoot();
-		
+
 		if (root instanceof RootView) {
 			rootView = (RootView) root;
 		}
-		
-		getStylesheets().add(
-				getClass().getResource("LaBelleLucie.css").toExternalForm());
+
+		getStylesheets().add(getClass().getResource("LaBelleLucie.css").toExternalForm());
 	}
 
 	/**

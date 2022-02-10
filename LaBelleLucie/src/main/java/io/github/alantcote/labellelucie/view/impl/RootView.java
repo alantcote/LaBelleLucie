@@ -3,7 +3,6 @@ package io.github.alantcote.labellelucie.view.impl;
 import java.net.URL;
 import java.util.List;
 
-import io.github.alantcote.labellelucie.NodeAdapter;
 import io.github.alantcote.labellelucie.controller.facade.InputHandler;
 import io.github.alantcote.labellelucie.controller.facade.Move;
 import io.github.alantcote.labellelucie.controller.facade.MoveType;
@@ -11,6 +10,7 @@ import io.github.alantcote.labellelucie.model.facade.GameState;
 import io.github.alantcote.labellelucie.view.facade.View;
 import io.github.alantcote.labellelucie.view.impl.menu.EditMenu;
 import io.github.alantcote.labellelucie.view.impl.support.InputHandlerSupport;
+import io.github.alantcote.playingcards.javafx.CardViewFactory;
 import javafx.application.HostServices;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -30,7 +30,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import io.github.alantcote.playingcards.javafx.CardViewFactory;
 
 public class RootView extends BorderPane implements View {
 	public static final double CARD_ZOOM = 1.25;
@@ -68,25 +67,12 @@ public class RootView extends BorderPane implements View {
 		this.appStage = parentStage;
 		this.model = model;
 		this.hostServices = theHostServices;
-		
+
 		this.inputHandlerSupport = new InputHandlerSupport(this);
 
 		inizVariables();
 
 		inizChildren();
-		
-//		traverseSceneGraph(this);
-	}
-	
-	protected void traverseSceneGraph(Object root) {
-		NodeAdapter nodeAdapter = new NodeAdapter(root);
-		
-		for (NodeAdapter na : nodeAdapter.getChildrenUnmodifiable()) {
-			Object fxObject = na.fxObject;
-			Class<? extends Object> fxClass = fxObject.getClass();
-			
-			System.out.println("RootView.traverseSceneGraph: " + fxClass);
-		}
 	}
 
 	/**
@@ -127,10 +113,10 @@ public class RootView extends BorderPane implements View {
 		mywebEngine.load(contentURL);
 
 		myDialogPane.setContent(myview);
-		
+
 		myDialog.showAndWait();
 	}
-	
+
 	public void showHelpRulesDialog() {
 //		showHelpDialog("Rules", "https://en.wikipedia.org/wiki/La_Belle_Lucie");
 		hostServices.showDocument("https://en.wikipedia.org/wiki/La_Belle_Lucie");
@@ -371,7 +357,7 @@ public class RootView extends BorderPane implements View {
 	 */
 	protected String getResource(String resourceName) {
 		System.out.println("resourceName: " + resourceName);
-		
+
 		URL url = getClass().getResource(resourceName);
 
 		return url.toExternalForm();

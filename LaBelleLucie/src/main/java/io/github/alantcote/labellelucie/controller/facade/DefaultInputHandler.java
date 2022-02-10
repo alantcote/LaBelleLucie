@@ -15,42 +15,42 @@ public class DefaultInputHandler implements InputHandler {
 
 	@Override
 	public void onCardMoveRequested(Card card) {
-		// NOTHING		
+		// NOTHING
 	}
 
 	@Override
 	public void onDragDetected(Card card) {
-		// NOTHING		
+		// NOTHING
 	}
 
 	@Override
 	public void onDragDone(Card card) {
-		// NOTHING		
+		// NOTHING
 	}
 
 	@Override
 	public void onDragDropped(Card card) {
-		// NOTHING		
+		// NOTHING
 	}
 
 	@Override
 	public void onDragEntered(Card card) {
-		// NOTHING		
+		// NOTHING
 	}
 
 	@Override
 	public void onDragExited(Card card) {
-		// NOTHING		
+		// NOTHING
 	}
 
 	@Override
 	public void onDragOver(Card card) {
-		// NOTHING		
+		// NOTHING
 	}
 
 	@Override
 	public void onDrawRequested(Card card) {
-		// NOTHING		
+		// NOTHING
 	}
 
 	@Override
@@ -60,12 +60,12 @@ public class DefaultInputHandler implements InputHandler {
 
 	@Override
 	public void onMouseEntered(Card card) {
-		// NOTHING		
+		// NOTHING
 	}
 
 	@Override
 	public void onMouseExited(Card card) {
-		// NOTHING		
+		// NOTHING
 	}
 
 	@Override
