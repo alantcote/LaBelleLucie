@@ -302,7 +302,7 @@ public class FanView extends AnchorPane implements View {
 	/**
 	 * Apply the padding value.
 	 * 
-	 * @param value the padding value.
+	 * @param insets the padding value.
 	 */
 	protected void applyPadding(Insets insets) {
 		setPadding(insets);
