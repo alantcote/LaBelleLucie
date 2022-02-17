@@ -118,12 +118,10 @@ public class RootView extends BorderPane implements View {
 	}
 
 	public void showHelpRulesDialog() {
-//		showHelpDialog("Rules", "https://en.wikipedia.org/wiki/La_Belle_Lucie");
 		hostServices.showDocument("https://en.wikipedia.org/wiki/La_Belle_Lucie");
 	}
 
 	public void showHelpUsageDialog() {
-//		showHelpDialog("Usage", "https://github.com/alantcote/LaBelleLucie/wiki/UsingLaBelleLucie");
 		hostServices.showDocument("https://github.com/alantcote/LaBelleLucie/wiki/UsingLaBelleLucie");
 	}
 

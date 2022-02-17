@@ -5,14 +5,23 @@ import io.github.alantcote.labellelucie.model.facade.GameSummary;
 import io.github.alantcote.labellelucie.undo.UndoableOp;
 
 /**
- * An <code>UndoableOp</code> that implements playing a the top card from one
+ * An {@link UndoableOp} that implements playing a the top card from one
  * tableau fan to the top of another tableau fan.
- * 
- * @author cote
  */
 public class MoveCardTableauToTableauOp implements UndoableOp {
+	/**
+	 * The controller to be used.
+	 */
 	protected ControllerImpl controller;
+	
+	/**
+	 * The index of the destination fan.
+	 */
 	protected int destFanIndex;
+	
+	/**
+	 * The index of the source fan.
+	 */
 	protected int srcFanIndex;
 
 	/**
@@ -30,6 +39,9 @@ public class MoveCardTableauToTableauOp implements UndoableOp {
 		this.srcFanIndex = srcFanIndex;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void doOp() {
 		controller.moveTopCardTableauToTableau(srcFanIndex, destFanIndex);
@@ -37,6 +49,9 @@ public class MoveCardTableauToTableauOp implements UndoableOp {
 		controller.updateGameSummary();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void undoOp() {
 		controller.moveTopCardTableauToTableau(destFanIndex, srcFanIndex);

@@ -20,7 +20,13 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * View of the stock.
+ */
 public class StockView extends AnchorPane implements View {
+	/**
+	 * Margin around the stock.
+	 */
 	public static final double MARGIN = 5;
 
 	protected CardViewFactory cardViewFactory;
@@ -102,11 +108,6 @@ public class StockView extends AnchorPane implements View {
 	}
 
 	protected void updateChildren() {
-//		ObjectProperty<Deck> stock = model.getStock();
-//		Deck stockDeck = stock.get();
-
-//		getChildren().remove(stockView);
-
 		if (model.getRedealsRemaining().get() > 0) {
 			getChildren().remove(stockView);
 			getChildren().add(stockView);
@@ -117,11 +118,5 @@ public class StockView extends AnchorPane implements View {
 		} else {
 			getChildren().remove(stockView);
 		}
-//		if ((stockDeck != null) && (!stockDeck.isEmpty())) {
-//			getChildren().add(stockView);
-//			
-//			anchorLeft(stockView, 0);
-//			anchorTop(stockView, 0);
-//		}
 	}
 }

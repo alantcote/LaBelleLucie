@@ -1,6 +1,3 @@
-/**
- * 
- */
 package io.github.alantcote.labellelucie.model.impl;
 
 import java.util.Collection;

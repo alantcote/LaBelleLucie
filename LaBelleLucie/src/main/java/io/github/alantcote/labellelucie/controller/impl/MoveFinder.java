@@ -13,8 +13,6 @@ import io.github.alantcote.playingcards.Suit;
 
 /**
  * A move generator.
- * 
- * @author cote
  */
 public class MoveFinder {
 	protected GameState model;

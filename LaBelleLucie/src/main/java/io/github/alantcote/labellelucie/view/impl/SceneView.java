@@ -8,9 +8,22 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * The {@link Scene} that hosts the view.
+ */
 public class SceneView extends Scene implements View {
+	/**
+	 * The outer container for the view.
+	 */
 	protected RootView rootView;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param parentStage     the {@link Stage} to host this {@link Scene}.
+	 * @param model           the game model.
+	 * @param theHostServices an instance of {@link HostServices}.
+	 */
 	public SceneView(Stage parentStage, GameState model, HostServices theHostServices) {
 		super(new RootView(parentStage, model, theHostServices));
 
@@ -24,7 +37,9 @@ public class SceneView extends Scene implements View {
 	}
 
 	/**
-	 * @return
+	 * Get the input handler.
+	 * 
+	 * @return the input handler.
 	 * @see io.github.alantcote.labellelucie.view.impl.RootView#getInputHandler()
 	 */
 	public InputHandler getInputHandler() {
@@ -32,7 +47,9 @@ public class SceneView extends Scene implements View {
 	}
 
 	/**
-	 * @param inputHandler
+	 * Set the input handler.
+	 * 
+	 * @param inputHandler the input handler to be set.
 	 * @see io.github.alantcote.labellelucie.view.impl.RootView#setInputHandler(io.github.alantcote.labellelucie.controller.facade.InputHandler)
 	 */
 	public void setInputHandler(InputHandler inputHandler) {

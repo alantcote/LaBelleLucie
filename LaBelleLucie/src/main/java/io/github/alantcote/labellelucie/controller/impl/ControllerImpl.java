@@ -22,15 +22,24 @@ import javafx.beans.property.ObjectProperty;
 
 /**
  * An implementation of a <code>Controller</code>.
- * 
- * @author cote
  */
 public class ControllerImpl implements Controller {
 	@SuppressWarnings("unused")
 	private static Logger log = Logger.getLogger(ControllerImpl.class.getName());
 
+	/**
+	 * This controller's input handler.
+	 */
 	protected InputHandler inputHandler;
+
+	/**
+	 * The model this controller controls.
+	 */
 	protected GameState model;
+
+	/**
+	 * This controller's move finder.
+	 */
 	protected MoveFinder moveFinder;
 
 	/**
@@ -68,28 +77,27 @@ public class ControllerImpl implements Controller {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see io.github.alantcote.playingcards.lbl.controller.facade.IController#
-	 * getInputHandler()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public InputHandler getInputHandler() {
 		return inputHandler;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * io.github.alantcote.playingcards.lbl.controller.facade.IController#getModel()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public GameState getModel() {
 		return model;
 	}
 
+	/**
+	 * List the available legal moves.
+	 * 
+	 * @return the list.
+	 */
 	public List<Move> listMoves() {
 		return moveFinder.findMoves();
 	}
@@ -138,12 +146,8 @@ public class ControllerImpl implements Controller {
 		tableauFan[destFanIndex].add(card);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * io.github.alantcote.playingcards.lbl.controller.facade.DefaultInputHandler#
-	 * onMouseClicked(io.github.alantcote.playingcards.Card)
+	/**
+	 * {@inheritDoc}
 	 */
 	public void onCardMoveRequested(Card card) {
 //		log.info("card = " + card.getSuit() + " " + card.getRank());
@@ -178,12 +182,8 @@ public class ControllerImpl implements Controller {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * io.github.alantcote.playingcards.lbl.controller.facade.DefaultInputHandler#
-	 * onDrawRequested(io.github.alantcote.playingcards.Card)
+	/**
+	 * {@inheritDoc}
 	 */
 	public void onDrawRequested(Card card) {
 		IntegerProperty drawsRemaining = model.getDrawsRemaining();
@@ -209,23 +209,15 @@ public class ControllerImpl implements Controller {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * io.github.alantcote.playingcards.lbl.controller.facade.DefaultInputHandler#
-	 * onExitRequest()
+	/**
+	 * {@inheritDoc}
 	 */
 	public void onExitRequest() {
 		Platform.exit();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * io.github.alantcote.playingcards.lbl.controller.facade.DefaultInputHandler#
-	 * onNewGameRequested()
+	/**
+	 * {@inheritDoc}
 	 */
 	public void onNewGameRequested() {
 		model.reset();
@@ -233,12 +225,8 @@ public class ControllerImpl implements Controller {
 		updateGameSummary();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * io.github.alantcote.playingcards.lbl.controller.facade.DefaultInputHandler#
-	 * onReshuffleRequest()
+	/**
+	 * {@inheritDoc}
 	 */
 	public void onReshuffleRequest() {
 		IntegerProperty redealsRemaining = model.getRedealsRemaining();
@@ -288,6 +276,11 @@ public class ControllerImpl implements Controller {
 		model.getGameSummary().set(result);
 	}
 
+	/**
+	 * Count the cards in the foundations.
+	 * 
+	 * @return the count.
+	 */
 	protected int countFoundationCards() {
 		Fan[] foundationFan = model.getFoundation();
 		int count = 0;
@@ -323,6 +316,12 @@ public class ControllerImpl implements Controller {
 		return sourceFanIndex;
 	}
 
+	/**
+	 * Determine whether the game has been won.
+	 * 
+	 * @return the truth value of the assertion, "All the cards have been moved to
+	 *         the foundations.
+	 */
 	protected boolean isGameWon() {
 		return (52 == countFoundationCards());
 	}

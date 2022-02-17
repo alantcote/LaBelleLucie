@@ -8,12 +8,23 @@ import io.github.alantcote.labellelucie.controller.facade.Move;
 import io.github.alantcote.labellelucie.controller.impl.ControllerImpl;
 import io.github.alantcote.playingcards.Card;
 
+/**
+ * The input handler provided by {@link ControllerImpl}.
+ */
 public class MasterInputHandler extends DefaultInputHandler {
 	@SuppressWarnings("unused")
 	private static Logger log = Logger.getLogger(MasterInputHandler.class.getName());
 
+	/**
+	 * The controller associated with this input handler.
+	 */
 	protected ControllerImpl controller;
 
+	/**
+	 * Construct a new object.
+	 * 
+	 * @param controller the controller to be associated with this input handler.
+	 */
 	public MasterInputHandler(ControllerImpl controller) {
 		super();
 
@@ -22,17 +33,16 @@ public class MasterInputHandler extends DefaultInputHandler {
 		controller.updateGameSummary();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Move> listMoves() {
 		return controller.listMoves();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * io.github.alantcote.playingcards.lbl.controller.facade.DefaultInputHandler#
-	 * onMouseClicked(io.github.alantcote.playingcards.Card)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void onCardMoveRequested(Card card) {
@@ -41,48 +51,32 @@ public class MasterInputHandler extends DefaultInputHandler {
 		controller.onCardMoveRequested(card);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * io.github.alantcote.playingcards.lbl.controller.facade.DefaultInputHandler#
-	 * onDrawRequested(io.github.alantcote.playingcards.Card)
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void onDrawRequested(Card card) {
 		controller.onDrawRequested(card);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * io.github.alantcote.playingcards.lbl.controller.facade.DefaultInputHandler#
-	 * onExitRequest()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void onExitRequest() {
 		controller.onExitRequest();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * io.github.alantcote.playingcards.lbl.controller.facade.DefaultInputHandler#
-	 * onNewGameRequested()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void onNewGameRequested() {
 		controller.onNewGameRequested();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * io.github.alantcote.playingcards.lbl.controller.facade.DefaultInputHandler#
-	 * onReshuffleRequest()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void onReshuffleRequest() {

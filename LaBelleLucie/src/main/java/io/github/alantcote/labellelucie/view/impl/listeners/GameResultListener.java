@@ -1,10 +1,13 @@
 package io.github.alantcote.labellelucie.view.impl.listeners;
 
+import java.util.Optional;
+
 import io.github.alantcote.labellelucie.controller.facade.InputHandler;
 import io.github.alantcote.labellelucie.model.facade.GameSummary;
-import io.github.alantcote.labellelucie.view.impl.dialog.MessageDialog;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Window;
 
 public class GameResultListener implements ChangeListener<GameSummary> {
@@ -19,37 +22,43 @@ public class GameResultListener implements ChangeListener<GameSummary> {
 
 	@Override
 	public void changed(ObservableValue<? extends GameSummary> src, GameSummary oldValue, GameSummary newValue) {
-		MessageDialog dialog = newMessageDialog();
+		Alert.AlertType alertType = Alert.AlertType.INFORMATION;
+		Alert alert = new Alert(alertType);
+		Optional<ButtonType> result;
 		String tryAgain = "Return and try again";
+		ButtonType tryAgainBT = new ButtonType(tryAgain);
 		String newGame = "Start new game";
+		ButtonType newGameBT = new ButtonType(newGame);
 		String exitProgram = "Exit";
-		Object[] options;
-		Object chosen = newGame;
+		ButtonType exitProgramBT = new ButtonType(exitProgram);
 
 		switch (newValue) {
 		case LOST:
-			options = new Object[] { tryAgain, newGame, exitProgram };
-
-			chosen = dialog.showInputDialog(window, "Game lost", "There are no legal plays remaining.", options,
-					tryAgain);
+			alert = new Alert(alertType, "There are no legal plays remaining.", tryAgainBT, newGameBT, exitProgramBT);
+			alert.setHeaderText("Game lost");
 
 			break;
 		case WON:
-			options = new Object[] { newGame, exitProgram };
-
-			chosen = dialog.showInputDialog(window, "Game won", "All cards have been moved to foundations.", options,
-					newGame);
+			alert = new Alert(alertType, "All cards have been moved to foundations.", newGameBT, exitProgramBT);
+			alert.setHeaderText("Game won");
+			
 			break;
 		default:
-			break;
+			return;
 		}
+		
+		result = alert.showAndWait();
+		
+		if (result.isPresent()) {
+			ButtonType chosen = result.get();
 
-		if (newGame.equals(chosen)) {
-			inputHandler.onNewGameRequested();
-		}
+			if (newGameBT == chosen) {
+				inputHandler.onNewGameRequested();
+			}
 
-		if (exitProgram.equals(chosen)) {
-			inputHandler.onExitRequest();
+			if (exitProgramBT == chosen) {
+				inputHandler.onExitRequest();
+			}
 		}
 	}
 
@@ -58,9 +67,5 @@ public class GameResultListener implements ChangeListener<GameSummary> {
 	 */
 	public void setInputHandler(InputHandler inputHandler) {
 		this.inputHandler = inputHandler;
-	}
-
-	protected MessageDialog newMessageDialog() {
-		return new MessageDialog();
 	}
 }

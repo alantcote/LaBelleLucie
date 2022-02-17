@@ -12,7 +12,6 @@ module labellelucie {
 	exports io.github.alantcote.labellelucie.undo;
 	exports io.github.alantcote.labellelucie.view.facade;
 	exports io.github.alantcote.labellelucie.view.impl;
-	exports io.github.alantcote.labellelucie.view.impl.dialog;
 	exports io.github.alantcote.labellelucie.view.impl.handler;
 	exports io.github.alantcote.labellelucie.view.impl.listeners;
 	exports io.github.alantcote.labellelucie.view.impl.menu;

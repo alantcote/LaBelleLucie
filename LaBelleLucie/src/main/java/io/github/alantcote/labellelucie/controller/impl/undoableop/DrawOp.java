@@ -4,13 +4,22 @@ import io.github.alantcote.labellelucie.controller.impl.ControllerImpl;
 import io.github.alantcote.labellelucie.undo.UndoableOp;
 
 /**
- * An <code>UndoableOp</code> that implements the draw.
- * 
- * @author cote
+ * An {@link UndoableOp} that implements the draw.
  */
 public class DrawOp implements UndoableOp {
+	/**
+	 * The index of the card to be drawn.
+	 */
 	protected int cardIndex;
+	
+	/**
+	 * The controller to be used.
+	 */
 	protected ControllerImpl controller;
+	
+	/**
+	 * The index of the fan containing the card.
+	 */
 	protected int fanIndex;
 
 	/**
@@ -28,11 +37,17 @@ public class DrawOp implements UndoableOp {
 		this.cardIndex = cardIndex;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void doOp() {
 		controller.draw(fanIndex, cardIndex);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void undoOp() {
 		controller.unDraw(fanIndex, cardIndex);

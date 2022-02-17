@@ -60,6 +60,7 @@ public class Move {
 	}
 
 	/**
+	 * Get the source fan index.
 	 * @return the destFanIndex
 	 */
 	public int getDestFanIndex() {
@@ -67,6 +68,7 @@ public class Move {
 	}
 
 	/**
+	 * Get the source fan index.
 	 * @return the srcFanIndex
 	 */
 	public int getSrcFanIndex() {
@@ -74,12 +76,16 @@ public class Move {
 	}
 
 	/**
+	 * Get the move type.
 	 * @return the type
 	 */
 	public MoveType getType() {
 		return type;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String toString() {
 		String result = "Move(type=" + type + "; srcFanIndex=" + srcFanIndex + "; destFanIndex=" + destFanIndex + ")";

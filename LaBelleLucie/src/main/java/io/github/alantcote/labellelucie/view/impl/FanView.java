@@ -25,8 +25,6 @@ import javafx.scene.paint.Color;
 
 /**
  * A view of a fan.
- * 
- * @author cote
  */
 public class FanView extends AnchorPane implements View {
 	public static final String CSS_ID = "fan-view";
@@ -45,11 +43,35 @@ public class FanView extends AnchorPane implements View {
 	 * portions.
 	 */
 	public static final int MAX_FAN_SIZE = 8;
+
+	/**
+	 * The card view factory.
+	 */
 	protected CardViewFactory cardViewFactory;
+
+	/**
+	 * The fan binding.
+	 */
 	protected FanBinding fanBinding;
+
+	/**
+	 * Mutual offset of cards in a fan.
+	 */
 	protected double fanOffset;
+
+	/**
+	 * Support for the input handler.
+	 */
 	protected InputHandlerSupport inputHandlerSupport;
+
+	/**
+	 * Tooltips for the cards in the fan.
+	 */
 	protected Tooltip[] kidTips = new Tooltip[0];
+
+	/**
+	 * The model.
+	 */
 	protected Fan model;
 
 	/**
@@ -84,7 +106,9 @@ public class FanView extends AnchorPane implements View {
 	}
 
 	/**
-	 * @return the cardViewFactory
+	 * Create a new card view factory.
+	 * 
+	 * @return the new card view factory.
 	 */
 	public CardViewFactory getCardViewFactory() {
 		return cardViewFactory;
@@ -112,6 +136,9 @@ public class FanView extends AnchorPane implements View {
 		return model;
 	}
 
+	/**
+	 * Highlight the top card in the fan for a short time.
+	 */
 	public void highlightTopCard() {
 		int count = model.size();
 
@@ -254,38 +281,87 @@ public class FanView extends AnchorPane implements View {
 		setTopAnchor(view, indent);
 	}
 
+	/**
+	 * Apply the min height value.
+	 * 
+	 * @param value the min height value.
+	 */
 	protected void applyMinHeight(double value) {
 		setMinHeight(value);
 	}
 
+	/**
+	 * Apply the max height value.
+	 * 
+	 * @param value the max height value.
+	 */
 	protected void applyMinWidth(double value) {
 		setMinWidth(value);
 	}
 
+	/**
+	 * Apply the padding value.
+	 * 
+	 * @param value the padding value.
+	 */
 	protected void applyPadding(Insets insets) {
 		setPadding(insets);
 	}
 
+	/**
+	 * Apply the preferred height value.
+	 * 
+	 * @param value the preferred height value.
+	 */
 	protected void applyPrefHeight(double value) {
 		setPrefHeight(value);
 	}
 
+	/**
+	 * Apply the preferred width value.
+	 * 
+	 * @param value the preferred width value.
+	 */
 	protected void applyPrefWidth(double value) {
 		setPrefWidth(value);
 	}
 
+	/**
+	 * Get the image from a card view.
+	 * 
+	 * @param cardView a card view.
+	 * @return the image.
+	 */
 	protected Image doGetImage(CardView cardView) {
 		return cardView.getImage();
 	}
 
+	/**
+	 * Set the graphic on a tooltip.
+	 * 
+	 * @param tooltip the tooltip.
+	 * @param node    the graphic.
+	 */
 	protected void doSetGraphic(Tooltip tooltip, Node node) {
 		tooltip.setGraphic(node);
 	}
 
+	/**
+	 * Get the height dimension from a {@link Dimension2D}.
+	 * 
+	 * @param d2d a {@link Dimension2D}.
+	 * @return the height dimension.
+	 */
 	protected double getHeight(Dimension2D d2d) {
 		return d2d.getHeight();
 	}
 
+	/**
+	 * Get the width dimension from a {@link Dimension2D}.
+	 * 
+	 * @param d2d a {@link Dimension2D}.
+	 * @return the width dimension.
+	 */
 	protected double getWidth(Dimension2D d2d) {
 		return d2d.getWidth();
 	}
@@ -301,10 +377,8 @@ public class FanView extends AnchorPane implements View {
 		Tooltip.install(node, tooltip);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javafx.scene.layout.AnchorPane#layoutChildren()
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected void layoutChildren() {
@@ -398,6 +472,12 @@ public class FanView extends AnchorPane implements View {
 		setId(id);
 	}
 
+	/**
+	 * Remove the tooltip from a node.
+	 * 
+	 * @param node    a node.
+	 * @param tooltip the tooltip.
+	 */
 	protected void uninstallTooltip(Node node, Tooltip tooltip) {
 		Tooltip.uninstall(node, tooltip);
 	}
