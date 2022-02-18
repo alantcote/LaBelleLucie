@@ -59,7 +59,6 @@ public class GameResultListenerTest {
 			}
 			
 		};
-		GameSummary testGameSummary = GameSummary.LOST;
 		
 		fixture.changed(null, GameSummary.IN_PROGRESS, GameSummary.LOST);
 		
@@ -93,7 +92,8 @@ public class GameResultListenerTest {
 	public void testNewGameLostAlert() {
 		Stage testStage = new Stage();
 		GameResultListener fixture = new GameResultListener(testStage);
-		
+
+		assertNotNull(fixture.window);
 		assertNotNull(fixture.newGameLostAlert());
 	}
 

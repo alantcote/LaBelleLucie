@@ -16,11 +16,11 @@ public class EditMenu extends Menu {
 	protected MenuItem redoItem;
 	protected MenuItem undoItem;
 
-	public EditMenu(final GameState model, InputHandler inputHandler) {
+	public EditMenu(GameState aModel, InputHandler anInputHandler) {
 		super("Edit");
 
-		this.model = model;
-		this.inputHandler = inputHandler;
+		model = aModel;
+		inputHandler = anInputHandler;
 
 		establishChildren();
 
@@ -38,7 +38,6 @@ public class EditMenu extends Menu {
 	protected void establishChildren() {
 		establishRedoItem();
 		establishUndoItem();
-//		getItems().add(new MenuItem("DummyItem"));
 	}
 
 	protected void establishRedoItem() {
