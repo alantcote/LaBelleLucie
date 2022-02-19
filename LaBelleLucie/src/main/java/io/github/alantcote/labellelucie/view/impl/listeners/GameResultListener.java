@@ -43,6 +43,10 @@ public class GameResultListener implements ChangeListener<GameSummary> {
 		this.inputHandler = inputHandler;
 	}
 
+	protected void initAlertOwner(Alert alert) {
+		alert.initOwner(window);
+	}
+
 	/**
 	 * @return
 	 */
@@ -53,7 +57,7 @@ public class GameResultListener implements ChangeListener<GameSummary> {
 
 		return alert;
 	}
-
+	
 	/**
 	 * @return
 	 */
@@ -84,6 +88,8 @@ public class GameResultListener implements ChangeListener<GameSummary> {
 		default:
 			return;
 		}
+		
+		initAlertOwner(alert);
 
 		result = showAndWait(alert);
 

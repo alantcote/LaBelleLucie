@@ -140,9 +140,9 @@ public class GameResultListenerTest {
 
 			@Override
 			protected void requestNewGame() {
-				assertTrue(2 == testState.get());
+				assertTrue(3 == testState.get());
 				
-				testState.set(3);
+				testState.set(4);
 			}
 
 			@Override
@@ -152,9 +152,9 @@ public class GameResultListenerTest {
 
 			@Override
 			protected Optional<ButtonType> showAndWait(Alert alert) {
-				assertTrue(1 == testState.get());
+				assertTrue(2 == testState.get());
 				
-				testState.set(2);
+				testState.set(3);
 				
 				assertTrue(alertProperty.get() == alert);
 				
@@ -162,13 +162,22 @@ public class GameResultListenerTest {
 				
 				return result;
 			}
+
+			@Override
+			protected void initAlertOwner(Alert alert) {
+				assertTrue(1 == testState.get());
+				
+				testState.set(2);
+				
+				assertTrue(alertProperty.get() == alert);
+			}
 			
 		};
 		GameSummary testGameSummary = GameSummary.LOST;
 		
-		fixture.processEvent(GameSummary.LOST);
+		fixture.processEvent(testGameSummary);
 		
-		assertTrue(3 == testState.get());
+		assertTrue(4 == testState.get());
 	}
 
 	/**
