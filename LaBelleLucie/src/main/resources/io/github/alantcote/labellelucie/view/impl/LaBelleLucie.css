@@ -2,6 +2,10 @@
 	-fx-background-color: "darkgreen";
 }
 
+#alert {
+	-fx-background-color: "white";
+}
+
 #fan-view {
 	-fx-background-image: url("cardSilhouette.gif");
 	-fx-background-position: 6 6; 

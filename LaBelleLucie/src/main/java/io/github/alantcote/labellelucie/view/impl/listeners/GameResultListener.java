@@ -45,6 +45,7 @@ public class GameResultListener implements ChangeListener<GameSummary> {
 
 	protected void initAlertOwner(Alert alert) {
 		alert.initOwner(window);
+		alert.getDialogPane().setId("alert");
 	}
 
 	/**
