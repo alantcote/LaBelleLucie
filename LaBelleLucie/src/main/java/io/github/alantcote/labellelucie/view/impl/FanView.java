@@ -27,7 +27,14 @@ import javafx.scene.paint.Color;
  * A view of a fan.
  */
 public class FanView extends AnchorPane implements View {
+	/**
+	 * The CSS id for objects of this class.
+	 */
 	public static final String CSS_ID = "fan-view";
+	
+	/**
+	 * The minimum number of milliseconds to keep a highlight active.
+	 */
 	public static final long HIGHLIGHT_ACTIVE_MILLIS = 2000;
 
 	/**

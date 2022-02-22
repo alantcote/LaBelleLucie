@@ -5,9 +5,23 @@ import io.github.alantcote.playingcards.Deck;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 
+/**
+ * In the Model-View-Controller pattern, this is the Model.
+ */
 public interface GameState {
+	/**
+	 * The number of foundation fans.
+	 */
 	public static final int FOUNDATION_FAN_COUNT = 4;
+	
+	/**
+	 * The number of tableau fans.
+	 */
 	public static final int TABLEAU_FAN_COUNT = 18;
+	
+	/**
+	 * The size of all but the last tableau fans immediately after the 1st deal.
+	 */
 	public static final int TABLEAU_FAN_INIT_SIZE = 3;
 
 	/**
@@ -18,37 +32,44 @@ public interface GameState {
 	public void dealTableau(Deck deck);
 
 	/**
-	 * @return the drawsRemaining
+	 * Get the number of draws remaining in the game.
+	 * @return the drawsRemaining.
 	 */
 	public abstract IntegerProperty getDrawsRemaining();
 
 	/**
-	 * @return the foundation
+	 * Get the foundation fans.
+	 * @return the foundation fans.
 	 */
 	public abstract Fan[] getFoundation();
 
 	/**
-	 * @return the game summary
+	 * Get the game summary.
+	 * @return the game summary.
 	 */
 	public ObjectProperty<GameSummary> getGameSummary();
 
 	/**
-	 * @return the redealsRemaining
+	 * Get the number of redeals remaining in the game.
+	 * @return the redealsRemaining.
 	 */
 	public abstract IntegerProperty getRedealsRemaining();
 
 	/**
-	 * @return the stock
+	 * Get the stock.
+	 * @return the stock.
 	 */
 	public abstract ObjectProperty<Deck> getStock();
 
 	/**
-	 * @return the tableau
+	 * Get the tableau fans.
+	 * @return the tableau.
 	 */
 	public abstract Fan[] getTableau();
 
 	/**
-	 * @return the undo manager
+	 * Get the undo manager. It is arguable that this belongs in the Controller.
+	 * @return the undo manager.
 	 */
 	public abstract UndoManager getUndoManager();
 

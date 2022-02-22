@@ -1,7 +1,5 @@
 package io.github.alantcote.labellelucie.view.impl.support;
 
-import java.util.logging.Logger;
-
 import io.github.alantcote.labellelucie.controller.facade.DefaultInputHandler;
 import io.github.alantcote.labellelucie.controller.facade.InputHandler;
 import io.github.alantcote.playingcards.javafx.CardView;
@@ -11,15 +9,20 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
 /**
- * An adapter for converting input events into calls on
- * <code>InputHandler</code> methods.
+ * An adapter for converting input events into calls on {@link InputHandler}
+ * methods.
  */
 public class InputHandlerSupport {
-	@SuppressWarnings("unused")
-	private static Logger log = Logger.getLogger(InputHandlerSupport.class.getName());
-
+	/**
+	 * The input handler.
+	 */
 	protected InputHandler inputHandler = new DefaultInputHandler();
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param source the source of input events.
+	 */
 	public InputHandlerSupport(Node source) {
 		super();
 
@@ -27,14 +30,18 @@ public class InputHandlerSupport {
 	}
 
 	/**
-	 * @return the inputHandler
+	 * Get the input handler.
+	 * 
+	 * @return the inputHandler.
 	 */
 	public InputHandler getInputHandler() {
 		return inputHandler;
 	}
 
 	/**
-	 * @param inputHandler the inputHandler to set
+	 * Set the input handler.
+	 * 
+	 * @param inputHandler the inputHandler to set.
 	 */
 	public void setInputHandler(InputHandler inputHandler) {
 		this.inputHandler = inputHandler;
@@ -52,7 +59,7 @@ public class InputHandlerSupport {
 
 	/**
 	 * Set MouseEvent handlers on a node. Each handler forwards its received events
-	 * to the relevant method of <code>inputHandler</code>.
+	 * to the relevant method of {@link InputHandler}.
 	 * 
 	 * @param source the node.
 	 */
@@ -67,8 +74,6 @@ public class InputHandlerSupport {
 
 					if (MouseButton.PRIMARY == event.getButton()) {
 						if (1 == event.getClickCount()) {
-//							log.info("calling onCardMoveRequested");
-
 							inputHandler.onCardMoveRequested(cardView.getCard());
 						}
 					}

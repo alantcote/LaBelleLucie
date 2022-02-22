@@ -10,12 +10,35 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCharacterCombination;
 
+/**
+ * The Edit menu.
+ */
 public class EditMenu extends Menu {
+	/**
+	 * The input handler.
+	 */
 	protected InputHandler inputHandler;
+	
+	/**
+	 * The model.
+	 */
 	protected GameState model;
+	
+	/**
+	 * The Redo menu item.
+	 */
 	protected MenuItem redoItem;
+	
+	/**
+	 * The Undo menu item.
+	 */
 	protected MenuItem undoItem;
 
+	/**
+	 * Construct a new object.
+	 * @param aModel the model.
+	 * @param anInputHandler the input handler.
+	 */
 	public EditMenu(GameState aModel, InputHandler anInputHandler) {
 		super("Edit");
 
@@ -35,11 +58,17 @@ public class EditMenu extends Menu {
 		});
 	}
 
+	/**
+	 * Establish the menu items for the menu.
+	 */
 	protected void establishChildren() {
 		establishRedoItem();
 		establishUndoItem();
 	}
 
+	/**
+	 * Establish the Redo menu item.
+	 */
 	protected void establishRedoItem() {
 		redoItem = new MenuItem("Redo");
 
@@ -55,6 +84,9 @@ public class EditMenu extends Menu {
 		getItems().add(redoItem);
 	}
 
+	/**
+	 * Establish the Undo menu item.
+	 */
 	protected void establishUndoItem() {
 		undoItem = new MenuItem("Undo");
 

@@ -18,18 +18,62 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.GridPane;
 
+/**
+ * The view of the card table in the scene graph.
+ */
 public class TableView extends GridPane implements View {
+	/**
+	 * The grid column to use for the foundation.
+	 */
 	public static final int FOUNDATION_COLUMN = 5;
+
+	/**
+	 * The number of grid columns to use for the tableau.
+	 */
 	public static final int TABLEAU_COLUMN_COUNT = FOUNDATION_COLUMN;
 
+	/**
+	 * The card view factory.
+	 */
 	protected CardViewFactory cardViewFactory;
+
+	/**
+	 * The tableau fan offset.
+	 */
 	protected double fanOffset;
+
+	/**
+	 * The foundation fan views.
+	 */
 	protected FanView[] foundationFanView;
+
+	/**
+	 * The input handler support.
+	 */
 	protected InputHandlerSupport inputHandlerSupport;
+
+	/**
+	 * The model.
+	 */
 	protected GameState model;
+
+	/**
+	 * The stock view.
+	 */
 	protected StockView stockView;
+
+	/**
+	 * The tableau fan views.
+	 */
 	protected FanView[] tableauFanView;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param cardViewFactory the card view factory.
+	 * @param fanOffset       the fan offset.
+	 * @param model           the model.
+	 */
 	public TableView(CardViewFactory cardViewFactory, double fanOffset, GameState model) {
 		super();
 
@@ -42,19 +86,28 @@ public class TableView extends GridPane implements View {
 	}
 
 	/**
-	 * @return
+	 * Get the input handler.
+	 * 
+	 * @return the input handler.
 	 * @see io.github.alantcote.labellelucie.view.impl.support.InputHandlerSupport#getInputHandler()
 	 */
 	public InputHandler getInputHandler() {
 		return inputHandlerSupport.getInputHandler();
 	}
 
+	/**
+	 * Highlight the top card in a given tableau fan.
+	 * 
+	 * @param fanIndex the index of the tableau fan.
+	 */
 	public void highlightTopTableauCard(int fanIndex) {
 		tableauFanView[fanIndex].highlightTopCard();
 	}
 
 	/**
-	 * @param inputHandler
+	 * Set the input handler.
+	 * 
+	 * @param inputHandler the input handler.
 	 * @see io.github.alantcote.labellelucie.view.impl.support.InputHandlerSupport#setInputHandler(io.github.alantcote.labellelucie.controller.facade.InputHandler)
 	 */
 	public void setInputHandler(InputHandler inputHandler) {
@@ -71,6 +124,12 @@ public class TableView extends GridPane implements View {
 		stockView.setInputHandler(inputHandler);
 	}
 
+	/**
+	 * Create the context menu to be used to select a draw.
+	 * 
+	 * @param options the cards to be included in the menu.
+	 * @return the context menu.
+	 */
 	protected ContextMenu createContextMenu(List<Card> options) {
 		ContextMenu contextMenu = new ContextMenu();
 		Menu drawMenu = new Menu("Draw");
@@ -97,12 +156,18 @@ public class TableView extends GridPane implements View {
 		return contextMenu;
 	}
 
+	/**
+	 * Initialize the children of this node in the scene graph.
+	 */
 	protected void inizChildren() {
 		inizFoundation();
 		inizTableau();
 		inizStock();
 	}
 
+	/**
+	 * Initialize the foundation view.
+	 */
 	protected void inizFoundation() {
 		Fan[] fan = model.getFoundation();
 
@@ -116,6 +181,9 @@ public class TableView extends GridPane implements View {
 		}
 	}
 
+	/**
+	 * Initialize the stock view.
+	 */
 	protected void inizStock() {
 		stockView = new StockView(cardViewFactory, model);
 
@@ -124,6 +192,9 @@ public class TableView extends GridPane implements View {
 		add(stockView, TableView.TABLEAU_COLUMN_COUNT - 1, 3);
 	}
 
+	/**
+	 * Initialize the tableau view.
+	 */
 	protected void inizTableau() {
 		Fan[] fan = model.getTableau();
 

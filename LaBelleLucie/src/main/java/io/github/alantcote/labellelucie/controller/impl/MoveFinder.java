@@ -15,6 +15,9 @@ import io.github.alantcote.playingcards.Suit;
  * A move generator.
  */
 public class MoveFinder {
+	/**
+	 * The model.
+	 */
 	protected GameState model;
 
 	/**

@@ -227,6 +227,7 @@ public class GameStateImpl implements GameState {
 
 	/**
 	 * Create a new {@link GameSummary} property.
+	 * @param gs the initial game summary.
 	 * @return a new {@link GameSummary} property.
 	 */
 	protected ObjectProperty<GameSummary> newObjectProperty_GameSummary(GameSummary gs) {

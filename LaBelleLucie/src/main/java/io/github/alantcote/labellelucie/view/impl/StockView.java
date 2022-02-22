@@ -29,11 +29,32 @@ public class StockView extends AnchorPane implements View {
 	 */
 	public static final double MARGIN = 5;
 
+	/**
+	 * The card view factory.
+	 */
 	protected CardViewFactory cardViewFactory;
+
+	/**
+	 * The input handler support.
+	 */
 	protected InputHandlerSupport inputHandlerSupport;
+
+	/**
+	 * The model.
+	 */
 	protected GameState model;
+
+	/**
+	 * The stock view.
+	 */
 	protected CardView stockView = null;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param cardViewFactory the card view factory.
+	 * @param model           the model.
+	 */
 	public StockView(CardViewFactory cardViewFactory, GameState model) {
 		super();
 
@@ -84,7 +105,9 @@ public class StockView extends AnchorPane implements View {
 	}
 
 	/**
-	 * @return
+	 * Get the input handler.
+	 * 
+	 * @return the input handler.
 	 * @see io.github.alantcote.labellelucie.view.impl.support.InputHandlerSupport#getInputHandler()
 	 */
 	public InputHandler getInputHandler() {
@@ -92,21 +115,40 @@ public class StockView extends AnchorPane implements View {
 	}
 
 	/**
-	 * @param inputHandler
+	 * Set the input handler.
+	 * 
+	 * @param inputHandler the input handler.
 	 * @see io.github.alantcote.labellelucie.view.impl.support.InputHandlerSupport#setInputHandler(io.github.alantcote.labellelucie.controller.facade.InputHandler)
 	 */
 	public void setInputHandler(InputHandler inputHandler) {
 		inputHandlerSupport.setInputHandler(inputHandler);
 	}
 
+	/**
+	 * Position a card image relative to the left edge of this view.
+	 * 
+	 * @param view   the card image.
+	 * @param indent the distance between the left edge of this view and the card
+	 *               image.
+	 */
 	protected void anchorLeft(ImageView view, double indent) {
 		setLeftAnchor(view, indent);
 	}
 
+	/**
+	 * Position a card image relative to the top edge of this view.
+	 * 
+	 * @param view   the card image.
+	 * @param indent the distance between the top edge of this view and the card
+	 *               image.
+	 */
 	protected void anchorTop(ImageView view, double indent) {
 		setTopAnchor(view, indent);
 	}
 
+	/**
+	 * Update the children of this node in the scene graph.
+	 */
 	protected void updateChildren() {
 		if (model.getRedealsRemaining().get() > 0) {
 			getChildren().remove(stockView);
@@ -114,7 +156,6 @@ public class StockView extends AnchorPane implements View {
 
 			anchorLeft(stockView, 0);
 			anchorTop(stockView, 0);
-
 		} else {
 			getChildren().remove(stockView);
 		}

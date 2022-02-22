@@ -31,36 +31,152 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
+/**
+ * The root of the scene graph.
+ */
 public class RootView extends BorderPane implements View {
+	/**
+	 * The magnification factor for cards images.
+	 */
 	public static final double CARD_ZOOM = 1.25;
+	
+	/**
+	 * The fraction of a non-top card in a fan defaults to <code>1/FAN_OFFSET_FACTOR</code>.
+	 */
 	public static final double FAN_OFFSET_FACTOR = 5;
 
+	/**
+	 * The application window.
+	 */
 	protected Stage appStage;
+	
+	/**
+	 * The size of a card image.
+	 */
 	protected Dimension2D cardSize;
+	
+	/**
+	 * A factory for card views.
+	 */
 	protected CardViewFactory cardViewFactory;
+	
+	/**
+	 * Label used to display the number of draws remaining in a game.
+	 */
 	protected Label drawsLabel;
+	
+	/**
+	 * The Edit menu.
+	 */
 	protected Menu editMenu;
+	
+	/**
+	 * The Redo menu item.
+	 */
 	protected MenuItem editRedoItem;
+	
+	/**
+	 * The Undo menu item.
+	 */
 	protected MenuItem editUndoItem;
+	
+	/**
+	 * The distance between left-hand edges of images of adjacent cards in a fan
+	 *          view.
+	 */
 	protected double fanOffset;
+	
+	/**
+	 * The Exit menu item.
+	 */
 	protected MenuItem fileExitItem;
+	
+	/**
+	 * The File menu.
+	 */
 	protected Menu fileMenu;
+	
+	/**
+	 * The Game menu.
+	 */
 	protected Menu gameMenu;
+	
+	/**
+	 * The Reshuffle menu item.
+	 */
 	protected MenuItem gameReshuffleItem;
+	
+	/**
+	 * The About menu item.
+	 */
 	protected MenuItem helpAboutItem;
+	
+	/**
+	 * The Hint menu item.
+	 */
 	protected MenuItem helpHintItem;
+	
+	/**
+	 * The Help menu.
+	 */
 	protected Menu helpMenu;
+	
+	/**
+	 * The Rules menu item.
+	 */
 	protected MenuItem helpRulesItem;
+	
+	/**
+	 * The Usage menu item.
+	 */
 	protected MenuItem helpUsageItem;
+	
+	/**
+	 * The {@link HostServices}.
+	 */
 	protected HostServices hostServices;
+	
+	/**
+	 * Support for the input handler.
+	 */
 	protected InputHandlerSupport inputHandlerSupport;
+	
+	/**
+	 * The menu bar.
+	 */
 	protected MenuBar menuBar;
+	
+	/**
+	 * The message bar.
+	 */
 	protected BorderPane messageBar;
+	
+	/**
+	 * The model.
+	 */
 	protected GameState model;
+	
+	/**
+	 * The New Game menu item.
+	 */
 	protected MenuItem newGameItem;
+	
+	/**
+	 * Label used to display the number of reshuffles remaining in a game.
+	 */
 	protected Label reshufflesLabel;
+	
+	/**
+	 * The table view.
+	 */
 	protected TableView tableView;
 
+	/**
+	 * Constructor.
+	 * @param parentStage the application window.
+	 * @param model the model.
+	 * @param theHostServices the host services.
+	 */
 	public RootView(Stage parentStage, GameState model, HostServices theHostServices) {
 		super();
 
@@ -76,7 +192,8 @@ public class RootView extends BorderPane implements View {
 	}
 
 	/**
-	 * @return
+	 * Get the input handler.
+	 * @return the input handler.
 	 * @see io.github.alantcote.labellelucie.view.impl.support.InputHandlerSupport#getInputHandler()
 	 */
 	public InputHandler getInputHandler() {
@@ -84,7 +201,8 @@ public class RootView extends BorderPane implements View {
 	}
 
 	/**
-	 * @param inputHandler
+	 * Set the input handler.
+	 * @param inputHandler the input handler.
 	 * @see io.github.alantcote.labellelucie.view.impl.support.InputHandlerSupport#setInputHandler(io.github.alantcote.labellelucie.controller.facade.InputHandler)
 	 */
 	public void setInputHandler(InputHandler inputHandler) {
@@ -92,10 +210,18 @@ public class RootView extends BorderPane implements View {
 		tableView.setInputHandler(inputHandler);
 	}
 
+	/**
+	 * Show the About dialog.
+	 */
 	public void showHelpAboutDialog() {
 		showHelpDialog("About LaBelleLucie", getResource("helpAbout.html"));
 	}
 
+	/**
+	 * Show a Help dialog.
+	 * @param title a title for the dialog.
+	 * @param contentURL the URL from which to load the dialog content.
+	 */
 	public void showHelpDialog(String title, String contentURL) {
 		Dialog<ButtonType> myDialog = new Dialog<ButtonType>();
 		DialogPane myDialogPane = myDialog.getDialogPane();
@@ -117,26 +243,47 @@ public class RootView extends BorderPane implements View {
 		myDialog.showAndWait();
 	}
 
+	/**
+	 * Show the Rules dialog.
+	 */
 	public void showHelpRulesDialog() {
 		hostServices.showDocument("https://en.wikipedia.org/wiki/La_Belle_Lucie");
 	}
 
+	/**
+	 * Show the Usage dialog.
+	 */
 	public void showHelpUsageDialog() {
 		hostServices.showDocument("https://github.com/alantcote/LaBelleLucie/wiki/UsingLaBelleLucie");
 	}
 
+	/**
+	 * Calculate the fan offset.
+	 * @return the fan offset.
+	 */
 	protected double calcFanOffset() {
 		return cardSize.getWidth() / FAN_OFFSET_FACTOR;
 	}
 
+	/**
+	 * Create the draws remaining message.
+	 * @return the draws remaining message.
+	 */
 	protected String createDrawsText() {
 		return "Draws remaining: " + model.getDrawsRemaining().get();
 	}
 
+	/**
+	 * Create the reshuffles remaining message.
+	 * @return the reshuffles remaining message.
+	 */
 	protected String createReshufflesText() {
 		return "Reshuffles remaining: " + model.getRedealsRemaining().get();
 	}
 
+	/**
+	 * Establish the draws remaining label.
+	 */
 	protected void establishDrawsLabel() {
 		drawsLabel = new Label(createDrawsText());
 
@@ -150,12 +297,18 @@ public class RootView extends BorderPane implements View {
 		messageBar.setLeft(drawsLabel);
 	}
 
+	/**
+	 * Establish the Edit menu.
+	 */
 	protected void establishEditMenu() {
 		editMenu = new EditMenu(model, getInputHandler());
 
 		menuBar.getMenus().add(editMenu);
 	}
 
+	/**
+	 * Establish the Exit menu item.
+	 */
 	protected void establishFileExitItem() {
 		fileExitItem = new MenuItem("Exit");
 
@@ -169,6 +322,9 @@ public class RootView extends BorderPane implements View {
 		fileMenu.getItems().add(fileExitItem);
 	}
 
+	/**
+	 * Establish the File menu.
+	 */
 	protected void establishFileMenu() {
 		fileMenu = new Menu("File");
 
@@ -177,6 +333,9 @@ public class RootView extends BorderPane implements View {
 		menuBar.getMenus().add(fileMenu);
 	}
 
+	/**
+	 * Establish the Game menu.
+	 */
 	protected void establishGameMenu() {
 		gameMenu = new Menu("Game");
 
@@ -186,6 +345,9 @@ public class RootView extends BorderPane implements View {
 		menuBar.getMenus().add(gameMenu);
 	}
 
+	/**
+	 * Establish the About menu item.
+	 */
 	protected void establishHelpAboutItem() {
 		helpAboutItem = new MenuItem("About LaBelleLucie");
 
@@ -199,6 +361,9 @@ public class RootView extends BorderPane implements View {
 		helpMenu.getItems().add(helpAboutItem);
 	}
 
+	/**
+	 * Establish the Hint menu item.
+	 */
 	protected void establishHelpHintItem() {
 		helpHintItem = new MenuItem("Hint");
 
@@ -208,9 +373,6 @@ public class RootView extends BorderPane implements View {
 			@Override
 			public void handle(ActionEvent arg0) {
 				List<Move> moves = inputHandlerSupport.getInputHandler().listMoves();
-
-//				System.out.println("hint selected");
-//				System.out.println("moves = " + moves);
 
 				if (0 < moves.size()) {
 					Move move = moves.get(0);
@@ -227,6 +389,9 @@ public class RootView extends BorderPane implements View {
 		helpMenu.getItems().add(helpHintItem);
 	}
 
+	/**
+	 * Establish the Help menu.
+	 */
 	protected void establishHelpMenu() {
 		helpMenu = new Menu("Help");
 
@@ -238,6 +403,9 @@ public class RootView extends BorderPane implements View {
 		menuBar.getMenus().add(helpMenu);
 	}
 
+	/**
+	 * Establish the Rules menu item.
+	 */
 	protected void establishHelpRulesItem() {
 		helpRulesItem = new MenuItem("Rules");
 
@@ -251,6 +419,9 @@ public class RootView extends BorderPane implements View {
 		helpMenu.getItems().add(helpRulesItem);
 	}
 
+	/**
+	 * Establish the Usage menu item.
+	 */
 	protected void establishHelpUsageItem() {
 		helpUsageItem = new MenuItem("Usage");
 
@@ -264,6 +435,9 @@ public class RootView extends BorderPane implements View {
 		helpMenu.getItems().add(helpUsageItem);
 	}
 
+	/**
+	 * Establish the menu bar.
+	 */
 	protected void establishMenuBar() {
 		menuBar = new MenuBar();
 
@@ -275,6 +449,9 @@ public class RootView extends BorderPane implements View {
 		setTop(menuBar);
 	}
 
+	/**
+	 * Establish the message bar.
+	 */
 	protected void establishMessageBar() {
 		messageBar = new BorderPane();
 
@@ -286,6 +463,9 @@ public class RootView extends BorderPane implements View {
 		setBottom(messageBar);
 	}
 
+	/**
+	 * Establish the New Game menu item.
+	 */
 	protected void establishNewGameItem() {
 		newGameItem = new MenuItem("New Game");
 
@@ -301,6 +481,9 @@ public class RootView extends BorderPane implements View {
 		gameMenu.getItems().add(newGameItem);
 	}
 
+	/**
+	 * Establish the Reshuffle menu item.
+	 */
 	protected void establishReshuffleItem() {
 		int val = model.getRedealsRemaining().get();
 
@@ -326,6 +509,9 @@ public class RootView extends BorderPane implements View {
 		gameMenu.getItems().add(gameReshuffleItem);
 	}
 
+	/**
+	 * Establish the reshuffles remaining label.
+	 */
 	protected void establishReshufflesLabel() {
 		reshufflesLabel = new Label(createReshufflesText());
 
@@ -339,6 +525,9 @@ public class RootView extends BorderPane implements View {
 		messageBar.setRight(reshufflesLabel);
 	}
 
+	/**
+	 * Establish the table view.
+	 */
 	protected void establishTableView() {
 		tableView = new TableView(cardViewFactory, fanOffset, model);
 
@@ -361,12 +550,18 @@ public class RootView extends BorderPane implements View {
 		return url.toExternalForm();
 	}
 
+	/**
+	 * Establish the children of this node in the scene graph.
+	 */
 	protected void inizChildren() {
 		establishMenuBar();
 		establishTableView();
 		establishMessageBar();
 	}
 
+	/**
+	 * Initialize this object's instance variables.
+	 */
 	protected void inizVariables() {
 		cardViewFactory = new CardViewFactory(CardViewFactory.DEFAULT_MAX_DIM * CARD_ZOOM);
 		cardSize = cardViewFactory.getDimensions();
