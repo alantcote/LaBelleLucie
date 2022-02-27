@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 
 import de.saxsys.mvvmfx.testingutils.jfxrunner.JfxRunner;
 import de.saxsys.mvvmfx.testingutils.jfxrunner.TestInJfxThread;
-import io.github.alantcote.clutilities.javafx.windowprefs.WindowPrefs;
+import io.github.alantcote.fxutilities.javafx.windowprefs.WindowPrefs;
 import io.github.alantcote.labellelucie.controller.facade.Controller;
 import io.github.alantcote.labellelucie.controller.facade.DefaultInputHandler;
 import io.github.alantcote.labellelucie.controller.facade.InputHandler;

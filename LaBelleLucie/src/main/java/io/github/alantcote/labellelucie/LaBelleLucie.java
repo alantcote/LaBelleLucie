@@ -2,7 +2,7 @@ package io.github.alantcote.labellelucie;
 
 import java.util.prefs.BackingStoreException;
 
-import io.github.alantcote.clutilities.javafx.windowprefs.WindowPrefs;
+import io.github.alantcote.fxutilities.javafx.windowprefs.WindowPrefs;
 import io.github.alantcote.labellelucie.controller.facade.Controller;
 import io.github.alantcote.labellelucie.controller.facade.InputHandler;
 import io.github.alantcote.labellelucie.controller.impl.ControllerImpl;
