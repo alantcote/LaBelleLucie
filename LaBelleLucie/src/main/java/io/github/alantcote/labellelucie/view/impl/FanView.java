@@ -18,6 +18,8 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.effect.Blend;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.effect.ColorInput;
+import javafx.scene.effect.Glow;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -153,41 +155,55 @@ public class FanView extends AnchorPane implements View {
 			final Node node = getChildren().get(count - 1);
 
 			if (node instanceof CardView) {
-				Thread thread = new Thread() {
-					@Override
-					public void run() {
-						Bounds bounds = node.getBoundsInLocal();
-						ColorInput colorInput = new ColorInput(bounds.getMinX(), bounds.getMinY(), bounds.getWidth(),
-								bounds.getHeight(), Color.WHITE);
-						final Blend effect = new Blend(BlendMode.DIFFERENCE);
-
-						effect.setTopInput(colorInput);
-
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								node.setEffect(effect);
-							}
-						});
-
-						try {
-							sleep(HIGHLIGHT_ACTIVE_MILLIS);
-						} catch (InterruptedException e) {
-							// ignore the interruption
-						}
-
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								node.setEffect(null);
-							}
-						});
-					}
-				};
-
-				thread.start();
+				flashNode(node);
 			}
 		}
+	}
+
+	/**
+	 * @param node
+	 */
+	public static void flashNode(final Node node) {
+		Thread thread = new Thread() {
+			@Override
+			public void run() {
+//				Bounds bounds = node.getBoundsInLocal();
+//				ColorInput colorInput = new ColorInput(bounds.getMinX(), bounds.getMinY(), bounds.getWidth(),
+//						bounds.getHeight(), Color.WHITE);
+//				final Blend effect = new Blend(BlendMode.DIFFERENCE);
+//
+//				effect.setTopInput(colorInput);
+				
+				final InnerShadow effect = new InnerShadow();
+				effect.setOffsetX(4);
+				effect.setOffsetY(4);
+				effect.setColor(Color.BLUE);
+
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						node.setVisible(false);
+						node.setEffect(effect);
+						node.setVisible(true);
+					}
+				});
+
+				try {
+					sleep(HIGHLIGHT_ACTIVE_MILLIS);
+				} catch (InterruptedException e) {
+					// ignore the interruption
+				}
+
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						node.setEffect(null);
+					}
+				});
+			}
+		};
+
+		thread.start();
 	}
 
 	/**

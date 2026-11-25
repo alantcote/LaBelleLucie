@@ -374,13 +374,22 @@ public class RootView extends BorderPane implements View {
 			public void handle(ActionEvent arg0) {
 				List<Move> moves = inputHandlerSupport.getInputHandler().listMoves();
 
+//				System.out.println("moves.size == " + moves.size());
+
 				if (0 < moves.size()) {
 					Move move = moves.get(0);
 					MoveType moveType = move.getType();
 					int srcFanIndex = move.getSrcFanIndex();
 
+//					System.out.println("moveType == " + moveType);
+
 					if ((moveType == MoveType.TABLEAU_TO_FOUNDATION) || (moveType == MoveType.TABLEAU_TO_TABLEAU)) {
 						tableView.highlightTopTableauCard(srcFanIndex);
+					}
+					
+					if (moveType == MoveType.RESHUFFLE) {
+//						System.out.println("Flashing stockView.");
+						FanView.flashNode(tableView.stockView);
 					}
 				}
 			}
